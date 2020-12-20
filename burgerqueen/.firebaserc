@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "sm-restaurant": {
+      "hosting": {
+        "burgerqueen": [
+          "sm-restaurant"
+        ]
+      }
+    }
+  }
+}
