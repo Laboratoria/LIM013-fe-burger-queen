@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyC2PdyyoY54QQJIUGykl346taYlmvo9M6w",
-    authDomain: "sm-restaurant.firebaseapp.com",
-    projectId: "sm-restaurant",
-    storageBucket: "sm-restaurant.appspot.com",
-    messagingSenderId: "665781065499",
-    appId: "1:665781065499:web:3d4236ba9a9718a88ca5be",
-    measurementId: "G-T9L0BJ0R6Z"
+    apiKey: "AIzaSyCtUyr5y8t4LOPQJPgXfF3PAzZ4R5AWVhA",
+    authDomain: "burger-queen-56df6.firebaseapp.com",
+    projectId: "burger-queen-56df6",
+    storageBucket: "burger-queen-56df6.appspot.com",
+    messagingSenderId: "398765999164",
+    appId: "1:398765999164:web:bba0cc9c31de27d8f7af39",
+    measurementId: "G-M828QXDC4Y"
   }
 };
 
