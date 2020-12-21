@@ -1,0 +1,32 @@
+<div *ngIf="products.length > 0; else loading">
+  <h2>Products</h2>
+  <h3>DRINKS</h3>
+  <section *ngFor="let p of products">
+    <P *ngIf="p.kind === 'drink'">
+      {{p.name}}
+      {{p.price}} 
+    </P>
+  </section>
+  <h3>BURGERS & SANDWICHES</h3>
+  <section *ngFor="let p of products">
+    <P *ngIf="p.kind === 'burger-sandwich'">
+      {{p.name}}
+      {{p.price}} 
+    </P>
+  </section>
+  <h3>ACCOMPANIMENT</h3>
+  <section *ngFor="let p of products">
+    <P *ngIf="p.kind === 'accompaniment'">
+      {{p.name}} <br>
+      {{p.price}}
+    </P>
+  </section>
+</div>
+
+<ng-template #nothing>
+  <p>doesn't exists</p>
+</ng-template>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
