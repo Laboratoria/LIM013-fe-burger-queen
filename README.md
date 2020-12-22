@@ -21,7 +21,7 @@ es difícil_](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascrip
 Al elegir un _framework_ o _librería_ para nuestra interfaz, nos apoyamos en una
 serie de convenciones e implementaciones _probadas_ y _documentadas_ para
 resolver un problema común a toda interfaz web. Esto nos permite concentrarnos
-mejor (dedicar más tiempo) en las caractrísticas _específicas_ de
+mejor (dedicar más tiempo) en las características _específicas_ de
 nuestra aplicación.
 
 Cuando elegimos una de estas tecnologías no solo importamos un pedacito de
