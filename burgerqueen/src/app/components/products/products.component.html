@@ -2,24 +2,24 @@
   <h2>Products</h2>
   <h3>DRINKS</h3>
   <section *ngFor="let p of products">
-    <P *ngIf="p.kind === 'drink'">
+    <button *ngIf="p.kind === 'drink'" (click)="sendToOrder($event, p)" >
       {{p.name}}
       {{p.price}} 
-    </P>
+    </button>
   </section>
   <h3>BURGERS & SANDWICHES</h3>
   <section *ngFor="let p of products">
-    <P *ngIf="p.kind === 'burger-sandwich'">
+    <button *ngIf="p.kind === 'burger-sandwich'" (click)="sendToOrder($event, p)">
       {{p.name}}
       {{p.price}} 
-    </P>
+    </button>
   </section>
   <h3>ACCOMPANIMENT</h3>
   <section *ngFor="let p of products">
-    <P *ngIf="p.kind === 'accompaniment'">
-      {{p.name}} <br>
+    <button *ngIf="p.kind === 'accompaniment'" (click)="sendToOrder($event, p)">
+      {{p.name}}
       {{p.price}}
-    </P>
+    </button>
   </section>
 </div>
 

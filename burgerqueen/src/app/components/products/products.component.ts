@@ -8,6 +8,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+
   products = [] as any;
 
   constructor(public productService: ProductService) { }
@@ -16,6 +17,11 @@ export class ProductsComponent implements OnInit {
     this.productService.getProducts().subscribe(products => {
       this.products = products;
     })
+  }
+
+  sendToOrder(event: any, product: any) {
+    this.productService.addOrder(product);
+    
   }
 
 }
