@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// eslint-disable-next-line no-unused-vars
 import App from './App';
+import Button from './components/Button';
+import AppView from './containers/AppView';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <AppView />
   </React.StrictMode>,
   document.getElementById('root')
 );
