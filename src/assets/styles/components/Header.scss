@@ -1,0 +1,21 @@
+.header-first {
+    background-color:black;
+    color:#F9F9F9;
+    font-family: 'Amatic SC';
+
+}
+
+nav{
+   margin-top:1px;
+   display:flex;
+   justify-content: space-around;
+   color:#F9F9F9;
+ 
+}
+nav > section{
+    background-color:black;
+    width: 33%;
+}
+nav > section:hover{
+    background-color: #FC9A09;
+}
