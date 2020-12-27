@@ -10,6 +10,7 @@ import { ResumenItemComponent } from './component/resumen-item/resumen-item.comp
 import { MenuViewComponent } from './view/menu-view/menu-view.component';
 import { MenuComponent } from './view/menu/menu.component';
 import { OrdersViewComponent } from './view/orders-view/orders-view.component';
+import { ReadyordersViewComponent } from './view/readyorders-view/readyorders-view.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { OrdersViewComponent } from './view/orders-view/orders-view.component';
     ResumenItemComponent,
     MenuViewComponent,
     MenuComponent,
-    OrdersViewComponent
+    OrdersViewComponent,
+    ReadyordersViewComponent
   ],
   imports: [
     BrowserModule,
