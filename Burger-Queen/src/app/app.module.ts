@@ -11,6 +11,7 @@ import { MenuViewComponent } from './view/menu-view/menu-view.component';
 import { MenuComponent } from './view/menu/menu.component';
 import { OrdersViewComponent } from './view/orders-view/orders-view.component';
 import { ReadyordersViewComponent } from './view/readyorders-view/readyorders-view.component';
+import { HistoryOrdersComponent } from './view/history-orders/history-orders.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ReadyordersViewComponent } from './view/readyorders-view/readyorders-vi
     MenuViewComponent,
     MenuComponent,
     OrdersViewComponent,
-    ReadyordersViewComponent
+    ReadyordersViewComponent,
+    HistoryOrdersComponent
   ],
   imports: [
     BrowserModule,
