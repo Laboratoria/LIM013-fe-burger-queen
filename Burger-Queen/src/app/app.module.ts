@@ -7,11 +7,11 @@ import { FooterComponent } from './component/footer/footer.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ItemMenuComponent } from './component/item-menu/item-menu.component';
 import { ResumenItemComponent } from './component/resumen-item/resumen-item.component';
-import { MenuViewComponent } from './view/menu-view/menu-view.component';
-import { MenuComponent } from './view/menu/menu.component';
-import { OrdersViewComponent } from './view/orders-view/orders-view.component';
-import { ReadyordersViewComponent } from './view/readyorders-view/readyorders-view.component';
+
 import { HistoryOrdersComponent } from './view/history-orders/history-orders.component';
+import { HomeComponent } from './view/home/home.component';
+import { ReadyOrdersComponent } from './view/ready-orders/ready-orders.component';
+import { OrdersComponent } from './view/orders/orders.component';
 
 
 @NgModule({
@@ -21,11 +21,10 @@ import { HistoryOrdersComponent } from './view/history-orders/history-orders.com
     NavBarComponent,
     ItemMenuComponent,
     ResumenItemComponent,
-    MenuViewComponent,
-    MenuComponent,
-    OrdersViewComponent,
-    ReadyordersViewComponent,
-    HistoryOrdersComponent
+    HistoryOrdersComponent,
+    HomeComponent,
+    ReadyOrdersComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
