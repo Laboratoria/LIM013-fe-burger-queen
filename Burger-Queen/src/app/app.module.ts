@@ -7,6 +7,8 @@ import { FooterComponent } from './component/footer/footer.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ItemMenuComponent } from './component/item-menu/item-menu.component';
 import { ResumenItemComponent } from './component/resumen-item/resumen-item.component';
+import { MenuViewComponent } from './view/menu-view/menu-view.component';
+import { MenuComponent } from './view/menu/menu.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { ResumenItemComponent } from './component/resumen-item/resumen-item.comp
     FooterComponent,
     NavBarComponent,
     ItemMenuComponent,
-    ResumenItemComponent
+    ResumenItemComponent,
+    MenuViewComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
