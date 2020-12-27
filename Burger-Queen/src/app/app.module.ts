@@ -9,6 +9,7 @@ import { ItemMenuComponent } from './component/item-menu/item-menu.component';
 import { ResumenItemComponent } from './component/resumen-item/resumen-item.component';
 import { MenuViewComponent } from './view/menu-view/menu-view.component';
 import { MenuComponent } from './view/menu/menu.component';
+import { OrdersViewComponent } from './view/orders-view/orders-view.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { MenuComponent } from './view/menu/menu.component';
     ItemMenuComponent,
     ResumenItemComponent,
     MenuViewComponent,
-    MenuComponent
+    MenuComponent,
+    OrdersViewComponent
   ],
   imports: [
     BrowserModule,
