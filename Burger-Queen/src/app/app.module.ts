@@ -8,6 +8,12 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ItemMenuComponent } from './component/item-menu/item-menu.component';
 import { ResumenItemComponent } from './component/resumen-item/resumen-item.component';
 
+import { HistoryOrdersComponent } from './view/history-orders/history-orders.component';
+import { HomeComponent } from './view/home/home.component';
+import { ReadyOrdersComponent } from './view/ready-orders/ready-orders.component';
+import { OrdersComponent } from './view/orders/orders.component';
+import { OrderDetailComponent } from './view/order-detail/order-detail.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +21,12 @@ import { ResumenItemComponent } from './component/resumen-item/resumen-item.comp
     FooterComponent,
     NavBarComponent,
     ItemMenuComponent,
-    ResumenItemComponent
+    ResumenItemComponent,
+    HistoryOrdersComponent,
+    HomeComponent,
+    ReadyOrdersComponent,
+    OrdersComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
