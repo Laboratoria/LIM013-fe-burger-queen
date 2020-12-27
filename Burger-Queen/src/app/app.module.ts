@@ -12,6 +12,7 @@ import { HistoryOrdersComponent } from './view/history-orders/history-orders.com
 import { HomeComponent } from './view/home/home.component';
 import { ReadyOrdersComponent } from './view/ready-orders/ready-orders.component';
 import { OrdersComponent } from './view/orders/orders.component';
+import { OrderDetailComponent } from './view/order-detail/order-detail.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { OrdersComponent } from './view/orders/orders.component';
     HistoryOrdersComponent,
     HomeComponent,
     ReadyOrdersComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
