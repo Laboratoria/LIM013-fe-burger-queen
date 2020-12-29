@@ -1,13 +1,11 @@
 import React from 'react';
 import '../assets/styles/components/Header.scss';
+import logoBurguer from '../imagenes/hamburguesa-logo.png'
 const Header = () => (
     <header>
         <section className='header-first'>
-            <section>
                 <h1> Burguer Queen </h1>
-            </section>
-            <figure>
-            </figure>
+                <img src= {logoBurguer} alt = 'logoBurguer'/>
         </section>
         <nav>
             <section className= 'request'>

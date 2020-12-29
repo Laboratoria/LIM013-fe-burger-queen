@@ -1,21 +1,36 @@
+@import "../Vars.scss";
+
 .header-first {
-    background-color:black;
-    color:#F9F9F9;
-    font-family: 'Amatic SC';
+  display:flex;
+  background-color: black;
+  color: $white;
+  font-family: $theme-font;
+  font-size: 30px;
+  font-weight: lighter;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 8px;
+}
+
+h1 {
 
 }
 
-nav{
-   margin-top:1px;
-   display:flex;
-   justify-content: space-around;
-   color:#F9F9F9;
- 
+img{
+    width: 8%;
+    margin-left: 10px;
 }
-nav > section{
-    background-color:black;
-    width: 33%;
+nav {
+  font-family: Verdana;
+  margin-top: 1px;
+  display: flex;
+  justify-content: space-around;
+  color:$white;
 }
-nav > section:hover{
-    background-color: #FC9A09;
+nav > section {
+  background-color: rgb(0, 0, 0);
+  width: 33%;
+}
+nav > section:hover {
+  background-color:$light-orange;
 }
