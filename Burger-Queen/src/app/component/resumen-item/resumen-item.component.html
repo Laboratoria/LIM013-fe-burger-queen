@@ -1,41 +1,43 @@
 <h2 class="titulo">Resumen de pedido</h2>
-<table>
+<table class="detail">
   <tr>
-    <td>Cliente:</td>
-    <td>Maria Paula</td>
-    <th>N°: 001</th>
+    <td class="items">Cliente:</td>
+    <td class="items">Maria Paula</td>
+    <td class="order"><strong>N°: 001</strong></td>
   </tr>
   <tr>
-    <td>Monto total: </td>
-    <td>  S/. 41.00</td>
+    <td class="items">Monto total: </td>
+    <td class="items"> S/. 7.00</td>
   </tr>
 
   <br>
 </table>
 
-<table>
+<table  class="products">
   <tr>
     <th>Item</th>
     <th>Producto</th>
     <th>Cantidad</th>
     <th>Total</th>
   </tr>
-  <tr>
-    <td> 01 </td>
-    <td> cafe con leche</td>
-    <td class="contador">
-      <tr>
-        <td> <button id="add" class="fas fa-plus"></button></td>
-        <td>2</td>
-        <td> <button id="reduce" class="fas fa-minus"></button></td>
-      </tr>
+  <tr *ngFor="let data of products">
+  <td>{{data.item}}</td>
+  <td>{{data.product}}</td>
+  <td class="counter">
+    <tr>
+      <td> <button (click)= "addProducts(data.item)" (click)="subtotal(data.item)" (click)="hallarTotal()" id="add" class="fas fa-plus"></button></td> 
+      <td>{{data.quantity}}</td>
+      <td> <button (click)="reduceProducts(data.item)" (click)="subtotal(data.item)" (click)="hallarTotal()" id="reduce" class="fas fa-minus"></button></td>
+    </tr>
     </td>
-    <td class="contador"> 
-      <tr>
-        <td>S/7.00</td>
-        <td><button id="delete" class="fas fa-trash-alt"></button></td>
-        </tr>
-    </td>
+  <td >{{data.total}} </td>
+  <td><button  id="delete" class="fas fa-trash-alt"></button></td>
   </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td class="total">S/.{{total}}</td>
+  </tr> 
 
 </table>
