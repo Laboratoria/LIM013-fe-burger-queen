@@ -13,7 +13,7 @@
   <br>
 </table>
 
-<table  class="products">
+<table class="products">
   <tr>
     <th>Item</th>
     <th>Producto</th>
@@ -21,23 +21,25 @@
     <th>Total</th>
   </tr>
   <tr *ngFor="let data of products">
-  <td>{{data.item}}</td>
-  <td>{{data.product}}</td>
-  <td class="counter">
-    <tr>
-      <td> <button (click)= "addProducts(data.item)" (click)="subtotal(data.item)" (click)="hallarTotal()" id="add" class="fas fa-plus"></button></td> 
-      <td>{{data.quantity}}</td>
-      <td> <button (click)="reduceProducts(data.item)" (click)="subtotal(data.item)" (click)="hallarTotal()" id="reduce" class="fas fa-minus"></button></td>
-    </tr>
-    </td>
-  <td >{{data.total}} </td>
-  <td><button  id="delete" class="fas fa-trash-alt"></button></td>
+    <td>{{data.item}}</td>
+    <td>{{data.product}}</td>
+    <td class="counter">
+  <tr>
+    <td> <button (click)="addProducts(data.item)" (click)="subtotal(data.item)" (click)="hallarTotal()" id="add"
+        class="fas fa-plus"></button></td>
+    <td>{{data.quantity}}</td>
+    <td> <button (click)="reduceProducts(data.item)" (click)="subtotal(data.item)" (click)="hallarTotal()" id="reduce"
+        class="fas fa-minus"></button></td>
+  </tr>
+  </td>
+  <td>{{data.total}} </td>
+  <td><button id="delete" class="fas fa-trash-alt"></button></td>
   </tr>
   <tr>
     <td></td>
     <td></td>
     <td></td>
     <td class="total">S/.{{total}}</td>
-  </tr> 
+  </tr>
 
 </table>
