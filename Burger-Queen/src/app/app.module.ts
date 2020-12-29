@@ -13,6 +13,7 @@ import { HomeComponent } from './view/home/home.component';
 import { ReadyOrdersComponent } from './view/ready-orders/ready-orders.component';
 import { OrdersComponent } from './view/orders/orders.component';
 import { OrderDetailComponent } from './view/order-detail/order-detail.component';
+import { ContainerProductComponent } from './component/container-product/container-product.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { OrderDetailComponent } from './view/order-detail/order-detail.component
     HomeComponent,
     ReadyOrdersComponent,
     OrdersComponent,
-    OrderDetailComponent
+    OrderDetailComponent,
+    ContainerProductComponent
   ],
   imports: [
     BrowserModule,
