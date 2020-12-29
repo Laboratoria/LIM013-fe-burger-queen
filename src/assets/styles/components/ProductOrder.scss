@@ -1,0 +1,45 @@
+.product-order {
+    display:flex;
+    justify-content: space-around;
+    margin: 5px 0px 5px 0px;
+}
+
+.product-order div{
+    display:flex;  
+}
+
+.button-add, .button-less, .button-trash{
+    border: none;
+}
+.fas{
+    font-size: 20px;
+}
+.fa-trash-alt{
+    color: #575756;
+}
+
+.fa-plus-circle{
+    color: #FC9A09;
+}
+
+.fa-minus-circle{
+    color: #D95A03;
+}
+
+div p{
+    margin: 0px 5px 0px 5px;
+}
+.product-detail{
+    display:inline;
+    width:100%;
+    white-space:pre;
+}
+strong{
+    font-size: 20px;
+}
+span{
+    font-size: 16px;
+}
+.order-table, .order-name{
+    font-size: 20px;
+}
