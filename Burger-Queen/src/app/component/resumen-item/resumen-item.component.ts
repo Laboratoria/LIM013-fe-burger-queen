@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemMenuComponent } from '../item-menu/item-menu.component';
 
 @Component({
   selector: 'app-resumen-item',
