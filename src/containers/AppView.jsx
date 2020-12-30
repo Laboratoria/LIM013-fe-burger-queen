@@ -15,6 +15,7 @@ import OptionBreakfast from '../components/OptionBreakfast';
 import OptionMenu from '../components/OptionMenu';
 import OptionDrinks from '../components/OptionDrinks';
 import ItemMenu from '../components/ItemMenu';
+import ItemPrueba from '../components/ItemPrueba';
 import '../assets/styles/App.scss'
 const AppView =() =>(
     <section className = 'App'>
@@ -46,6 +47,7 @@ const AppView =() =>(
                 </BodyAllMenu>
             </AllMenu>
         </OrderAndAllMenu>
+        <ItemPrueba/>
     </section>
 )
 

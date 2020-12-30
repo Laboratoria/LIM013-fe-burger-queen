@@ -8,6 +8,8 @@ import Button from './components/Button';
 import AppView from './containers/AppView';
 import reportWebVitals from './reportWebVitals';
 
+import './firebase'
+
 ReactDOM.render(
   <React.StrictMode>
     <AppView />
