@@ -9,8 +9,8 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
 export class ResumenItemComponent implements OnInit {
   total:number=0;
   products=[
-    {item:1,product:'cafe con leche',quantity:2, valorUnitario:5.00,total:10.00},
-    {item:2,product:'cafe americano',quantity:1, valorUnitario:5.00,total:5.00 },
+    {item:1,product:'cafe con leche',quantity:0, valorUnitario:5.00,total:10.00},
+    {item:2,product:'cafe americano',quantity:0, valorUnitario:5.00,total:5.00 },
     {item:3,product:'jugo natural',quantity:1, valorUnitario:7.00,total:7.00 },
     {item:4,product:'sandwich de jamon y queso',quantity:2,valorUnitario:10.00,total:20.00 }
   ]

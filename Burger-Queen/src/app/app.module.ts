@@ -14,6 +14,7 @@ import { ReadyOrdersComponent } from './view/ready-orders/ready-orders.component
 import { OrdersComponent } from './view/orders/orders.component';
 import { OrderDetailComponent } from './view/order-detail/order-detail.component';
 import { ContainerProductComponent } from './component/container-product/container-product.component';
+import { GetnameuserComponent } from './component/getnameuser/getnameuser.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ContainerProductComponent } from './component/container-product/contain
     ReadyOrdersComponent,
     OrdersComponent,
     OrderDetailComponent,
-    ContainerProductComponent
+    ContainerProductComponent,
+    GetnameuserComponent
   ],
   imports: [
     BrowserModule,
