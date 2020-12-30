@@ -6,7 +6,7 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
   templateUrl: './resumen-item.component.html',
   styleUrls: ['./resumen-item.component.scss']
 })
-export class ResumenItemComponent { // OJO dentro de clase todo las propiedades y funciones
+export class ResumenItemComponent { // OJO dentro de clase todo las propiedades y funciones this 
   // variable que contiene cantidad de producto
   total: number = 0;
   products = [
@@ -24,6 +24,7 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
   addProducts(_item: number) {
     this.products[_item - 1].quantity++;
     this.calculateSubtotal(_item);
+    console.log(this.products);
   }
 
   reduceProducts(_item: number) {
@@ -33,8 +34,8 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
     }
   }
 
-  calculateSubtotal(item: number) {
-    this.products[item - 1].subtotal = this.products[item - 1].quantity * this.products[item - 1].unitValue;
+  calculateSubtotal(_item: number) {
+    this.products[_item - 1].subtotal = this.products[_item - 1].quantity * this.products[_item - 1].unitValue;
     this.calculateTotal();
   }
 
