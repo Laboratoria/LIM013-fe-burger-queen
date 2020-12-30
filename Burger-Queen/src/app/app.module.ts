@@ -16,6 +16,9 @@ import { OrderDetailComponent } from './view/order-detail/order-detail.component
 import { ContainerProductComponent } from './component/container-product/container-product.component';
 import { GetnameuserComponent } from './component/getnameuser/getnameuser.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -34,9 +37,10 @@ import { GetnameuserComponent } from './component/getnameuser/getnameuser.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

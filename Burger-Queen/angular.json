@@ -120,6 +120,10 @@
               "devServerTarget": "Burger-Queen:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }
