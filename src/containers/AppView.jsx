@@ -47,7 +47,7 @@ const AppView =() =>(
                 </BodyAllMenu>
             </AllMenu>
         </OrderAndAllMenu>
-        <ItemPrueba />
+        <ItemPrueba/>
     </section>
 )
 
