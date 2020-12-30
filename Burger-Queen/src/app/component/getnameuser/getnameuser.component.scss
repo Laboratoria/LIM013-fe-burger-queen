@@ -1,0 +1,42 @@
+.container{
+    margin: 70px 0px 40px 0px;
+    // background-color: deeppink;
+    align-items: center;
+    text-align: center;
+}
+.nameUser{
+    border: 2px solid #21388B;
+    text-align: center;
+    outline: none;
+    border-radius: 15px;
+    height: 40px;
+    width: 50%;
+}
+.nameUser:hover{
+    border: 1.6px solid #162763;
+}
+.title{
+    font-size: calc(1.5em + 1.5vw);
+}
+.name ,.nameUser{
+    font-size: calc(0.6em + 0.6vw);
+}
+.alert{
+    float: right;
+    color: #088f04;
+    font-size: calc(1.2em + 1.2vw);
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 10px;
+    background-color: #ffffff;
+    font-weight: 600;
+    border-style: none;
+    cursor: pointer;
+}
+.alert:focus {
+    outline: none;
+}
+.alert:hover{
+    font-size: calc(1.3em + 1.3vw);
+    color: #0c7c08;
+}

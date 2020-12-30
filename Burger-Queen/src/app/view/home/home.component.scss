@@ -1,0 +1,46 @@
+.home{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btnSend{
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btnSend button{
+  border-radius: 10px ;
+  color: #ffffff;
+  width: 20%;       
+  height: 40px;
+  border: 2px solid #21388B;
+  cursor:pointer;
+  background-color:  #21388B;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+  font-size: calc(0.5em + 0.5vw);
+  position: fixed;
+  bottom: 50px;
+  z-index: 100;
+  }
+  .btnSend button:hover{
+    width: 22%;       
+    height: 44px;
+
+  }
+
+
+@media screen and (max-width: 1024px) {
+    .home{
+      width: 100%;
+    }
+    .btnSend button{
+      width: 30%;       
+    }
+}
+@media screen and (max-width: 575px) {
+  .btnSend button{
+    width: 40%;       
+  }
+}
+

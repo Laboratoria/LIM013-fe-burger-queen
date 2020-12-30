@@ -6,6 +6,7 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
   templateUrl: './resumen-item.component.html',
   styleUrls: ['./resumen-item.component.scss']
 })
+
 export class ResumenItemComponent { // OJO dentro de clase todo las propiedades y funciones this 
   // variable que contiene cantidad de producto
   total: number = 0;

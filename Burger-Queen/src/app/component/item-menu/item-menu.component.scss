@@ -1,0 +1,91 @@
+.container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    // background-color: rgb(205, 224, 240);
+    flex-wrap: wrap;
+}
+.itemMenu{
+    height: 240px;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 15px 15px 15px 15px;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    font-size: calc(0.5em + 0.5vw);
+}
+.itemTitle{
+    height: 25%;
+}
+.itemImg{
+    height: 35%;
+}
+.itemPrice{
+    height: 15%;
+}
+.itemQuantity{
+    background-color: #ffffff;
+    height: 25%;
+    border-radius: 0px 0px 15px 15px;
+}
+.itemTitle,.itemPrice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.itemActive{
+    background-color: #FDB827;
+    border: #FDB827 2px solid;
+}
+.itemDisabled{
+    background-color: #F1F1F1;
+    border: #F1F1F1 2px solid;
+}
+img{
+    width: 100%;
+}
+.itemMenu table{
+    height: 100%;
+    width: 100%;
+}
+.itemMenu td{
+    align-items:center;
+    text-align: center;
+}
+.itemMenu button{
+    border-radius: 50% ;
+    color:#21388B;
+    width: 40px;       
+    height: 40px;
+    border: 2px solid #21388B;
+    cursor:pointer;
+    background-color: #ffffff;
+    }
+
+.itemMenu button:hover{
+    background-color:#21388B;
+    color: #F1F1F1;
+}
+.itemMenu button:focus {
+    outline: none;
+}
+@media screen and (max-width: 1024px) {
+    .itemMenu{
+        height: 200px;
+        width: 140px;
+    }
+}
+@media screen and (max-width: 575px) {
+    .itemMenu{
+        height: 160px;
+        width: 100px;
+    }
+    .itemMenu button{
+        width: 30px;       
+        height: 30px;
+        }
+}
