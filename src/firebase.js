@@ -1,17 +1,15 @@
 /* eslint-disable no-unused-vars */
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-// import "firebase/auth";
+import "firebase/auth";
 
 var firebaseConfig = {
-  apiKey: "AIzaSyDOCAbC123dEf456GhI789jKl01-MnO",
-  authDomain: "myapp-project-123.firebaseapp.com",
-  databaseURL: "https://myapp-project-123.firebaseio.com",
-  projectId: "myapp-project-123",
-  storageBucket: "myapp-project-123.appspot.com",
-  messagingSenderId: "65211879809",
-  appId: "1:65211879909:web:3ae38ef1cdcb2e01fe5f0c",
-  measurementId: "G-8GSGZQ44ST"
+  apiKey: "AIzaSyAKVbF7JunawPdWS0zqhV0izkAzDGL-p5I",
+  authDomain: "burguer-queen-ae027.firebaseapp.com",
+  projectId: "burguer-queen-ae027",
+  storageBucket: "burguer-queen-ae027.appspot.com",
+  messagingSenderId: "10679795447",
+  appId: "1:10679795447:web:5bcf4c49bdb33698be9df2"
 };
 
 const fb = firebase.initializeApp(firebaseConfig);
