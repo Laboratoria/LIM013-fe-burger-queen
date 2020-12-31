@@ -1,14 +1,26 @@
+
 .titulo{
     margin-top: 50px;
     text-align: center;    
 }
+.table{
+    font-size: calc(0.5em + 0.5vw);
 
+    text-align: center;
+}
+
+
+.td-product{
+    border-bottom: 1px solid #FDB827;
+}
+
+.td-product td{
+width: 60px;
+}
 .detail{
     width: 40%;
     margin: auto;
-    overflow-x: auto;
-    font-size: 26px;
-    white-space: normal;
+
 }
 
 .N-order{
@@ -21,26 +33,16 @@
 }
 
 .products {
-    width: 50%;
     margin: auto;
 
 }
- th,td{
-    font-size: 26px;
-    text-align: center;
-  
-
-}
-
 
     button{
-        border-radius: 30% ;
+        border-radius: 50% ;
         color:#21388B;
         width: 40px;       
         height: 40px;
         border: 3px solid #21388B;
-        margin: 0%;
-       
     }
   
 
@@ -52,33 +54,45 @@
 
 // ----------------------------Desktop------------------------------//
     @media screen and (max-width: 1024px) {
+$witdh:1000px;
+
+table{
+    min-width: $witdh;
+}
+tr{
+    border: green 5px solid!important;
+}
+
+}
+    
+ @media screen and (max-width: 575px) {
+        $witdh:100px;
+.table{
+
+    margin: auto!important;
+}
 
 .detail{
-    overflow-x: auto;
-    font-size: 26px;
-    white-space: normal;
+    width: 80%;
+    min-width: $witdh;
+    margin:auto;
+   float: center;
 }
-    .products{
-    width: 50%;
-    margin: auto;
-    }
-    td,th{
-    width: 20%;
-    }
 
-    }
-    button{
-        border-radius: 50% ;
-        color:#21388B;
-        width: 40px;       
-        height: 40px;
-        border: 3px solid #21388B;
-    }
-    .total{
-        width:15%;
-        background-color:  #FDB827;
-        border-radius: 8px ;
-
-    }
+.products{
+    width: 80%;
+    min-width: $witdh;
+    margin:auto;
+    overflow-x: auto!important;
    
+}
+
+}
+   
+
+
+
+ 
+
+
    

@@ -25,7 +25,7 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
   addProducts(_item: number) {
     this.products[_item - 1].quantity++;
     this.calculateSubtotal(_item);
-    console.log(this.products);
+    // console.log(this.products);
   }
 
   reduceProducts(_item: number) {
