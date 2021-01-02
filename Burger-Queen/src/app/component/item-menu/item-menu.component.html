@@ -1,14 +1,14 @@
 <section class="container">
-    <section class="itemMenu itemDisabled" *ngFor="let data of result">
-        <div class="itemTitle"><p>{{data.name}}</p></div>
-        <div class="itemImg"><img src="https://firebasestorage.googleapis.com/v0/b/burgerqueen-1a4e9.appspot.com/o/jugo.jpg?alt=media&token=0cb4ac37-02c2-4450-b72d-d32e8b6cf439" alt=""></div>
-        <div class="itemPrice"><p>S/ 7.00</p></div>
+    <section class="itemMenu itemDisabled" *ngFor="let product of products">
+        <div class="itemTitle"><p>{{product.product}}</p></div>
+        <div class="itemImg"><img src="{{product.img}}" alt=""></div>
+        <div class="itemPrice"><p>S/{{product.price}}.00</p></div>
         <div class="itemQuantity">
             <table>
                 <tr>
-                    <td><button class="fas fa-minus"(click)= "reduceProducts(data.item)"></button></td>
-                    <td>{{data.quantity}}</td>
-                    <td><button class="fas fa-plus" (click)= "addProducts(data.item)"></button></td> 
+                    <td><button class="fas fa-minus"(click)= "reduceProducts(product.item)"></button></td>
+                    <td>{{product.quantity}}</td>
+                    <td><button class="fas fa-plus" (click)= "addProducts(product.item)"></button></td> 
                 </tr>
             </table>
         </div>

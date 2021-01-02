@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 
 @Component({
   selector: 'app-item-menu',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./item-menu.component.scss']
 })
 export class ItemMenuComponent implements OnInit {
+  public products = [];
   total:number=0;
   result=[{item:1,name:'Café con leche',quantity:0},
   {item:2,name:'Café americano',quantity:0},
@@ -19,16 +21,25 @@ export class ItemMenuComponent implements OnInit {
 ]
   addProducts(item:number) { 
     this.total =0;
-    this.result[item-1].quantity++;
+    this.products[item-1].quantity++;
+    console.log(this.products);
   }
   reduceProducts(item:number) {
     this.total =0;
-    if(this.result[item-1].quantity>0){
-        this.result[item-1].quantity--;
+    if(this.products[item-1].quantity>0){
+        this.products[item-1].quantity--;
     }
   }
-  constructor() { }
+  constructor(private firestoreService: FirestoreService) { }
   ngOnInit(): void {
+    this.firestoreService.getProducts().subscribe((productsSnapshot) => {
+      this.products = [];
+      productsSnapshot.forEach((productData: any) => {
+        this.products.push({quantity:0, ...productData.payload.doc.data()
+        });
+      })
+      console.log(this.products);
+    });
   }
 
 }
