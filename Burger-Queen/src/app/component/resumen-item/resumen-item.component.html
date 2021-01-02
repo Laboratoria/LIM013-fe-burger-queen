@@ -1,44 +1,55 @@
-<h2   class="titulo">Resumen de pedido</h2>
-<table class="detail">
-  <tr>
-    <td class="items">Cliente:</td>
-    <td class="items">Maria Paula</td>
-    <td class="order"><strong>N°: 001</strong></td>
-  </tr>
-  <tr>
-    <td class="items">Monto total: </td>
-    <td class="items"> S/. {{total}}</td>
-  </tr>
-
-  <br>
-</table>
-
-<table  class="products">
-  <tr>
-    <th>Item</th>
-    <th>Producto</th>
-    <th>Cantidad</th>
-    <th>Total</th>
-  </tr>
-  <tr *ngFor="let data of products">
-  <td>{{data.item}}</td>
-  <td>{{data.product}}</td>
-  <td class="counter">
+<h2 class="titulo">Resumen de pedido</h2>
+<section class="table">
+  <table class="detail">
     <tr>
-      <td> <button (click)= "addProducts(data.item)"  id="add" class="fas fa-plus"></button></td> 
-      <td>{{data.quantity}}</td>
-      <td> <button (click)="reduceProducts(data.item)"  id="reduce" class="fas fa-minus"></button></td>
+      <td class="items">Cliente:</td>
+      <td class="items">Maria Paula</td>
+      <td class="N-order"><strong>N°: 001</strong></td>
+    </tr>
+    <tr>
+      <td class="items">Monto total: </td>
+      <td class="items"> S/. {{total}}</td>
+    </tr>
+    <br>
+  </table>
+
+  <table class="products">
+    <tr>
+      <th>Item</th>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio unitario</th>
+      <th>Subtotal</th>
+    </tr>
+    <tr   *ngFor="let data of products">
+      <td class="td-product">{{data.item}}</td>
+      <td class="td-product">{{data.product}}</td>
+
+    <td class="td-product">
+    <tr>
+      <td > <button (click)="addProducts(data.item)" id="add" class="fas fa-plus"></button></td>
+      <td >{{data.quantity}}</td>
+      <td > <button (click)="reduceProducts(data.item)" id="reduce" class="fas fa-minus"></button></td>
     </tr>
     </td>
-  <td >{{data.subtotal}} </td>
-  <td><button  (click)="deleteRow(data.item)"id="delete" class="fas fa-trash-alt"></button></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td class="total">S/.{{total}}</td>
-  </tr> 
- 
-</table>
+
+    <td  class="td-product">{{data.unitValue}}.00</td>
+    <td class="td-product">
+      <tr>
+        <td >{{data.subtotal}}.00</td>
+        <td ><button (click)="deleteRow(data.item)" id="delete" class="fas fa-trash-alt"></button></td>
+      </tr>
+    </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><strong>Total</strong></td>
+      <td class="total">S/.{{total}}</td>
+    </tr>
+
+  </table>
+</section>
+
 
