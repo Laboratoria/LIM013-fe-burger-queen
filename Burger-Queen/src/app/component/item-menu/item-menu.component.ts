@@ -9,7 +9,8 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 export class ItemMenuComponent implements OnInit {
   public products = [];
   total:number=0;
-  result=[{item:1,name:'Café con leche',quantity:0},
+  result=[
+  {item:1,name:'Café con leche',quantity:0},
   {item:2,name:'Café americano',quantity:0},
   {item:3,name:'Café americano',quantity:0},
   {item:4,name:'Café americano',quantity:0},
@@ -43,3 +44,4 @@ export class ItemMenuComponent implements OnInit {
   }
 
 }
+

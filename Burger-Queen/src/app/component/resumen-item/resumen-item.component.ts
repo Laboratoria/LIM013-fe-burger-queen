@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { ItemMenuComponent } from '../item-menu/item-menu.component';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 
 @Component({
   selector: 'app-resumen-item',
@@ -69,7 +70,12 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
     this.calculateTotal();
     this.updateItem();
   }
-
-
-
 }
+//.suscribe()
+//Los Observables brindan soporte para pasar mensajes entre partes de su aplicación.
+// Se utilizan con frecuencia en Angular y son la técnica recomendada para el manejo de eventos, 
+//la programación asincrónica y el manejo de múltiples valores.
+
+//constructor
+//JavaScript llama al constructor antes que cualquier otra cosa.
+//“ngOnInit está puramente ahí para darnos una señal de que Angular ha terminado de inicializar el componente”.
