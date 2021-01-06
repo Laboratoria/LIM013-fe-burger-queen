@@ -36,6 +36,7 @@ sendOrder(){
   // -------------Funcion que se ejecuta por defecto------------------//
   constructor(private firestoreservice: FirestoreService) { 
     this.calculateTotal();
+
   }
   
 
@@ -86,6 +87,13 @@ sendOrder(){
     this.updateItem();
   }
 
+  // public sumar(a:number,b:number):number{
+  //   return Number(a) + Number(b);
+  // }
+
+
 }
+
+
 
 // instancia cuando queremos usar funciones atributos etc que esten dentro de una clase.

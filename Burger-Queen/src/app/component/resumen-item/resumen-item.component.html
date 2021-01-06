@@ -28,9 +28,10 @@
 
     <td class="td-product">
     <tr>
-      <td > <button (click)="addProducts(data.item)" id="add" class="fas fa-plus"></button></td>
-      <td >{{data.quantity}}</td>
       <td > <button (click)="reduceProducts(data.item)" id="reduce" class="fas fa-minus"></button></td>
+      <td >{{data.quantity}}</td>
+      
+      <td > <button (click)="addProducts(data.item)" id="add" class="fas fa-plus"></button></td>
     </tr>
     </td>
 
@@ -60,3 +61,5 @@
 </div>
 
 <p *ngIf= "error=== 'fail'">no se pudo enviar </p>
+
+
