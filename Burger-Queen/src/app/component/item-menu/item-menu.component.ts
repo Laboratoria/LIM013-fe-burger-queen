@@ -10,20 +10,6 @@ export class ItemMenuComponent implements OnInit {
   // @Output() produtcs:Array;
   public products = [];
   total:number=0;
-<<<<<<< HEAD
-  result=[
-  {item:1,name:'Café con leche',quantity:0},
-  {item:2,name:'Café americano',quantity:0},
-  {item:3,name:'Café americano',quantity:0},
-  {item:4,name:'Café americano',quantity:0},
-  {item:5,name:'Café americano',quantity:0},
-  {item:6,name:'Café americano',quantity:0},
-  {item:7,name:'Café americano',quantity:0},
-  {item:8,name:'Café americano',quantity:0},
-  {item:9,name:'Café americano',quantity:0}
-]
-  addProducts(item:number) { 
-=======
 //   result=[{item:1,name:'Café con leche',quantity:0},
 //   {item:2,name:'Café americano',quantity:0},
 //   {item:3,name:'Café americano',quantity:0},
@@ -35,7 +21,6 @@ export class ItemMenuComponent implements OnInit {
 //   {item:9,name:'Café americano',quantity:0}
 // ]
   addProducts(_item:number) { 
->>>>>>> prueba3
     this.total =0;
     this.products[_item-1].quantity++;
     console.log(this.products);
