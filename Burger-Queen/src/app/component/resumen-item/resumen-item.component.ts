@@ -77,7 +77,7 @@ sendOrder(){
     //         this.products.splice(i,1);// i posicion y 1 cantidad de elemento eliminar
     //     }
     // }
-    this.products.forEach(element => {
+    this.products.forEach(element =>{
       if (element.item === _item) {
         this.products.splice(this.products.indexOf(element), 1);
       }
