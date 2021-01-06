@@ -16,11 +16,16 @@ export class FirestoreService {
     return this.firestore.collection('BG-Products').snapshotChanges();
   }
   
-  public createCollection(customerName, numOrder,detailOrder){
+  public getOrders() {
+    return this.firestore.collection('BG-Orders').snapshotChanges();
+  }
+  
+  public createCollection(customerName, numOrder,detailOrder,status){
     return this.firestore.collection('BG-Orders').add({
       customerName,
       numOrder,
       detailOrder,
+      status,
     });
 
   }

@@ -11,7 +11,9 @@ import {FirestoreService} from '../../services/firestore/firestore.service';
 
 export class ResumenItemComponent {
  @Input() sendStatusButton:string;
-
+ public ordersPedido=[];
+ numOrder:any=0;
+ status:string='Pending';
  
   total: number = 0;
   products = [
@@ -25,20 +27,49 @@ export class ResumenItemComponent {
 error:string;
 //------------------Funcion  que envia orden--------------------------//
 sendOrder(){
-  this.firestoreservice.createCollection('carlos','01', this.products).then(()=>{
+  this.firestoreservice.createCollection('paty',this.numOrder, this.products,this.status).then(()=>{
     console.log('exito');
   }).catch(()=>{
  this.error= 'fail';
   })
-
-
 }
   // -------------Funcion que se ejecuta por defecto------------------//
   constructor(private firestoreservice: FirestoreService) { 
     this.calculateTotal();
+    this.getOrders();
+  
 
   }
-  
+  //------------funcion para obtener data de bg-orders-----------------//
+  getOrders(){
+    this.firestoreservice.getOrders().subscribe((ordersSnapshot) => {
+      this.ordersPedido = [];
+      ordersSnapshot.forEach((orderData: any) => {
+        this.ordersPedido.push({ ...orderData.payload.doc.data() })  
+      });
+      this.getNumOrders();      
+      console.log(this.numOrder);
+    });
+  }
+
+  //------------Funcion para obtener numero de orden--------------------//
+getNumOrders(){
+  this.numOrder= this.ordersPedido.length+1;
+  console.log('labora'+ this.numOrder);
+  if(this.numOrder<=9 ){
+    this.numOrder= '00'+this.numOrder;
+  }  else if(this.numOrder<100){
+    this.numOrder= '0'+this.numOrder;
+  }
+  // console.log(this.ordersPedido);
+  // console.log('cantidad')
+  // console.log(this.ordersPedido.length);
+  // console.log('numOrder'+ this.numOrder);
+}
+
+  ngOnInit(): void {
+    
+  }
 
   addProducts(_item: number) {
     this.products[_item - 1].quantity++;
@@ -78,7 +109,7 @@ sendOrder(){
     //         this.products.splice(i,1);// i posicion y 1 cantidad de elemento eliminar
     //     }
     // }
-    this.products.forEach(element => {
+    this.products.forEach(element =>{
       if (element.item === _item) {
         this.products.splice(this.products.indexOf(element), 1);
       }
@@ -91,9 +122,6 @@ sendOrder(){
   //   return Number(a) + Number(b);
   // }
 
-
 }
-
-
 
 // instancia cuando queremos usar funciones atributos etc que esten dentro de una clase.
