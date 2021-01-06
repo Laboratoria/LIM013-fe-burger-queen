@@ -23,7 +23,7 @@ export class ResumenItemComponent {
 
 
 error:string;
-
+//------------------Funcion  que envia orden--------------------------//
 sendOrder(){
   this.firestoreservice.createCollection('carlos','01', this.products).then(()=>{
     console.log('exito');
@@ -33,7 +33,7 @@ sendOrder(){
 
 
 }
-  // funcion que se ejecuta por defecto
+  // -------------Funcion que se ejecuta por defecto------------------//
   constructor(private firestoreservice: FirestoreService) { 
     this.calculateTotal();
   }

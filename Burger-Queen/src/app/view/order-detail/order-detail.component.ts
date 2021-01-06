@@ -12,21 +12,11 @@ export class OrderDetailComponent implements OnInit {
 
   activeButton(){
     this.statusButton = 'active';
-    // console.log(this.statusButton);
   }
 
-
-  constructor( ) { } // creo let resumenitemcomponent que tendra el valor de la clase 
+  constructor( ) { } 
   ngOnInit(): void {
   }
-
- 
-
-
-  // toConfirmOrder (){
-  //   console.log('ingrese a resumenitemcomponent')
-  //   // return this.resumenitemcomponent.confirmOrder();
-  // }
 
 
 }

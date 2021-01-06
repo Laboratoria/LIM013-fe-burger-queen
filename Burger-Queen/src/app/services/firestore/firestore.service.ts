@@ -15,6 +15,7 @@ export class FirestoreService {
   public getProducts() {
     return this.firestore.collection('BG-Products').snapshotChanges();
   }
+  
   public createCollection(customerName, numOrder,detailOrder){
     return this.firestore.collection('BG-Orders').add({
       customerName,
@@ -23,5 +24,10 @@ export class FirestoreService {
     });
 
   }
-
+//   public numOder(){
+//   return this.firestore.collection('BG-orders').doc().set({
+//     time:new Date().toLocaleString(),
+//     status:'Pending',
+//   });
+// }
 }
