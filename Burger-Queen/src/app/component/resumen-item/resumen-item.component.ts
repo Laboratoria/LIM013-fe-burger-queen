@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange,  } from '@angular/core';
 import { ItemMenuComponent } from '../item-menu/item-menu.component';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+
 
 @Component({
   selector: 'app-resumen-item',
@@ -7,8 +9,10 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
   styleUrls: ['./resumen-item.component.scss']
 })
 
-export class ResumenItemComponent { // OJO dentro de clase todo las propiedades y funciones this 
-  // variable que contiene cantidad de producto
+export class ResumenItemComponent {
+ @Input() sendStatusButton:string;
+
+ 
   total: number = 0;
   products = [
     { item: 1, product: 'cafe con leche', quantity: 2, unitValue: 5.00, subtotal: 10.00 },
@@ -17,15 +21,27 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
     { item: 4, product: 'sandwich de jamon y queso', quantity: 2, unitValue: 10.00, subtotal: 20.00 }
   ]
 
+
+error:string;
+
+sendOrder(){
+  this.firestoreservice.createCollection('carlos','01', this.products).then(()=>{
+    console.log('exito');
+  }).catch(()=>{
+ this.error= 'fail';
+  })
+
+
+}
   // funcion que se ejecuta por defecto
-  constructor() {
+  constructor(private firestoreservice: FirestoreService) { 
     this.calculateTotal();
   }
+  
 
   addProducts(_item: number) {
     this.products[_item - 1].quantity++;
     this.calculateSubtotal(_item);
-    // console.log(this.products);
   }
 
   reduceProducts(_item: number) {
@@ -70,6 +86,6 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
     this.updateItem();
   }
 
-
-
 }
+
+// instancia cuando queremos usar funciones atributos etc que esten dentro de una clase.

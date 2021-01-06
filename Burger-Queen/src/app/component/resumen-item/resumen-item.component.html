@@ -1,4 +1,5 @@
 <h2 class="titulo">Resumen de pedido</h2>
+
 <section class="table">
   <table class="detail">
     <tr>
@@ -52,4 +53,10 @@
   </table>
 </section>
 
+<div class="btnSend">
+  <button routerLink="/home" class="Send"><i class="fas fa-arrow-left"></i>Volver </button>
 
+  <button class="return"  (click)= "sendOrder()">Confirmar <i class="fas fa-arrow-right"></i></button>
+</div>
+
+<p *ngIf= "error=== 'fail'">no se pudo enviar </p>
