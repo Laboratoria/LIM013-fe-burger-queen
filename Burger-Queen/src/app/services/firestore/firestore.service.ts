@@ -6,9 +6,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FirestoreService {
+
+  
   constructor(private firestore: AngularFirestore) { }
+
+  
   //Obtiene todos los productos
   public getProducts() {
     return this.firestore.collection('BG-Products').snapshotChanges();
   }
+  
+  public createCollection(customerName, numOrder,detailOrder){
+    return this.firestore.collection('BG-Orders').add({
+      customerName,
+      numOrder,
+      detailOrder,
+    });
+
+  }
+//   public numOder(){
+//   return this.firestore.collection('BG-orders').doc().set({
+//     time:new Date().toLocaleString(),
+//     status:'Pending',
+//   });
+// }
 }

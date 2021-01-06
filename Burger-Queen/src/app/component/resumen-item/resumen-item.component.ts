@@ -1,6 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange,  } from '@angular/core';
 import { ItemMenuComponent } from '../item-menu/item-menu.component';
-import { FirestoreService } from '../../services/firestore/firestore.service';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+
 
 @Component({
   selector: 'app-resumen-item',
@@ -8,8 +9,10 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
   styleUrls: ['./resumen-item.component.scss']
 })
 
-export class ResumenItemComponent { // OJO dentro de clase todo las propiedades y funciones this 
-  // variable que contiene cantidad de producto
+export class ResumenItemComponent {
+ @Input() sendStatusButton:string;
+
+ 
   total: number = 0;
   products = [
     { item: 1, product: 'cafe con leche', quantity: 2, unitValue: 5.00, subtotal: 10.00 },
@@ -18,15 +21,27 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
     { item: 4, product: 'sandwich de jamon y queso', quantity: 2, unitValue: 10.00, subtotal: 20.00 }
   ]
 
-  // funcion que se ejecuta por defecto
-  constructor() {
+
+error:string;
+//------------------Funcion  que envia orden--------------------------//
+sendOrder(){
+  this.firestoreservice.createCollection('carlos','01', this.products).then(()=>{
+    console.log('exito');
+  }).catch(()=>{
+ this.error= 'fail';
+  })
+
+
+}
+  // -------------Funcion que se ejecuta por defecto------------------//
+  constructor(private firestoreservice: FirestoreService) { 
     this.calculateTotal();
   }
+  
 
   addProducts(_item: number) {
     this.products[_item - 1].quantity++;
     this.calculateSubtotal(_item);
-    // console.log(this.products);
   }
 
   reduceProducts(_item: number) {
@@ -71,11 +86,3 @@ export class ResumenItemComponent { // OJO dentro de clase todo las propiedades 
     this.updateItem();
   }
 }
-//.suscribe()
-//Los Observables brindan soporte para pasar mensajes entre partes de su aplicación.
-// Se utilizan con frecuencia en Angular y son la técnica recomendada para el manejo de eventos, 
-//la programación asincrónica y el manejo de múltiples valores.
-
-//constructor
-//JavaScript llama al constructor antes que cualquier otra cosa.
-//“ngOnInit está puramente ahí para darnos una señal de que Angular ha terminado de inicializar el componente”.
