@@ -1,4 +1,4 @@
 <section class="containerProd">
-    <button class="cat1">Desayunos</button>
-    <button class="cat2">Almuerzo / Cena</button>
+    <button [ngClass]="category.catbreakfast" (click)="selectcatBreakfast()">Desayunos</button>
+    <button [ngClass]="category.catRest" (click)="selectcatRest()">Almuerzo / Cena</button>
 </section>

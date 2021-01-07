@@ -1,16 +1,20 @@
-<section class="container">
-    <section class="itemMenu itemDisabled" *ngFor="let product of products">
-        <div class="itemTitle"><p>{{product.product}}</p></div>
-        <div class="itemImg"><img src="{{product.img}}" alt=""></div>
-        <div class="itemPrice"><p>S/{{product.price}}.00</p></div>
-        <div class="itemQuantity">
-            <table>
-                <tr>
-                    <td><button class="fas fa-minus"(click)= "reduceProducts(product.item)"></button></td>
-                    <td>{{product.quantity}}</td>
-                    <td><button class="fas fa-plus" (click)= "addProducts(product.item)"></button></td> 
-                </tr>
-            </table>
-        </div>
+<section class="containerMenuSelectd" *ngFor="let cat of category">
+    <h1>{{cat}}</h1>
+    <hr class="line">
+    <section class="container" *ngIf="selectopt(cat)">
+        <section class="itemMenu" [ngClass]="product.quantity===0?'itemDisabled':'itemActive'" *ngFor="let product of producstFilter">
+            <div class="itemTitle"><p>{{product.product}}</p></div>
+            <div class="itemImg"><img src="{{product.img}}" alt=""></div>
+            <div class="itemPrice"><p>S/{{product.price}}.00</p></div>
+            <div class="itemQuantity">
+                <table>
+                    <tr>
+                        <td><button class="fas fa-minus"(click)= "reduceProducts(product.item)" (click)="createdata()"></button></td>
+                        <td>{{product.quantity}}</td>
+                        <td><button class="fas fa-plus" (click)= "addProducts(product.item)"></button></td> 
+                    </tr>
+                </table>
+            </div>
+        </section>
     </section>
 </section>

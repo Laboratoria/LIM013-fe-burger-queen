@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./getnameuser.component.scss']
 })
 export class GetnameuserComponent implements OnInit {
+  nameClient:string = '';
 
   constructor() { }
 

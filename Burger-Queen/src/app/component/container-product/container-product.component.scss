@@ -20,7 +20,7 @@
     font-size: calc(0.6em + 0.6vw);
 }
 .cat1:hover, .cat2:hover{
-    background-color: #21388b81;
+    text-decoration: underline; 
 }
 .cat1:focus, .cat2:focus {
     outline: none;
