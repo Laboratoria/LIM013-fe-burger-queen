@@ -24,23 +24,23 @@ export class ResumenItemComponent {
   ]
 
 
-error:string;
+
 //------------------Funcion  que envia orden--------------------------//
+error:string;
 sendOrder(){
-  this.firestoreservice.createCollection('paty',this.numOrder, this.products,this.status).then(()=>{
+  this.firestoreservice.createCollection('paty',this.numOrder,this.status, this.products,).then(()=>{
     console.log('exito');
   }).catch(()=>{
  this.error= 'fail';
   })
 }
-  // -------------Funcion que se ejecuta por defecto------------------//
+  // -------------Funciones que se ejecuta por defecto------------------//
   constructor(private firestoreservice: FirestoreService) { 
     this.calculateTotal();
     this.getOrders();
-  
-
   }
   
+  // ------------------Funcion que trae data de bg-order----------------//
   getOrders(){
     this.firestoreservice.getOrders().subscribe((ordersSnapshot) => {
       this.ordersPedido = [];
@@ -52,26 +52,22 @@ sendOrder(){
     });
   }
 
+//-------------Funcion que genera nmOrder de pedido---------------------//
 getNumOrders(){
   this.numOrder= this.ordersPedido.length+1;
-  console.log('labora'+ this.numOrder);
+  console.log('labora '+ this.numOrder);
   if(this.numOrder<=9 ){
     this.numOrder= '00'+this.numOrder;
   }  else if(this.numOrder<100){
     this.numOrder= '0'+this.numOrder;
   }
-  // console.log(this.ordersPedido);
-  // console.log('cantidad')
-  // console.log(this.ordersPedido.length);
-  // console.log('numOrder'+ this.numOrder);
+
 }
 
 
   ngOnInit(): void {
     
   }
-
-
 
 
   addProducts(_item: number) {
@@ -107,11 +103,6 @@ getNumOrders(){
   }
 
   deleteRow(_item: number) {
-    // for(let i = 0; i < this.products.length; ++i){
-    //     if (this.products[i].item=== item) {
-    //         this.products.splice(i,1);// i posicion y 1 cantidad de elemento eliminar
-    //     }
-    // }
     this.products.forEach(element =>{
       if (element.item === _item) {
         this.products.splice(this.products.indexOf(element), 1);
