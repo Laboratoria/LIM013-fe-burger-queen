@@ -1,10 +1,11 @@
 <h2 class="titulo">Resumen de pedido</h2>
+
 <section class="table">
   <table class="detail">
     <tr>
       <td class="items">Cliente:</td>
       <td class="items">Maria Paula</td>
-      <td class="N-order"><strong>N°: 001</strong></td>
+      <td class="N-order"><strong>N°: {{numOrder}}</strong></td>
     </tr>
     <tr>
       <td class="items">Monto total: </td>
@@ -52,4 +53,10 @@
   </table>
 </section>
 
+<div class="btnSend">
+  <button routerLink="/home" class="Send"><i class="fas fa-arrow-left"></i>Volver </button>
 
+  <button class="return"  (click)= "sendOrder()">Confirmar <i class="fas fa-arrow-right"></i></button>
+</div>
+
+<p *ngIf= "error=== 'fail'">no se pudo enviar </p>
