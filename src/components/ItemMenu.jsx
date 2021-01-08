@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import {db} from '../firebase'
 import "../assets/styles/components/ItemMenu.scss";
-import useGetItems from "../firebase/useGetItems.js"
+
 // const categoryType = 'bebidas';
 const ItemMenu = (props) => {
     const {categoryType, eachItem} = props;
-    console.log(categoryType);
+    // console.log(categoryType);
     function handleClick(item) {
         // console.log('The link was clicked.', item);
         eachItem(item);
       }
     const [items, setItems ] = useState([]);
     const getItems = (categoryType) =>{
-    // const cat = 'bebidas'
      db.collection("carta").where("categoria", "==", categoryType).onSnapshot((querySnapshot) => {
          const docs = []
             querySnapshot.forEach(doc => {

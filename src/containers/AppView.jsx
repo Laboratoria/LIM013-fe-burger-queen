@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import Header from '../components/Header';
-import OrderAndAllMenu from '../components/OrderAndAllMenu';
+// import OrderAndAllMenu from '../components/OrderAndAllMenu';
 import Order from '../components/Order';
 import HeaderOrder from '../components/HeaderOrder';
 import DetailOrder from '../components/DetailOrder';
@@ -13,11 +13,11 @@ import AllMenu from '../components/AllMenu';
 import '../assets/styles/App.scss'
 const AppView =() =>{
    const [selectItem, setSelectItem] = useState({})
-   console.log(selectItem, 'AppView');
+//    console.log(selectItem, 'AppView');
    return (
     <section className = 'App'>
         <Header/>
-        <OrderAndAllMenu >
+        <section className= 'orderAndAllMenu' >
             <Order>
                 <HeaderOrder/>
                 <DetailOrder>
@@ -28,8 +28,8 @@ const AppView =() =>{
                 <ButtonSend/>
                 <ButtonCancel/>
             </Order>
-            <AllMenu itemOrder = {setSelectItem}/>
-        </OrderAndAllMenu>
+            <AllMenu />
+        </section>
     </section>
 )
     }

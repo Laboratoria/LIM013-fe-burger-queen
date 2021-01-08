@@ -6,6 +6,7 @@ import './index.css';
 import App from './App';
 import Button from './components/Button';
 import AppView from './containers/AppView';
+import './assets/styles/components/AppView.scss'
 import reportWebVitals from './reportWebVitals';
 
 import './firebase'
