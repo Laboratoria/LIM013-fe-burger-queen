@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange,  } from '@angular/core';
 import { ItemMenuComponent } from '../item-menu/item-menu.component';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+import { OrderDetailService } from '../../services/data/order-detail.service';
+
 
 @Component({
   selector: 'app-resumen-item',
@@ -7,69 +10,92 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
   styleUrls: ['./resumen-item.component.scss']
 })
 
-export class ResumenItemComponent { // OJO dentro de clase todo las propiedades y funciones this 
-  // variable que contiene cantidad de producto
+export class ResumenItemComponent {
+ @Input() sendStatusButton:string;
+ public ordersPedido=[];
+ numOrder:any=0;
+ status:string='Pending';
+ //array sincronizado
+  orderDetail:any;
+// nombre de cliente 
+  customerName:string;
   total: number = 0;
-  products = [
-    { item: 1, product: 'cafe con leche', quantity: 2, unitValue: 5.00, subtotal: 10.00 },
-    { item: 2, product: 'cafe americano', quantity: 1, unitValue: 5.00, subtotal: 5.00 },
-    { item: 3, product: 'jugo natural', quantity: 1, unitValue: 7.00, subtotal: 7.00 },
-    { item: 4, product: 'sandwich de jamon y queso', quantity: 2, unitValue: 10.00, subtotal: 20.00 }
-  ]
 
-  // funcion que se ejecuta por defecto
-  constructor() {
-    this.calculateTotal();
+//------------------Funcion  que envia orden--------------------------//
+error:string;
+sendOrder(){
+  this.firestoreservice.createCollection(this.customerName,this.numOrder,this.status, this.orderDetail).then(()=>{
+    console.log('exito');
+  }).catch(()=>{
+ this.error= 'fail';
+  })
+}
+  // -------------Funciones que se ejecuta por defecto------------------//
+  constructor(private firestoreservice: FirestoreService , private data: OrderDetailService) { 
+    this.getOrders();
+  }
+  
+  // ------------------Funcion que trae data de bg-order----------------//
+  getOrders(){
+    this.firestoreservice.getOrders().subscribe((ordersSnapshot) => {
+      this.ordersPedido = [];
+      ordersSnapshot.forEach((orderData: any) => {
+        this.ordersPedido.push({ ...orderData.payload.doc.data() })  
+      });
+      this.getNumOrders();      
+      console.log(this.numOrder);
+    });
   }
 
-  addProducts(_item: number) {
-    this.products[_item - 1].quantity++;
-    this.calculateSubtotal(_item);
-    // console.log(this.products);
+//-------------Funcion que genera nmOrder de pedido---------------------//
+getNumOrders(){
+  this.numOrder= this.ordersPedido.length+1;
+  console.log('labora '+ this.numOrder);
+  if(this.numOrder<=9 ){
+    this.numOrder= '00'+this.numOrder;
+  }  else if(this.numOrder<100){
+    this.numOrder= '0'+this.numOrder;
+  }
+}
+
+  addProducts(_index: number) {
+    this.orderDetail[_index].quantity++;
+    this.calculateSubtotal(_index);
   }
 
-  reduceProducts(_item: number) {
-    if (this.products[_item - 1].quantity > 1) {
-      this.products[_item - 1].quantity--;
-      this.calculateSubtotal(_item);
+  reduceProducts(_index: number) {
+    if (this.orderDetail[_index].quantity > 1) {
+      this.orderDetail[_index].quantity--;
+      this.calculateSubtotal(_index);
     }
   }
 
-  calculateSubtotal(_item: number) {
-    this.products[_item - 1].subtotal = this.products[_item - 1].quantity * this.products[_item - 1].unitValue;
+  calculateSubtotal(_index: number) {
+    this.orderDetail[_index].subtotal = this.orderDetail[_index].quantity * this.orderDetail[_index].price;
     this.calculateTotal();
   }
 
   calculateTotal() {
     this.total = 0;
-    this.products.forEach(element => {
-      this.total = (element.quantity * element.unitValue) + this.total;
+    this.orderDetail.forEach(element => {
+      this.total = (element.quantity * element.price) + this.total;
     });
-  }
-
-  updateItem(){
-    let newItem=1;
-    this.products.forEach(element => { 
-      element.item = newItem;
-      newItem++;
-    });
+    console.log(this.total);
   }
 
   deleteRow(_item: number) {
-    // for(let i = 0; i < this.products.length; ++i){
-    //     if (this.products[i].item=== item) {
-    //         this.products.splice(i,1);// i posicion y 1 cantidad de elemento eliminar
-    //     }
-    // }
-    this.products.forEach(element => {
+    this.orderDetail.forEach(element =>{
       if (element.item === _item) {
-        this.products.splice(this.products.indexOf(element), 1);
+        this.orderDetail.splice(this.orderDetail.indexOf(element), 1);
       }
     });
     this.calculateTotal();
-    this.updateItem();
   }
 
-
-
+  ngOnInit(): void {
+    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
+    this.data.currentCustomerName.subscribe(name => this.customerName=name);
+    console.log(this.orderDetail);
+    this.calculateTotal();
+  }
 }

@@ -9,7 +9,7 @@
             <div class="itemQuantity">
                 <table>
                     <tr>
-                        <td><button class="fas fa-minus"(click)= "reduceProducts(product.item)" (click)="createdata()"></button></td>
+                        <td><button class="fas fa-minus"(click)= "reduceProducts(product.item)"></button></td>
                         <td>{{product.quantity}}</td>
                         <td><button class="fas fa-plus" (click)= "addProducts(product.item)"></button></td> 
                     </tr>
@@ -17,4 +17,7 @@
             </div>
         </section>
     </section>
+</section>
+<section class="btnSend">
+    <button routerLink="/orderDetail" class="alert" (click)="sendOrderDetail()">Enviar <i class="fas fa-arrow-right"></i></button>
 </section>

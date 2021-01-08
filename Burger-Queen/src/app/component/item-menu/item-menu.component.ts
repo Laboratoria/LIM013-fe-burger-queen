@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
+import { OrderDetailService } from '../../services/data/order-detail.service';
 
 @Component({
   selector: 'app-item-menu',
@@ -12,19 +13,22 @@ export class ItemMenuComponent implements OnInit {
   producstFilter = [];
   category= [];
   total:number=0;
-  
+  //array sincronizado
+  orderDetail:any;
+  //-------------------------- agregar prodcutos ----------------------------
   addProducts(item:number) { 
     this.total =0;
     this.products[item-1].quantity++;
     console.log(this.products)
   }
-  reduceProducts(item:number) {
+  //----------------------- quitar cantidad de productos -------------------
+  reduceProducts(_item:number) {
     this.total =0;
-    if(this.products[item-1].quantity>0){
-        this.products[item-1].quantity--;
+    if(this.products[_item-1].quantity>0){
+        this.products[_item-1].quantity--;
     }
   }
-
+// --------------------- filtrar data a mostrar ------------------------------
   selectopt(category){
     switch (category) {
       case 'Desayuno':
@@ -41,9 +45,6 @@ export class ItemMenuComponent implements OnInit {
     }
   }
 
-  createdata(){
-    this.firestoreService.createCat('consuelo','22');
-  }
 
   // función que escuchará cambios 
   ngOnChanges(changes: SimpleChange) {
@@ -54,7 +55,7 @@ export class ItemMenuComponent implements OnInit {
     }
 }
 
-  constructor(private firestoreService: FirestoreService) { 
+  constructor(private firestoreService: FirestoreService, private data: OrderDetailService) { 
   }
   ngOnInit(): void {
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {
@@ -64,6 +65,29 @@ export class ItemMenuComponent implements OnInit {
         });
       })
     });
+    //service data orderDetail
+    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
+    console.log(this.orderDetail);
   }
 
+    //-------------------Filtrar información para enviar a order detail ----------------
+
+    sendOrderDetail(){
+      const orderResult = this.products.filter((el)=>el.quantity>0);
+      orderResult.forEach((el,index)=>{
+        delete el.category;
+        delete el.img;
+        el.item = index+1;
+        el.subtotal = el.quantity*el.price;
+      })
+      if(orderResult.length<=0)
+        {
+          console.log('no hay elementos en el pedido')
+        }
+      else{
+        this.data.changeOrderDetail(orderResult)
+        }
+    }
+
 }
+

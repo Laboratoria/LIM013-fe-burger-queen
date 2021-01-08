@@ -3,8 +3,8 @@
   <table class="detail">
     <tr>
       <td class="items">Cliente:</td>
-      <td class="items">Maria Paula</td>
-      <td class="N-order"><strong>N°: 001</strong></td>
+      <td class="items">{{customerName}}</td>
+      <td class="N-order"><strong>N°: {{numOrder}}</strong></td>
     </tr>
     <tr>
       <td class="items">Monto total: </td>
@@ -21,19 +21,19 @@
       <th>Precio unitario</th>
       <th>Subtotal</th>
     </tr>
-    <tr   *ngFor="let data of products">
-      <td class="td-product">{{data.item}}</td>
+    <tr   *ngFor="let data of orderDetail; index as i">
+      <td class="td-product">{{i+1}}</td>
       <td class="td-product">{{data.product}}</td>
 
     <td class="td-product">
     <tr>
-      <td > <button (click)="addProducts(data.item)" id="add" class="fas fa-plus"></button></td>
+      <td > <button (click)="addProducts(i)" id="add" class="fas fa-plus"></button></td>
       <td >{{data.quantity}}</td>
-      <td > <button (click)="reduceProducts(data.item)" id="reduce" class="fas fa-minus"></button></td>
+      <td > <button (click)="reduceProducts(i)" id="reduce" class="fas fa-minus"></button></td>
     </tr>
     </td>
 
-    <td  class="td-product">{{data.unitValue}}.00</td>
+    <td  class="td-product">{{data.price}}.00</td>
     <td class="td-product">
       <tr>
         <td >{{data.subtotal}}.00</td>
@@ -51,5 +51,14 @@
 
   </table>
 </section>
+
+<div class="btnSend">
+  <button routerLink="/home" class="Send"><i class="fas fa-arrow-left"></i>Volver </button>
+
+  <button class="return"  (click)= "sendOrder()">Confirmar <i class="fas fa-arrow-right"></i></button>
+</div>
+
+<p *ngIf= "error=== 'fail'">no se pudo enviar </p>
+<button (click)="calculateTotal()">click</button>
 
 
