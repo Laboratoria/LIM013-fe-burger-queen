@@ -15,7 +15,7 @@ export class FirestoreService {
   public getProducts() {
     return this.firestore.collection('BG-Products').snapshotChanges();
   }
-  
+
   public getOrders() {
     return this.firestore.collection('BG-Orders').snapshotChanges();
   }
@@ -29,10 +29,5 @@ export class FirestoreService {
     });
 
   }
-//   public numOder(){
-//   return this.firestore.collection('BG-orders').doc().set({
-//     time:new Date().toLocaleString(),
-//     status:'Pending',
-//   });
-// }
+
 }

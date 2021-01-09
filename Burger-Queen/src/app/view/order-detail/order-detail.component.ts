@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ResumenItemComponent} from '../../component/resumen-item/resumen-item.component';
+import { OrderDetailService } from '../../services/data/order-detail.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -8,14 +9,9 @@ import {ResumenItemComponent} from '../../component/resumen-item/resumen-item.co
 })
 export class OrderDetailComponent implements OnInit {
 
-  statusButton:string = 'disabled';
-
-  activeButton(){
-    this.statusButton = 'active';
-  }
-
-  constructor( ) { } 
+  constructor() { } 
   ngOnInit(): void {
+
   }
 
 

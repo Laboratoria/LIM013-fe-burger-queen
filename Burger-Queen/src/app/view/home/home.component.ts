@@ -6,15 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  sendOrder(){
-
+  
+selectedCategory= 'cat1';
+  receiveCategory($event) {
+    this.selectedCategory = $event;
   }
 
-  constructor() { 
-
-  }
-
+  constructor() { }
   ngOnInit(): void {
   }
 

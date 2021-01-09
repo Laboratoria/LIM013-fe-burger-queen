@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { OrderDetailService } from '../../services/data/order-detail.service';
 
 @Component({
   selector: 'app-getnameuser',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./getnameuser.component.scss']
 })
 export class GetnameuserComponent implements OnInit {
+  nameClient:string = '';
+  customerName: string;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private data: OrderDetailService) { }
+  // actualizar informacion de cliente
+  sendCustomerName(){
+    this.data.changeCustomerName(this.customerName);
   }
+
+
+ngOnInit(): void {
+  this.data.currentCustomerName.subscribe(name => this.customerName = name)
+}
 
 }
