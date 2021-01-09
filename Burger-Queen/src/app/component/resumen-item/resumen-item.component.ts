@@ -13,12 +13,14 @@ import { OrderDetailService } from '../../services/data/order-detail.service';
 export class ResumenItemComponent {
  @Input() sendStatusButton:string;
  public ordersPedido=[];
+ // numero de orden
  numOrder:any=0;
  status:string='Pending';
  //array sincronizado
   orderDetail:any;
 // nombre de cliente 
   customerName:string;
+// 
   total: number = 0;
 
 //------------------Funcion  que envia orden--------------------------//
@@ -50,7 +52,6 @@ sendOrder(){
 //-------------Funcion que genera nmOrder de pedido---------------------//
 getNumOrders(){
   this.numOrder= this.ordersPedido.length+1;
-  console.log('labora '+ this.numOrder);
   if(this.numOrder<=9 ){
     this.numOrder= '00'+this.numOrder;
   }  else if(this.numOrder<100){
