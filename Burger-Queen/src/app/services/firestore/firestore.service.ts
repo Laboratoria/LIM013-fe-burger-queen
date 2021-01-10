@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class FirestoreService {
 
-  
   constructor(private firestore: AngularFirestore) { }
 
   
@@ -20,11 +19,13 @@ export class FirestoreService {
     return this.firestore.collection('BG-Orders').snapshotChanges();
   }
   
-  public createCollection(customerName, numOrder,status, detailOrder,){
+  public createCollection(customerName, date,numOrder,status, time, detailOrder,){
     return this.firestore.collection('BG-Orders').add({
       customerName,
+      date,
       numOrder,
       status,
+      time,
       detailOrder,
     });
 

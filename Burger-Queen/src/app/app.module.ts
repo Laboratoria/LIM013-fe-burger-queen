@@ -16,7 +16,7 @@ import { OrdersComponent } from './view/orders/orders.component';
 import { OrderDetailComponent } from './view/order-detail/order-detail.component';
 import { ContainerProductComponent } from './component/container-product/container-product.component';
 import { GetnameuserComponent } from './component/getnameuser/getnameuser.component';
-
+import { OrderPendingComponent } from './component/order-pending/order-pending.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -34,7 +34,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     OrdersComponent,
     OrderDetailComponent,
     ContainerProductComponent,
-    GetnameuserComponent
+    GetnameuserComponent,
+    OrderPendingComponent
   ],
   imports: [
     BrowserModule,
