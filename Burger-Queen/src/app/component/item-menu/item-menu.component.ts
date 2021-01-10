@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-item-menu',
@@ -58,16 +59,27 @@ export class ItemMenuComponent implements OnInit {
   constructor(private firestoreService: FirestoreService, private data: OrderDetailService) { 
   }
   ngOnInit(): void {
+    //service data orderDetail
+    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
         this.products.push({quantity:0, ...productData.payload.doc.data()
         });
       })
+      // verificar si order Detail contiene elementos y si es asi guardar el quntity en productos
+      if(this.orderDetail.length>0){
+        this.orderDetail.forEach(element => {
+          this.products.forEach(e => {
+            if(e.product===element.product){
+              e.quantity=element.quantity;
+            } 
+          });
+        });
+      }
+
     });
-    //service data orderDetail
-    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
-    console.log(this.orderDetail);
+
   }
 
     //-------------------Filtrar información para enviar a order detail ----------------
