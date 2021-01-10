@@ -21,26 +21,29 @@
       <th>Precio unitario</th>
       <th>Subtotal</th>
     </tr>
-    <tr   *ngFor="let data of orderDetail; index as i">
-      <td class="td-product">{{i+1}}</td>
-      <td class="td-product">{{data.product}}</td>
-
-    <td class="td-product">
-    <tr>
-      <td > <button (click)="addProducts(i)" id="add" class="fas fa-plus"></button></td>
-      <td >{{data.quantity}}</td>
-      <td > <button (click)="reduceProducts(i)" id="reduce" class="fas fa-minus"></button></td>
-    </tr>
-    </td>
-
-    <td  class="td-product">{{data.price}}.00</td>
-    <td class="td-product">
+    <ng-container  *ngFor="let data of orderDetail; index as i">
       <tr>
-        <td >{{data.subtotal}}.00</td>
-        <td ><button (click)="deleteRow(data.item)" id="delete" class="fas fa-trash-alt"></button></td>
+        <td class="td-product">{{i+1}}</td>
+        <td class="td-product">{{data.product}}</td>
+        <td class="td-product">
+          <tr>
+            <td > <button (click)="reduceProducts(i)" id="reduce" class="fas fa-minus"></button></td>
+            <td >{{data.quantity}}</td>
+            <td > <button (click)="addProducts(i)" id="add" class="fas fa-plus"></button></td>
+          </tr>
+        </td>
+        <td  class="td-product">{{data.price}}.00</td>
+        <td class="td-product">
+          <tr>
+            <td >{{data.subtotal}}.00</td>
+            <td ><button (click)="deleteRow(i)" id="delete" class="fas fa-trash-alt"></button></td>
+          </tr>
+        </td>
       </tr>
-    </td>
-    </tr>
+      <ng-container *ngIf="data.product==='Hamburguesa simple'||data.product==='Hamburguesa doble'">
+
+      </ng-container>
+    </ng-container >
     <tr>
       <td></td>
       <td></td>
