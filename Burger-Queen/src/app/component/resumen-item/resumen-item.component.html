@@ -21,26 +21,56 @@
       <th>Precio unitario</th>
       <th>Subtotal</th>
     </tr>
-    <tr   *ngFor="let data of orderDetail; index as i">
-      <td class="td-product">{{i+1}}</td>
-      <td class="td-product">{{data.product}}</td>
-
-    <td class="td-product">
-    <tr>
-      <td > <button (click)="addProducts(i)" id="add" class="fas fa-plus"></button></td>
-      <td >{{data.quantity}}</td>
-      <td > <button (click)="reduceProducts(i)" id="reduce" class="fas fa-minus"></button></td>
-    </tr>
-    </td>
-
-    <td  class="td-product">{{data.price}}.00</td>
-    <td class="td-product">
+    <ng-container  *ngFor="let data of orderDetail; index as i">
       <tr>
-        <td >{{data.subtotal}}.00</td>
-        <td ><button (click)="deleteRow(data.item)" id="delete" class="fas fa-trash-alt"></button></td>
+        <td class="td-product">{{i+1}}</td>
+        <td class="td-product">{{data.product}}</td>
+        <td class="td-product">
+          <tr>
+            <td > <button (click)="reduceProducts(i)" id="reduce" class="fas fa-minus"></button></td>
+            <td >{{data.quantity}}</td>
+            <td > <button (click)="addProducts(i)" id="add" class="fas fa-plus"></button></td>
+          </tr>
+        </td>
+        <td  class="td-product">{{data.price}}.00</td>
+        <td class="td-product">
+          <tr>
+            <td >{{data.subtotal}}.00</td>
+            <td ><button (click)="deleteRow(i)" id="delete" class="fas fa-trash-alt"></button></td>
+          </tr>
+        </td>
       </tr>
-    </td>
-    </tr>
+      <ng-container *ngIf="data.product==='Hamburguesa simple'||data.product==='Hamburguesa doble'">
+        <tr class= "additionalProduct" *ngFor="let detail of data.detailProduct ; index as idx" >
+          <td></td>
+          <td class="td-additional">
+            <tr>
+              <td >{{idx+1}}</td>
+              <td >{{detail.nameProduct}}</td>
+            </tr>
+          </td>
+          <td class="td-additional">
+            <select name="select">
+              <option value="value1" selected >{{data.kind[0]}}</option>
+              <option value="value2" >{{data.kind[1]}}</option>
+              <option value="value3">{{data.kind[2]}}</option>
+            </select> 
+          </td>
+          <td class="td-additional">
+            <div class="additional">
+              <label><input type="checkbox" id="cbox1" value="first_checkbox">{{data.additional[0]}}</label>
+              <label><input type="checkbox" id="cbox2" value="second_checkbox">{{data.additional[1]}}</label>
+            </div>
+          </td>
+          <td class="td-additional">
+            <tr>
+              <td >{{detail.priceAdditional}}.00</td>
+              <td ><button (click)="deleteRow(idx)" id="delete" class="fas fa-trash-alt"></button></td>
+            </tr>
+          </td>
+        </tr>
+      </ng-container>
+    </ng-container >
     <tr>
       <td></td>
       <td></td>
@@ -60,11 +90,11 @@
 
 <p *ngIf= "error=== 'fail'">no se pudo enviar </p>
 
-<button (click)="calculateTotal()">click</button>
+<!-- <button (click)="calculateTotal()">click</button> -->
 
 
 
-
+<!-- cronometro -->
 
 <h1 data-chronometer>{{hours}}:{{minutes}}:{{seconds}}</h1>
 <button (click)= "chronometer($event)" id="play">play</button>

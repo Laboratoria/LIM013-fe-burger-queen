@@ -13,8 +13,11 @@
 .td-product{
     border-bottom: 1px solid #FDB827;
 }
+.td-additional{
+    border-bottom: 1px solid  #21388B;
+}
 
-.td-product td{
+.td-product td, .td-additional td{
 width: 60px;
 }
 .detail{
@@ -44,7 +47,6 @@ width: 60px;
         height: 40px;
         border: 3px solid #21388B;
     }
-  
 
     .total{
         background-color:  #FDB827;
@@ -81,12 +83,18 @@ width: 60px;
     z-index: 100;
     }
     .btnSend button:hover{
-      width: 22%;       
-      height: 44px;
+    width: 22%;       
+    height: 44px;
   
     }
 
-
+// css para adicionales
+.td-additional select {
+    border-radius: 5px ;
+    border: 2px solid #FDB827;
+    background-color:transparent;
+    width: 90%;
+}
 
     @media screen and (max-width: 1024px) {
         .home{

@@ -14,4 +14,10 @@
 [0106/181616.912:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Kelly\AppData\Local\Temp\karma-65915236\Crashpad\attachments\507c6d7a-d229-48fb-b4c7-6bd591811c4a: El sistema no puede encontrar la ruta especificada. (0x3)
 =======
 [0107/091407.115:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+<<<<<<< HEAD
+>>>>>>> main
+=======
+[0109/151937.904:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
+[0109/215036.500:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\Estudiante\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\499d4b6f-4bed-48c5-bf27-09a1fb0a7961: El sistema no puede encontrar la ruta especificada. (0x3)
+[0109/230352.891:ERROR:directory_reader_win.cc(43)] FindFirstFile: El sistema no puede encontrar la ruta especificada. (0x3)
 >>>>>>> main

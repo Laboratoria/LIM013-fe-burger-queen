@@ -130,19 +130,28 @@ getNumOrders(){
     console.log(this.total);
   }
 
-  deleteRow(_item: number) {
-    this.orderDetail.forEach(element =>{
-      if (element.item === _item) {
-        this.orderDetail.splice(this.orderDetail.indexOf(element), 1);
-      }
-    });
+  deleteRow(_index: number) {
+    this.orderDetail.splice(_index, 1);
     this.calculateTotal();
   }
 
   ngOnInit(): void {
     this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
     this.data.currentCustomerName.subscribe(name => this.customerName=name);
-    console.log(this.orderDetail);
+    this.orderDetail.forEach((element,index) => {
+      // Agregar adicionales a orderDetail
+      if(element.product === 'Hamburguesa simple'||element.product==='Hamburguesa doble'){
+        this.orderDetail[index].detailProduct=[];
+        for (let i = 0; i <= element.quantity - 1; i++) {
+          element.detailProduct.push({
+            nameProduct:element.product+' '+element.kind[0],
+            kind:element.kind[0],
+            additional:[],
+            priceAdditional:0,
+          });
+        }
+      } 
+    });
     this.calculateTotal();
   }
 
