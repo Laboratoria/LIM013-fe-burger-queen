@@ -19,7 +19,6 @@ export class ItemMenuComponent implements OnInit {
   addProducts(item:number) { 
     this.total =0;
     this.products[item-1].quantity++;
-    console.log(this.products)
   }
   //----------------------- quitar cantidad de productos -------------------
   reduceProducts(_item:number) {
@@ -58,16 +57,27 @@ export class ItemMenuComponent implements OnInit {
   constructor(private firestoreService: FirestoreService, private data: OrderDetailService) { 
   }
   ngOnInit(): void {
+    //service data orderDetail
+    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
         this.products.push({quantity:0, ...productData.payload.doc.data()
         });
       })
+      // verificar si order Detail contiene elementos y si es asi guardar el quntity en productos
+      if(this.orderDetail.length>0){
+        this.orderDetail.forEach(element => {
+          this.products.forEach(e => {
+            if(e.product===element.product){
+              e.quantity=element.quantity;
+            } 
+          });
+        });
+      }
+
     });
-    //service data orderDetail
-    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
-    console.log(this.orderDetail);
+
   }
 
     //-------------------Filtrar información para enviar a order detail ----------------
