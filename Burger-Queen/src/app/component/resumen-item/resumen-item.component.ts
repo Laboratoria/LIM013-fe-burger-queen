@@ -84,7 +84,7 @@ getNumOrders(){
   }
 
   deleteRow(_index: number) {
-        this.orderDetail.splice(_index, 1);
+    this.orderDetail.splice(_index, 1);
     this.calculateTotal();
   }
 
@@ -105,7 +105,6 @@ getNumOrders(){
         }
       } 
     });
-    console.log(this.orderDetail);
     this.calculateTotal();
   }
 }
