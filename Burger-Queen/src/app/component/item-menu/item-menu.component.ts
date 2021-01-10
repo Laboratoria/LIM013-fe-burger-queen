@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-item-menu',
@@ -20,7 +19,6 @@ export class ItemMenuComponent implements OnInit {
   addProducts(item:number) { 
     this.total =0;
     this.products[item-1].quantity++;
-    console.log(this.products)
   }
   //----------------------- quitar cantidad de productos -------------------
   reduceProducts(_item:number) {

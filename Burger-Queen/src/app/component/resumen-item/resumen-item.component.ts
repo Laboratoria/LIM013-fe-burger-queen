@@ -17,7 +17,6 @@ export class ResumenItemComponent {
  status:string='Pending';
  //array sincronizado
   orderDetail:any;
-  pruebas=['1','2','3'];
 // nombre de cliente 
   customerName:string;
   total: number = 0;
@@ -84,12 +83,8 @@ getNumOrders(){
     console.log(this.total);
   }
 
-  deleteRow(_item: number) {
-    this.orderDetail.forEach(element =>{
-      if (element.item === _item) {
-        this.orderDetail.splice(this.orderDetail.indexOf(element), 1);
-      }
-    });
+  deleteRow(_index: number) {
+        this.orderDetail.splice(_index, 1);
     this.calculateTotal();
   }
 
