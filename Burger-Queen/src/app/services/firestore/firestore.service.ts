@@ -15,11 +15,9 @@ export class FirestoreService {
   public getProducts() {
     return this.firestore.collection('BG-Products').snapshotChanges();
   }
-
   public getOrders() {
     return this.firestore.collection('BG-Orders').snapshotChanges();
   }
-  
   public createCollection(customerName, numOrder,status, detailOrder,){
     return this.firestore.collection('BG-Orders').add({
       customerName,
