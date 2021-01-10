@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FirestoreService} from '../../services/firestore/firestore.service';
+import { OrderDetailService } from '../../services/data/order-detail.service';
 
 @Component({
   selector: 'app-order-pending',
