@@ -20,6 +20,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ItemOrderComponent } from './component/item-order/item-order.component';
+import { ItemHistoryComponent } from './component/item-history/item-history.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ItemOrderComponent } from './component/item-order/item-order.component'
     OrderDetailComponent,
     ContainerProductComponent,
     GetnameuserComponent,
-    ItemOrderComponent
+    ItemOrderComponent,
+    ItemHistoryComponent
   ],
   imports: [
     BrowserModule,

@@ -22,7 +22,7 @@ export class FirestoreService {
       return this.firestore.collection('BG-Orders').doc(orderId).update({status});
     }
   
-  public createCollection(customerName,numOrder,status, time, detailOrder,){
+  public createCollection(customerName,numOrder,status, time, detailOrder,total){
     return this.firestore.collection('BG-Orders').add({
       customerName,
       date:new Date(),
@@ -30,6 +30,7 @@ export class FirestoreService {
       status,
       time,
       detailOrder,
+      total
     });
   }
 

@@ -34,7 +34,7 @@ export class ResumenItemComponent {
 //------------------Funcion  que envia orden--------------------------//
 error:string;
 sendOrder(){
-  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail).then(()=>{
+  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail,this.total).then(()=>{
     console.log('exito');
   }).catch(()=>{
  this.error= 'fail';
