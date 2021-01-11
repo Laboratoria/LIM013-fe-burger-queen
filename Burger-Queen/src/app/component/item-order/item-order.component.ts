@@ -9,6 +9,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 export class ItemOrderComponent implements OnInit {
   @Input() childDataOrder: any;
   styleItem:number = 0;
+
   changeStatus(_index:string){
     status = this.childDataOrder[_index].status;
     switch (status) {
@@ -29,7 +30,8 @@ export class ItemOrderComponent implements OnInit {
     }
   }
 
-  
+  //----------funcion de fecha------------------//
+
   updateStatus(_index:any,_id:any){
     status:String;
     if(this.childDataOrder[_index].status==='Pendiente'||this.childDataOrder[_index].status==='En Proceso'){
@@ -40,7 +42,14 @@ export class ItemOrderComponent implements OnInit {
     }
     this.firestoreService.updateStatus(_id,status);
   }
-  constructor(private firestoreService: FirestoreService) { }
+  constructor(private firestoreService: FirestoreService) { 
+  }
+
+  //funcion para dar formato a fecha Timestamp de firebase
+  formatDate(_date){
+    const options = { month:"short",day: "numeric"};
+    return _date.toDate().toLocaleDateString("es", options);
+  }
 
   ngOnInit(): void {
   }

@@ -34,7 +34,7 @@ export class ResumenItemComponent {
 //------------------Funcion  que envia orden--------------------------//
 error:string;
 sendOrder(){
-  this.firestoreservice.createCollection(this.customerName,'23/Abr', this.numOrder,this.status,'00:00',this.orderDetail).then(()=>{
+  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail).then(()=>{
     console.log('exito');
   }).catch(()=>{
  this.error= 'fail';
@@ -80,7 +80,6 @@ sendOrder(){
   // -------------Funciones que se ejecuta por defecto------------------//
   constructor(private firestoreservice: FirestoreService , private data: OrderDetailService) { 
     this.getOrders();
-   
   }
   //------------funcion para obtener data de bg-orders-----------------//
   getOrders(){

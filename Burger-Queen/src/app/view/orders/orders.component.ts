@@ -7,21 +7,21 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
-  dataOrder= [];
+  dataOrderPending= [];
   constructor(private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
      //Traer SN-Orders
     this.firestoreService.getOrders().subscribe((productsSnapshot) => {
-      this.dataOrder = [];
+      this.dataOrderPending = [];
       productsSnapshot.forEach((orderData: any) => {
         //  if(orderData.status==='Pendiente'){
-          this.dataOrder.push({id: orderData.payload.doc.id, ...orderData.payload.doc.data()
+          this.dataOrderPending.push({id: orderData.payload.doc.id, ...orderData.payload.doc.data()
           });
         //  }
       })
        // Solo Data con Categoria pendiente
-      this.dataOrder = this.dataOrder.filter((el:any)=>el.status==='Pendiente');
+      this.dataOrderPending = this.dataOrderPending.filter((el:any)=>el.status==='Pendiente');
     });
   }
 
