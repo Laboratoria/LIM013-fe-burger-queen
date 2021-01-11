@@ -18,8 +18,11 @@ export class FirestoreService {
   public getOrders() {
     return this.firestore.collection('BG-Orders').snapshotChanges();
   }
-  
-  public createCollection(customerName, date,numOrder,status, time, detailOrder,){
+
+  //   public getOrdersPending() {
+  //   return this.firestore.collection('BG-Orders').snapshotChanges();
+  // }
+  public createCollection(customerName, date, numOrder, status, time, detailOrder){
     return this.firestore.collection('BG-Orders').add({
       customerName,
       date,

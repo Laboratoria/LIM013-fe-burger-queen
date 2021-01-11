@@ -1,24 +1,30 @@
 <h2 class="titulo">Lista de Pedidos</h2>
-<section class="list-order">
+<section class="list-order" *ngFor="let data of ordersPending" >  
     <div class="status">
-        <p class="left">Estado:Pendiente</p>
-        <p class="rigth"><strong>N°001</strong></p>
+        <p class="left"> {{data.status}}</p>
+        <p class="rigth"><strong>N°:{{data.numOrder}}</strong></p>
     </div>
     <div class="client">
-        <p>Cliente: Karen</p>
-        <p>22/Abr</p>
+        <p>cliente:{{data.customerName}}</p>
+        <p>{{data.date}}</p>
     </div>
     <div class="time">
         <h2>Detalle de pedido</h2>
-        <p>03:30</p>
+        <p data-chronometer>{{minutes}}:{{seconds}}</p>
+        <button (click)="chronometer($event)" id="play">play</button>
     </div>
-    <div class="order">
+    <div class="order" *ngFor = 'let dataOrderDetail of orderDetail'>
         <p>- 01 cafe con leche</p>
-        <p>- 01 cafe americano</p>
-        <p>- 01 hamburguesa doble</p>
     </div>
-  <div class="btn">
-    <button class="btnList"  >Listo<i class="fas fa-arrow-right"></i></button>
-  </div>
+    <div class="btn">
+        <button class="btnList">Listo<i class="fas fa-arrow-right"></i></button>
+    </div>
 
 </section>
+
+<button (click) ="mostrar()">clickme</button>
+<!-- cronometro -->
+
+<!-- <h1 data-chronometer>{{minutes}}:{{seconds}}</h1>
+<button (click)="chronometer($event)" id="play">play</button> -->
+<!-- <button (click)= "pause()" >pausa</button> -->
