@@ -30,58 +30,56 @@ export class ResumenItemComponent {
   seconds:any = '00';
   chronometerDisplay = document.querySelector(`[data-chronometer]`)
   chronometerCall
- 
 
 //------------------Funcion  que envia orden--------------------------//
 error:string;
 sendOrder(){
-  this.firestoreservice.createCollection(this.customerName, this.getDate, this.numOrder,this.status, this.time,this.orderDetail).then(()=>{
+  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail).then(()=>{
     console.log('exito');
   }).catch(()=>{
  this.error= 'fail';
   })
 }
 
-//----------funcion de fecha------------------//
-options = {
-  month:"short",
-  day: "numeric"
-};
-  getDate= this.date.toLocaleDateString("es", this.options);
+// //----------funcion de fecha------------------//
+// options = {
+//   month:"short",
+//   day: "numeric"
+// };
+//   getDate= this.date.toLocaleDateString("es", this.options);
 
-//------------------Función de cronometro--------------------------//
+// //------------------Función de cronometro--------------------------//
 
-chronometer (event)  {
-  this.chronometerCall = setInterval(() =>{
-    this.seconds++;
-    if (this.seconds < 10) this.seconds ='0'  + this.seconds;
-    if (this.seconds > 59) {
-      this.seconds = '00'// reinicio
-      this.minutes ++
-      if (this.minutes < 10)  this.minutes ='0'+this.minutes
-    }
-    if (this.minutes > 59) {
-      this.minutes = '00';
-      this.hours ++
-      if (this.hours < 10) this.hours ='0'+ this.hours;
-    }
-  }, 1000);
-  event.target.setAttribute('disabled','');
-}
+// chronometer (event)  {
+//   this.chronometerCall = setInterval(() =>{
+//     this.seconds++;
+//     if (this.seconds < 10) this.seconds ='0'  + this.seconds;
+//     if (this.seconds > 59) {
+//       this.seconds = '00'// reinicio
+//       this.minutes ++
+//       if (this.minutes < 10)  this.minutes ='0'+this.minutes
+//     }
+//     if (this.minutes > 59) {
+//       this.minutes = '00';
+//       this.hours ++
+//       if (this.hours < 10) this.hours ='0'+ this.hours;
+//     }
+//   }, 1000);
+//   event.target.setAttribute('disabled','');
+// }
 
 
-pause (){
-  this.time=this.hours+ ':' + this.minutes+ ':'+this.seconds;
-  console.log('tiempo'+this.time);
-  //clearInterval(this.chronometerCall)
-  // this.play.removeAttribute(`disabled`)
-}
+// pause (){
+//   this.time=this.hours+ ':' + this.minutes+ ':'+this.seconds;
+//   console.log('tiempo'+this.time);
+//   //clearInterval(this.chronometerCall)
+//   // this.play.removeAttribute(`disabled`)
+// }
 
 
   // -------------Funciones que se ejecuta por defecto------------------//
   constructor(private firestoreservice: FirestoreService , private data: OrderDetailService) { 
     this.getOrders();
-   
   }
   //------------funcion para obtener data de bg-orders-----------------//
   getOrders(){

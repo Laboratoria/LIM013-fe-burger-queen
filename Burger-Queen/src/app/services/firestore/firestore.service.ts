@@ -14,21 +14,23 @@ export class FirestoreService {
   public getProducts() {
     return this.firestore.collection('BG-Products').snapshotChanges();
   }
-
   public getOrders() {
     return this.firestore.collection('BG-Orders').snapshotChanges();
   }
+  // Actualiza el status
+    public updateStatus(orderId: any, status: string) {
+      return this.firestore.collection('BG-Orders').doc(orderId).update({status});
+    }
   
-  public createCollection(customerName, date,numOrder,status, time, detailOrder,){
+  public createCollection(customerName,numOrder,status, time, detailOrder,){
     return this.firestore.collection('BG-Orders').add({
       customerName,
-      date,
+      date:new Date(),
       numOrder,
       status,
       time,
       detailOrder,
     });
-
   }
 
 }
