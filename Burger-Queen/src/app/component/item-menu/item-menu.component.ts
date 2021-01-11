@@ -53,7 +53,6 @@ export class ItemMenuComponent implements OnInit {
       this.category= ['Hamburguesas','Acompañamientos','Bebidas'];
     }
 }
-
   constructor(private firestoreService: FirestoreService, private data: OrderDetailService) { 
   }
   ngOnInit(): void {
@@ -75,9 +74,7 @@ export class ItemMenuComponent implements OnInit {
           });
         });
       }
-
     });
-
   }
 
     //-------------------Filtrar información para enviar a order detail ----------------

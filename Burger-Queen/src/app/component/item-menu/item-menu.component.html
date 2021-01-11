@@ -1,5 +1,5 @@
 <section class="containerMenuSelectd" *ngFor="let cat of category">
-    <h1>{{cat}}</h1>
+    <H1>{{cat}}</H1>
     <hr class="line">
     <section class="container" *ngIf="selectopt(cat)">
         <section class="itemMenu" [ngClass]="product.quantity===0?'itemDisabled':'itemActive'" *ngFor="let product of producstFilter">
