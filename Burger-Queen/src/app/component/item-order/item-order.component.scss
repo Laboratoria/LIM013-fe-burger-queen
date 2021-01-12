@@ -42,7 +42,7 @@
 }
 .titleDetail p{
     border-radius: 5px 5px 5px 5px;
-    padding: 1%;
+    padding: 5px;
 }
 .detailOrder{
     display: flex;
@@ -66,7 +66,7 @@
     background-color:  #21388B;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
     height: 90%;
-    width: 150px;
+    width: 80%;
     font-size: calc(0.6em + 0.6vw);
 }
 .btnOrder button:hover{
@@ -88,5 +88,25 @@
     .titleDetail p{
         color: #000000;
         border: #000000 2px solid;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .itemorder {
+        width: 240px;
+    }
+    .btnOrder, .titleDetail, .clientOrder{
+        height: 30px;
+        }
+}
+@media screen and (max-width: 575px) {
+    .itemorder{
+        width: 180px;
+    } 
+    .detailOrder{
+        padding: 5px 10px 5px 10px;
+    }
+    .btnOrder, .titleDetail, .clientOrder{
+    height: 20px;
     }
 }

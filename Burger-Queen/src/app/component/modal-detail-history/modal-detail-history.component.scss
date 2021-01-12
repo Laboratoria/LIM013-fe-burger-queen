@@ -1,0 +1,85 @@
+.modal{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top:0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+}
+.container{
+    background-color: #ffffff;
+    height: 40vh;
+    width: 50%;
+    border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.headerModal{
+    position: relative;
+}
+.close{
+    color: #21388B;
+    font-size: calc(1em + 1vw);
+    position: absolute;
+    background-color: #ffffff;
+    font-weight: 600;
+    border-style: none;
+    cursor: pointer;
+    top:0;
+    right: 0;
+}
+.close:hover{
+    color: #FDB827;
+}
+.title{
+    text-align: center;
+    font-size: calc(0.8em + 0.8vw);
+    font-weight: 600;
+}
+// Estilo tabla
+table{
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+    margin-bottom: 2%;
+}
+.rowHeader{
+    background-color: #21388B;
+    color: #f2f2f2;
+}
+.rowDetail{
+    font-size: calc(0.5em + 0.5vw);
+    text-align: center;
+    border-bottom: 1px solid #21388B;
+    
+}
+.rowHeader th{
+    padding: 1%;
+    width: 20%;
+}
+.rowHistory td {
+    width: 20%;
+    padding: 1%;
+}
+.rowDetail:hover {background-color: #21388b62;}
+.rowDetail:nth-child(even) {background-color: #f2f2f2;}
+
+@media (max-width:1024px) {
+.container{
+    width: 60%;
+}
+  
+  }
+  
+  @media screen and (max-width: 575px) {
+    .container{
+        width: 80%;
+    }
+  }

@@ -27,3 +27,11 @@ table{
 .rowHistory:hover {background-color: #eee1c5;}
 
 .rowHistory:nth-child(even) {background-color: #f2f2f2;}
+.openDetail{
+    color: #1a2d75;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.openDetail:hover{
+    color: #3253c9 ;
+}

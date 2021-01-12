@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChange,  } from '@angular/core';
 import { ItemMenuComponent } from '../item-menu/item-menu.component';
 import {FirestoreService} from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -35,7 +36,10 @@ export class ResumenItemComponent {
 error:string;
 sendOrder(){
   this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail,this.total).then(()=>{
-    console.log('exito');
+    alert('! Orden enviada a cocina con Exito!');
+    this.orderDetail=this.orderDetail.map((el)=>el.quantity=0);
+    this.route.navigate(["/home"])
+    
   }).catch(()=>{
  this.error= 'fail';
   })
@@ -78,7 +82,8 @@ sendOrder(){
 
 
   // -------------Funciones que se ejecuta por defecto------------------//
-  constructor(private firestoreservice: FirestoreService , private data: OrderDetailService) { 
+  constructor(private firestoreservice: FirestoreService , private data: OrderDetailService,
+    private route:Router) { 
     this.getOrders();
   }
   //------------funcion para obtener data de bg-orders-----------------//

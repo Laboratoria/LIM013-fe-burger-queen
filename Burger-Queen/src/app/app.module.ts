@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ItemOrderComponent } from './component/item-order/item-order.component';
 import { ItemHistoryComponent } from './component/item-history/item-history.component';
+import { ModalDetailHistoryComponent } from './component/modal-detail-history/modal-detail-history.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ItemHistoryComponent } from './component/item-history/item-history.comp
     ContainerProductComponent,
     GetnameuserComponent,
     ItemOrderComponent,
-    ItemHistoryComponent
+    ItemHistoryComponent,
+    ModalDetailHistoryComponent
   ],
   imports: [
     BrowserModule,
