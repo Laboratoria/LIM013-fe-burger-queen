@@ -3,17 +3,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // eslint-disable-next-line no-unused-vars
-import App from './App';
-import Button from './components/Button';
-import AppView from './containers/AppView';
+import TakeOrder from './pages/TakeOrder';
+import Kitchen from './pages/Kitchen';
+import Login from './pages/Login'
+import App from './components/App'
 import './assets/styles/components/AppView.scss'
 import reportWebVitals from './reportWebVitals';
-
+import Waiter from './pages/Waiter'
 import './firebase'
 
 ReactDOM.render(
   <React.StrictMode>
-    <AppView />
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

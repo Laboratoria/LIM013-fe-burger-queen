@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {db} from '../firebase'
+// import {db} from '../firebase'
 import "../assets/styles/components/ItemMenu.scss";
+import getItems from '../firebase/useGetItems'
 
 // const categoryType = 'bebidas';
 const ItemMenu = (props) => {
@@ -11,18 +12,18 @@ const ItemMenu = (props) => {
         eachItem(item);
       }
     const [items, setItems ] = useState([]);
-    const getItems = (categoryType) =>{
-     db.collection("carta").where("categoria", "==", categoryType).onSnapshot((querySnapshot) => {
-         const docs = []
-            querySnapshot.forEach(doc => {
-                docs.push({...doc.data(), id:doc.id})
-            });
-        setItems(docs)
-        }); 
-    }
+    // const getItems = (categoryType) =>{
+    //  db.collection("carta").where("categoria", "==", categoryType).onSnapshot((querySnapshot) => {
+    //      const docs = []
+    //         querySnapshot.forEach(doc => {
+    //             docs.push({...doc.data(), id:doc.id})
+    //         });
+    //     setItems(docs)
+    //     }); 
+    // }
 
     useEffect(()=>{
-        getItems(categoryType);
+        getItems(setItems,categoryType);
     }, [categoryType]);
     // const {categoryType} = props;
     // const itemsState = useGetItems(categoryType);
