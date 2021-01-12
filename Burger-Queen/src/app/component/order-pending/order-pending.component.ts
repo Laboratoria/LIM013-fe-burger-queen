@@ -48,14 +48,6 @@ export class OrderPendingComponent implements OnInit {
 
 
   //------------funcion para obtener data de bg-orders-----------------//
-//   getOrdersPending() {
-//     this.firestoreservice.getOrdersPending().subscribe((ordersSnapshot) => {
-//       this.ordersPending = [];
-//       ordersSnapshot.forEach((orderData: any) => {
-//         this.ordersPending.push({ ...orderData.payload.doc.data() })
-//       });
-//     });
-//  }
 
 mostrar(){
   console.log(this.ordersPending);
