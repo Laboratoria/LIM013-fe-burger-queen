@@ -1,5 +1,6 @@
-import { Component, Input, OnInit, SimpleChange} from '@angular/core';
-import { FirestoreService } from '../../services/firestore/firestore.service';
+import { Component, Input, OnInit, SimpleChange,  } from '@angular/core';
+import { ItemMenuComponent } from '../item-menu/item-menu.component';
+import {FirestoreService} from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
 
 
@@ -10,73 +11,98 @@ import { OrderDetailService } from '../../services/data/order-detail.service';
 })
 
 export class ResumenItemComponent {
-  //@Input() sendStatusButton: string;
-  public ordersPedido = [];
-  //inicialize en 0 
+ @Input() sendStatusButton:string;
+ public ordersPedido=[];
+ // numero de orden
+ numOrder:any=0;
+ status:string='Pendiente';
+ //array sincronizado
+  orderDetail:any;
+// nombre de cliente 
+  customerName:string;
+// fecha
+  date= new Date();
   total: number = 0;
-  //Numero de orden
-  numOrder: any = 0;
-  //Estado de pedido
-  status: string = 'Pendiente';
-  //Array sincronizado
-  orderDetail: any;
-  //Nombre de cliente 
-  customerName: string;
-  //Fecha
-  date = new Date();
-  // //Cronometro
-  time: string;
+// cronometro
+  time:string;
+  hours:any= '00';
+  minutes:any = '00';
+  seconds:any = '00';
+  chronometerDisplay = document.querySelector(`[data-chronometer]`)
+  chronometerCall
+
+//------------------Funcion  que envia orden--------------------------//
+error:string;
+sendOrder(){
+  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail).then(()=>{
+    console.log('exito');
+  }).catch(()=>{
+ this.error= 'fail';
+  })
+}
+
+// //----------funcion de fecha------------------//
+// options = {
+//   month:"short",
+//   day: "numeric"
+// };
+//   getDate= this.date.toLocaleDateString("es", this.options);
+
+// //------------------Función de cronometro--------------------------//
+
+// chronometer (event)  {
+//   this.chronometerCall = setInterval(() =>{
+//     this.seconds++;
+//     if (this.seconds < 10) this.seconds ='0'  + this.seconds;
+//     if (this.seconds > 59) {
+//       this.seconds = '00'// reinicio
+//       this.minutes ++
+//       if (this.minutes < 10)  this.minutes ='0'+this.minutes
+//     }
+//     if (this.minutes > 59) {
+//       this.minutes = '00';
+//       this.hours ++
+//       if (this.hours < 10) this.hours ='0'+ this.hours;
+//     }
+//   }, 1000);
+//   event.target.setAttribute('disabled','');
+// }
 
 
-  //------------------Funcion  que envia orden--------------------------//
-  error: string;
-  sendOrder() {
-    this.firestoreservice.createCollection(this.customerName, this.getDate, this.numOrder, this.status, this.time, this.orderDetail).then(() => {
-      console.log('exito');
-    }).catch(() => {
-      this.error = 'fail';
-    })
-  }
-
-  //---------------------------funcion de fecha--------------------------//
-  options = {
-    month: "short",
-    day: "numeric"
-  };
- 
-getDate = this.date.toLocaleDateString("es", this.options);
+// pause (){
+//   this.time=this.hours+ ':' + this.minutes+ ':'+this.seconds;
+//   console.log('tiempo'+this.time);
+//   //clearInterval(this.chronometerCall)
+//   // this.play.removeAttribute(`disabled`)
+// }
 
 
   // -------------Funciones que se ejecuta por defecto------------------//
-  constructor(private firestoreservice: FirestoreService, private data: OrderDetailService) {
+  constructor(private firestoreservice: FirestoreService , private data: OrderDetailService) { 
     this.getOrders();
-    console.log('ingrese fecha');
-    console.log(this.date.toLocaleDateString("es", this.options));
   }
   //------------funcion para obtener data de bg-orders-----------------//
-  getOrders() {
+  getOrders(){
     this.firestoreservice.getOrders().subscribe((ordersSnapshot) => {
       this.ordersPedido = [];
       ordersSnapshot.forEach((orderData: any) => {
-        this.ordersPedido.push({ ...orderData.payload.doc.data() })
+        this.ordersPedido.push({ ...orderData.payload.doc.data() })  
       });
-      this.getNumOrders();
+      this.getNumOrders();      
       console.log(this.numOrder);
     });
   }
 
-  //-------------Funcion que genera nmOrder de pedido---------------------//
-  getNumOrders() {
-    this.numOrder = this.ordersPedido.length + 1;
-    if (this.numOrder <= 9) {
-      this.numOrder = '00' + this.numOrder;
-    } else if (this.numOrder < 100) {
-      this.numOrder = '0' + this.numOrder;
-    }
+//-------------Funcion que genera nmOrder de pedido---------------------//
+getNumOrders(){
+  this.numOrder= this.ordersPedido.length+1;
+  if(this.numOrder<=9 ){
+    this.numOrder= '00'+this.numOrder;
+  }  else if(this.numOrder<100){
+    this.numOrder= '0'+this.numOrder;
   }
+}
 
-
-  //---------------------- funciones de tabla------------------------------//
   addProducts(_index: number) {
     this.orderDetail[_index].quantity++;
     this.calculateSubtotal(_index);
@@ -107,24 +133,22 @@ getDate = this.date.toLocaleDateString("es", this.options);
     this.calculateTotal();
   }
 
-
-  //-----------------------------------//
   ngOnInit(): void {
-    this.data.currentOrderDetail.subscribe(order => this.orderDetail = order);
-    this.data.currentCustomerName.subscribe(name => this.customerName = name);
-    this.orderDetail.forEach((element, index) => {
+    this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
+    this.data.currentCustomerName.subscribe(name => this.customerName=name);
+    this.orderDetail.forEach((element,index) => {
       // Agregar adicionales a orderDetail
-      if (element.product === 'Hamburguesa simple' || element.product === 'Hamburguesa doble') {
-        this.orderDetail[index].detailProduct = [];
+      if(element.product === 'Hamburguesa simple'||element.product==='Hamburguesa doble'){
+        this.orderDetail[index].detailProduct=[];
         for (let i = 0; i <= element.quantity - 1; i++) {
           element.detailProduct.push({
-            nameProduct: element.product + ' ' + element.kind[0],
-            kind: element.kind[0],
-            additional: [],
-            priceAdditional: 0,
+            nameProduct:element.product+' '+element.kind[0],
+            kind:element.kind[0],
+            additional:[],
+            priceAdditional:0,
           });
         }
-      }
+      } 
     });
     this.calculateTotal();
   }
@@ -135,3 +159,4 @@ getDate = this.date.toLocaleDateString("es", this.options);
 
 }
 
+// instancia cuando queremos usar funciones atributos etc que esten dentro de una clase.

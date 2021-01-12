@@ -13,7 +13,7 @@ export class GetnameuserComponent implements OnInit {
   constructor(private data: OrderDetailService) { }
   // actualizar informacion de cliente
   sendCustomerName(){
-    this.data.changeCustomerName(this.customerName);
+    this.data.changeCustomerName(this.customerName.toUpperCase());
   }
 
 

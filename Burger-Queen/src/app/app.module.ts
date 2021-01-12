@@ -19,7 +19,7 @@ import { GetnameuserComponent } from './component/getnameuser/getnameuser.compon
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { OrderPendingComponent } from './component/order-pending/order-pending.component';
+import { ItemOrderComponent } from './component/item-order/item-order.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { OrderPendingComponent } from './component/order-pending/order-pending.c
     OrderDetailComponent,
     ContainerProductComponent,
     GetnameuserComponent,
-    OrderPendingComponent
+    ItemOrderComponent
   ],
   imports: [
     BrowserModule,

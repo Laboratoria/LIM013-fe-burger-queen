@@ -1,0 +1,14 @@
+<section class="containerOrderPending">
+    <section class="itemorder" (click)="changeStatus(i)"[ngClass]="(order.status==='Pendiente'||order.status==='Por Entregar')?'orderDisabled':'orderActive'"*ngFor="let order of childDataOrder;index as i">
+        <div class="headerOrder"><p>Estado: {{order.status}}</p><strong>N°{{order.numOrder}}</strong></div>
+        <div class="clientOrder"><p>Cliente: {{order.customerName}}</p><strong>{{formatDate(order.date)}}</strong></div>
+        <div class="titleDetail"><strong>Detalle de Pedido</strong><p>00:30</p></div>
+        <div class="detailOrder">
+            <div class="detail" *ngFor="let orderDetail of order.detailOrder">
+                <p ><i class="fas fa-caret-right"></i>{{orderDetail.product}}</p>
+                <p>{{orderDetail.quantity}}</p>
+            </div>
+        </div>
+        <div class="btnOrder"><button (click)="updateStatus(i, order.id)">Listo <i class="fas fa-arrow-right"></i></button></div>
+    </section>
+</section>
