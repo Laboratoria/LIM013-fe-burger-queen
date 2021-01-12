@@ -1,0 +1,63 @@
+.order{
+  width: 38%;
+}
+
+.detail-order{
+  background-color: #F5F4F4;
+}
+
+.body-detail-order{
+  padding: 10px;
+  font-size:15px;
+}
+
+.title-order , .title-detail{
+  background-color: #050505;
+  color:#f9f9f9;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  padding: 3px;
+}
+
+.info-header-order{
+  padding: 9px;
+  background-color: #F5F4F4;
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+ul{
+  list-style-type:none
+}
+.amount-order{
+  font-size:20px;
+  padding:5px;
+  text-align:center;
+}
+
+.dateInit, .dateFinish, .time-preparation{
+  color:#D95A03;
+  font-weight:bold;
+}
+.button-finish, .button-deliver{
+  background-color: #CBD916;
+  margin: 0;
+  margin-top: 5px;
+  width: 100%;
+  height: 44px;
+  font-size: 20px;
+  color: #f9f9f9;
+  border: none;
+}
+
+.button-in-kitchen{
+  background-color: #D95A03; 
+  margin: 0;
+  margin-top: 5px;
+  width: 100%;
+  height: 44px;
+  font-size: 20px;
+  color: #f9f9f9;
+  border: none;
+}

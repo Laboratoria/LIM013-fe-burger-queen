@@ -12,9 +12,6 @@
   padding: 8px;
 }
 
-h1 {
-
-}
 
 img{
     width: 8%;
@@ -24,13 +21,26 @@ nav {
   font-family: Verdana;
   margin-top: 1px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color:$white;
+  font-size: 20px;
 }
-nav > section {
+
+.navbarWaiter > section {
   background-color: rgb(0, 0, 0);
   width: 33%;
+  text-align: center;
+  padding:5px;
 }
+
+.navbarKitchen >section{
+  background-color: rgb(0, 0, 0);
+  width: 49.9%;
+  text-align: center;
+  padding:5px;
+}
+
 nav > section:hover {
   background-color:$light-orange;
 }
+
