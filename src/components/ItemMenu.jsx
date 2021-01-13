@@ -5,11 +5,14 @@ import getItems from '../firebase/useGetItems'
 
 // const categoryType = 'bebidas';
 const ItemMenu = (props) => {
-    const {categoryType, eachItem} = props;
+    const {categoryType, eachItem, sendEachItem} = props;
     // console.log(categoryType);
+    // const arr = [];
     function handleClick(item) {
-        // console.log('The link was clicked.', item);
-        eachItem(item);
+      // console.log('The link was clicked.', item);
+      //  arr.push(item)
+        eachItem(sendEachItem => [...sendEachItem, item]);
+        // console.log(sendEachItem);
       }
     const [items, setItems ] = useState([]);
     // const getItems = (categoryType) =>{
@@ -31,7 +34,8 @@ const ItemMenu = (props) => {
     <section className= "viewAllMenu">
         {items.map((item) => (
              <section className="itemMenu" key={item.id}>
-                <img src={item.imagen} alt="simple hamburguer" id={item.id} onClick={(e) => {e.preventDefault();handleClick(item)}} />
+                <img src={item.imagen} alt="simple hamburguer" id={item.id} onClick={(e) => 
+                  {e.preventDefault();handleClick(item)}} />
                 <section>
                     <p>{item.nombre[0].toUpperCase()+item.nombre.slice(1)}</p>
                 </section>

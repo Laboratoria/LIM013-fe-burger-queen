@@ -5,7 +5,7 @@ import ItemMenu from '../components/ItemMenu';
 const AllMenu = (props) => {
     const [category, setCategory] = useState('desayuno');
     // const [item, setItem] = useState({});
-    const {sendGetItem} = props
+    const {sendGetItem, sendItem} = props
     // const test = (x) => {
     //     sendGetItem(x);
     // }
@@ -17,7 +17,7 @@ const AllMenu = (props) => {
                 <p>Carta</p>
         </section>
         <OptionsAllMenu optionCategory = {setCategory} items/>
-        <ItemMenu categoryType={category} eachItem={sendGetItem}/>
+        <ItemMenu categoryType={category} eachItem={sendGetItem} sendEachItem ={sendItem}/>
     </section>
 )}
 
