@@ -5,7 +5,7 @@ import Logo from "../imagenes/hamburguesa-logo.png";
 import "../assets/styles/components/Login.scss";
 const Login = () => {
   return (
-    <section className="App">
+    <>
       <section className="container-login">
         <section className="viewOne-title">
           <h1 className="title-hamburguer">Burguer Queen</h1>
@@ -21,13 +21,13 @@ const Login = () => {
           </section>
         </section>
       </section>
-      <div>
+      {/* <div>
       <Link to="/waiter">Mesero</Link>
       </div>
        <div>
       <Link to="/kitchen">Cocina</Link>
-       </div>
-    </section>
+       </div> */}
+    </>
   );
 };
 

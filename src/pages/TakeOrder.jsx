@@ -12,44 +12,77 @@ import AllMenu from "../components/AllMenu";
 
 import "../assets/styles/App.scss";
 const TakeOrder = () => {
-  // Traer el producto seleccionado
+  // Traer array de producto seleccionados y los actualizar
   const [selectItem, setSelectItem] = useState([]);
-    console.log(selectItem);
-  
-  //Nombre y numero de mesa
+  console.log(selectItem);
+      
+  //Numero de mesa
   const [table, setTable] = useState("");
+  
+  // Nombre
   const [costumer, setCostumer] = useState("");
 
-  // Delete state
-  const [bucket, setBucket] = useState('');
+  // Incrementar y disminuir cantidad de productos
+  let [result, setResult] = useState(1);
+  
+  let [total, setTotal]= useState(0);
 
+
+  // Funcion capturar valor mesa
   function handleChange(e) {
     setTable({ [e.target.name]: e.target.value });
+    console.log(table);
+    
   }
-
+// Funcion capturar valor nombre
   function handleImput(e) {
     setCostumer({ [e.target.name]: e.target.value });
+    console.log(costumer);
   }
-  console.log(table);
-  console.log(costumer);
+  
+  // Funcion para aumentar  cantidad y subtotal
+  function handlePlus(item) {
+    setResult(result+=1); //Preguntar
+    const newArray = selectItem.filter(product => (product.id === item.id));
+    newArray[0].quantity += 1;
+    newArray[0].subTotal = newArray[0].quantity * newArray[0].price;     
+    
+    const getTotal = selectItem.reduce((preventDefault,currentValue)=> preventDefault + currentValue.subTotal,total)
+  
+    setTotal(getTotal) 
+    console.log(total);
+  };
+  
+  // const reducer = (acum, product) =>{
+  //   return acum + product.subTotal;
+  // }   
+   
 
-  // Funcion para aumentar y disminuir cantidad
-  let [result, setResult] = useState(0);
-  function handlePlus(){
-    setResult(result+=1);
-  }
-  function handleMinus(){
-    const verifyMInNumber = result > 0 ? result-=1: 0;
-    setResult(verifyMInNumber)
+ // Funcion para disminuir  cantidad y subtotal
+  function handleMinus(item){
+    setResult(result-=1);
+    const verifyMInNumber = result > 1 ? result-=1: 1;
+    setResult(verifyMInNumber);
+
+    const newArray1 = selectItem.filter(product => (product.id === item.id));
+    let verifyMinQuantity = newArray1[0].quantity > 1? newArray1[0].quantity -=1: 1
+    newArray1[0].subTotal = verifyMinQuantity * newArray1[0].price;
+
+    console.log(selectItem);
   } 
 
-  // Funcion para borrar
+  
+// Funcion para borrar
   function handleDelete(item){
-    setBucket(item.id)
+    const listUpdated = selectItem.filter(({ id }) => id !== item.id);
+  
+    setSelectItem(listUpdated);
+    console.log(selectItem);
   }
-
-  console.log(bucket)
-  return (
+  
+  
+  
+    return (
     <section className="App">
       <section className="orderAndAllMenu">
       <section className="order">      
@@ -103,16 +136,16 @@ const TakeOrder = () => {
               {selectItem.map((item) => 
                 <section className="product-order" key={item.id}>
                 <div>
-                  <button type="button" className="button-add" onClick= {handlePlus}>
+                  <button type="button" className="button-add" onClick= {(e) => {e.preventDefault(); handlePlus(item)}}>
                     <i className="fas fa-plus-circle"></i>
                   </button>
-                  <p>{result}</p>
+                  <p>{item.quantity}</p>
                   <button className="button-less">
-                    <i className="fas fa-minus-circle" onClick= {handleMinus}></i>
+                    <i className="fas fa-minus-circle" onClick= {(e) => {e.preventDefault(); handleMinus(item)}}></i>
                   </button>
                 </div>
-                <p className="name-detail">{item.nombre}</p>
-                <p className="price-detail">{item.precio}</p>
+                <p className="name-detail">{item.name}</p>
+                <p className="price-detail">{item.subTotal}</p>
                 <button className="button-trash" onClick={(e) => {e.preventDefault(); handleDelete(item)}}>
                   <i className="fas fa-trash-alt"></i>
                 </button>
@@ -126,7 +159,7 @@ const TakeOrder = () => {
           </DetailOrder> */}
           {/* <ContainerTotal /> */}
           <section className="container-total">
-              <p className="order-total">Total <strong className="price-total">S/20</strong></p>
+              <p className="order-total">Total <strong className="price-total"> S/{total}</strong></p>
           </section>
           {/* <ButtonSend />
           <ButtonCancel /> */}

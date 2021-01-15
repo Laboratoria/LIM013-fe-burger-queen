@@ -11,9 +11,24 @@ const ItemMenu = (props) => {
     function handleClick(item) {
       // console.log('The link was clicked.', item);
       //  arr.push(item)
-        eachItem(sendEachItem => [...sendEachItem, item]);
+        // eachItem(sendEachItem => [...sendEachItem, item]);
+        // if (sendEachItem.filter(product=> (product.id === item.id)).length >0)
+        // if (sendEachItem.some(product=> (product.id === item.id)))
+        if (sendEachItem.filter(product=> (product.id === item.id)).length >0) {
+          eachItem(sendEachItem);
+        } else {
+          const newItem = {
+            id: item.id,
+            name: item.nombre,
+            price: item.precio,
+            quantity: 1,
+            subTotal: item.precio,
+          }
+        eachItem(sendEachItem => [...sendEachItem, newItem]);
+        
         // console.log(sendEachItem);
       }
+    }
     const [items, setItems ] = useState([]);
     // const getItems = (categoryType) =>{
     //  db.collection("carta").where("categoria", "==", categoryType).onSnapshot((querySnapshot) => {
