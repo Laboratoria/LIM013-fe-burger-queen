@@ -11,47 +11,17 @@ export class ItemOrderComponent implements OnInit {
   styleItem: number = 0;
   public ordersPedido = [];
   //cronometro
-  time: string;
-  minutes: any = '00';
-  seconds: any = '00';
+  // time: any;
   chronometerCall
   startDate = new Date();
+  // guarda fecha actual 
   endDate = new Date();
 
-katy(){
-  console.log(this.childDataOrder)
-}
-
-  changeStatus(_index: string, event) {
-    console.log( this.childDataOrder);
-    //console.log(this.childDataOrder[1]);
+  changeStatus(_index: string) {
     status = this.childDataOrder[_index].status;
-
-
     switch (status) {
       case 'Pendiente':
         this.childDataOrder[_index].status = 'En Proceso';
-        //this.firestoreService.updateStatus(this.childDataOrder[_index].id,this.childDataOrder[_index].status);
-
-        // this.chronometer(event,this.childDataOrder[_index].minutes,this.childDataOrder[_index].seconds)
-
-        //---------------cronometro inicio---------------------//
-        this.chronometerCall = setInterval(() => { // 2 parametros funcion e intervalo 1000-milisegundo
-          this.childDataOrder[_index].seconds++;
-          //console.log('aumenta'+this.childDataOrder[_index].seconds)
-          if (this.childDataOrder[_index].seconds < 10) this.childDataOrder[_index].seconds = '0' + this.childDataOrder[_index].seconds;
-          if (this.childDataOrder[_index].seconds > 59) {
-            this.childDataOrder[_index].seconds = '00'// reinicio
-            this.childDataOrder[_index].minutes++
-            if (this.childDataOrder[_index].minutes < 10) this.childDataOrder[_index].minutes = '0' + this.childDataOrder[_index].minutes
-          }
-          if (this.childDataOrder[_index].minutes > 59) {
-            this.childDataOrder[_index].minutes = '00';
-          }
-        }, 1000);
-        event.target.setAttribute('disabled', '');
-
-        //-----------------cronometro fin---------------------//
         break;
       case 'En Proceso':
         this.childDataOrder[_index].status = 'Pendiente';
@@ -67,18 +37,7 @@ katy(){
     }
   }
 
-  // calcularDiasAusencia() {
-  //   console.log('ingrese fecha aqui');
-  //   console.log(this.childDataOrder[2].status);
-  //   console.log(this.childDataOrder[1]);
-  //   // this.childDataOrder.array.forEach(element => {console.log(element.date);
-  //   console.log('hola' + this.childDataOrder[1]);
-  //   for (const property in this.childDataOrder) {
-  //     console.log('hola');
-  //     console.log(property.length);
 
-  //   }
-  // }
 
   //----------funcion de fecha------------------//
 
@@ -91,18 +50,10 @@ katy(){
       status = 'Entregado';
     }
     this.firestoreService.updateStatus(_id, status);
-    //--------------cronometro guardar tiempo-----------//
-    this.time = this.childDataOrder[_index].minutes + ':' + this.childDataOrder[_index].seconds;
-    console.log('tiempo' + this.time);
-    // this.firestoreService.updateTime(_id, this.time);
-    //--------------------fin---------------------------//
   }
 
   constructor(private firestoreService: FirestoreService) {
-    console.log('laboratoria' + this.childDataOrder);
-    this.getOrders();
-    console.log('katy2')
-    console.log(this.childDataOrder); //[1]
+
 
   }
 
@@ -115,24 +66,6 @@ katy(){
 
   }
 
-  // //------------------Función de cronometro--------------------------//
-
-  // chronometer (event,_minutes,_seconds)  {
-  //   this.chronometerCall = setInterval(() =>{ // 2 parametros 
-  //     _seconds++;
-  //     console.log('aumenta'+_seconds)
-  //     if (_seconds < 10) _seconds ='0'  + _seconds;
-  //     if (_seconds> 59) {
-  //       _seconds = '00'// reinicio
-  //       _minutes ++
-  //       if (_minutes < 10)  _minutes ='0'+_minutes
-  //     }
-  //     if (_minutes > 59) {
-  //       _minutes = '00';
-  //     }
-  //   }, 1000);
-  //   event.target.setAttribute('disabled','');
-  // }
 
 
   // chronometer (event)  {
@@ -152,15 +85,6 @@ katy(){
   //   event.target.setAttribute('disabled','');
   // }
 
-  // calcularDiasAusencia(){
-  //   console.log('ingrese fecha');
-  //   // this.childDataOrder.array.forEach(element => {console.log(element.date);
-  //   console.log('hola'+this.childDataOrder[1]);
-  //   for (const property in this.childDataOrder) {
-  //     console.log('hola');
-  //     console.log(property.length);
-  //   }
-
 
 
   pause() {
@@ -170,60 +94,67 @@ katy(){
     // this.play.removeAttribute(`disabled`)
   }
 
-
-
-
-  cronometer(){
-    //this.childDataOrder[].minutes;
-  }
-  getOrders() {
-    console.log('getOrders');
-    this.firestoreService.getOrders().subscribe((ordersSnapshot) => {
-      this.ordersPedido = [];
-      ordersSnapshot.forEach((orderData: any) => {
-        this.ordersPedido.push({ ...orderData.payload.doc.data() })
-      });
-      this.ordersPedido.forEach(element => {
-        this.startDate = element.date.toDate();
-        //  console.log('Inicio '+  this.startDate);
-        //console.log('Fin '+ this.endDate);
-        let seconds;
-        let minutes;
-        let milisegundos = Math.round(this.endDate.getTime() - this.startDate.getTime());
-        minutes = Math.trunc(milisegundos / (1000 * 60)); // 100/60 = 1.6 = 1  
-        seconds = (Math.trunc((milisegundos / 1000) - (minutes * 60)) < 0) ? 0 : (Math.trunc((milisegundos / 1000) - (minutes * 60)));
-        console.log("cronometro: " + minutes + ':' + seconds);
-        console.log(element);        //console.log('ingrese soy id'+element.id)
-        //this.firestoreService.updateTime(element.id, minutes,seconds);
-      });
-    });
-  }
+ 
   ngOnChanges() {
-    console.log(this.childDataOrder);
-}
+    console.log('laboratoria');
+    this.childDataOrder.forEach(element => {
+      this.startDate = element.date.toDate(); //  asignamos fecha con la que se creo doc // timestamp a date 
+      let seconds:any;
+      let minutes:any;
+      let chronometerCall;
+      //endDate = fecha actual           // startDate = fecha de creacion
+      // Math.round = entero //  getTime()= milsegundos //  Math.trunc = devuelve en entero eliminando  los digitos fracionados
+      let milisegundos = Math.round(this.endDate.getTime() - this.startDate.getTime()); //
+      minutes = Math.trunc(milisegundos / (1000 * 60));
+      //< 1 ?'00':(Math.trunc(milisegundos / (1000 * 60)));// 100/60 = 1.6 = 1  
+      seconds = (Math.trunc((milisegundos / 1000) - (minutes * 60)) < 0) ? 0 : (Math.trunc((milisegundos / 1000) - (minutes * 60)));
+
+      // crear hora con condicional si hay valor que se muestre
+      ///this.firestoreService.updateTime(element.id, minutes, seconds);
+      if(element.chronometer){
+        console.log('entre intervalo');
+      chronometerCall = setInterval(() => { // 2 parametros funcion e intervalo 1000-milisegundo
+        seconds++;
+        if (seconds < 10) seconds = '0' + seconds;
+        if (seconds > 59) {
+          seconds = '00'// reinicio
+          minutes++
+          if (minutes < 10) minutes = '0' + minutes;
+        }
+        if (minutes > 59) {
+          minutes = '00';
+        }
+        console.log(minutes +':'+seconds);
+        element.minutes = minutes;
+        element.seconds = seconds;
+      }, 1000);
+    }
+    //this.firestoreService.updateTime(element.id, minutes, seconds);
+    });
+    
+  }
+
+
+
+  btnlisto(_index: string){
+    this.firestoreService.updateChronometer(this.childDataOrder[_index].id,false);
+    let currentDate; // fecha actual 
+    let startDate= new Date();
+    startDate = this.childDataOrder[_index].date.toDate();
+    currentDate = new Date();
+    let milisegundos = Math.round(currentDate.getTime() - startDate.getTime());
+    let minutes:any = Math.trunc(milisegundos / (1000 * 60)); // 100/60 = 1.6 = 1    //1
+    let seconds:any = (Math.trunc((milisegundos / 1000) - (minutes * 60)) < 0) ? 0 : (Math.trunc((milisegundos / 1000) - (minutes * 60)));//9
+    if (seconds < 10) seconds = '0' + seconds;
+    if (minutes < 10) minutes = '0' + minutes;
+    // this.time = minutes +':' + seconds;
+    this.firestoreService.updateTime(this.childDataOrder[_index].id,minutes,seconds);
+
+  }
+
 
   ngOnInit(): void {
-    
-    console.log('hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh')
-
-    // console.log('ordes' + this.ordersPedido);
-    // console.log('cronometro')
-    // console.log(this.childDataOrder); //[1]
-    // console.log('laboratoria' + this.childDataOrder);
-    // this.chronometerCall = setInterval(() => { // 2 parametros funcion e intervalo 1000-milisegundo
-    //   seconds++;
-    //   //console.log('aumenta'+this.childDataOrder[_index].seconds)
-    //   if (seconds < 10) seconds = '0' + seconds;
-    //   if (seconds > 59) {
-    //     seconds = '00'// reinicio
-    //     minutes++
-    //     if (minutes < 10)minutes = '0' + minutes
-    //   }
-    //   if (minutes > 59) {
-    //     minutes = '00';
-    //   }
-    // }, 1000);
-
+ 
 
   }
 

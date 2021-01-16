@@ -21,20 +21,29 @@ export class FirestoreService {
     public updateStatus(orderId: any, status: string) {
       return this.firestore.collection('BG-Orders').doc(orderId).update({status});
     }
-    public updateTime(orderId: any, minutes:any, seconds:any){
-      return this.firestore.collection('BG-Orders').doc(orderId).update({minutes,seconds});
+    // public updateTime(orderId: any, time:any){
+    //   return this.firestore.collection('BG-Orders').doc(orderId).update({time});
+    // }
+  
+    public updateChronometer(orderId: any, chronometer:any){
+      return this.firestore.collection('BG-Orders').doc(orderId).update({chronometer});
     }
   
-  public createCollection(customerName,numOrder,status, time, minutes, seconds,detailOrder){
+    public updateTime(orderId: any,minutes:any, seconds:any){
+      return this.firestore.collection('BG-Orders').doc(orderId).update({minutes,seconds});
+    }
+
+  public createCollection(customerName,numOrder,status, minutes, seconds,detailOrder){
     return this.firestore.collection('BG-Orders').add({
       customerName,
       date:new Date(),
       numOrder,
       status,
-      time,
       minutes,
       seconds,
+      chronometer:true,
       detailOrder,
+      
     });
   }
 
