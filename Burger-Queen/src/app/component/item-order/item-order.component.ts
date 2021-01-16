@@ -53,8 +53,6 @@ export class ItemOrderComponent implements OnInit {
   }
 
   constructor(private firestoreService: FirestoreService) {
-
-
   }
 
 
@@ -87,12 +85,12 @@ export class ItemOrderComponent implements OnInit {
 
 
 
-  pause() {
-    //this.time=  this.childDataOrder[_index].minutes+ ':'+ this.childDataOrder[_index].seconds ;
-    //console.log('tiempo'+this.time);
-    clearInterval(this.chronometerCall)
-    // this.play.removeAttribute(`disabled`)
-  }
+  // pause() {
+  //   //this.time=  this.childDataOrder[_index].minutes+ ':'+ this.childDataOrder[_index].seconds ;
+  //   //console.log('tiempo'+this.time);
+  //   clearInterval(this.chronometerCall)
+  //   // this.play.removeAttribute(`disabled`)
+  // }
 
  
   ngOnChanges() {
@@ -108,9 +106,6 @@ export class ItemOrderComponent implements OnInit {
       minutes = Math.trunc(milisegundos / (1000 * 60));
       //< 1 ?'00':(Math.trunc(milisegundos / (1000 * 60)));// 100/60 = 1.6 = 1  
       seconds = (Math.trunc((milisegundos / 1000) - (minutes * 60)) < 0) ? 0 : (Math.trunc((milisegundos / 1000) - (minutes * 60)));
-
-      // crear hora con condicional si hay valor que se muestre
-      ///this.firestoreService.updateTime(element.id, minutes, seconds);
       if(element.chronometer){
         console.log('entre intervalo');
       chronometerCall = setInterval(() => { // 2 parametros funcion e intervalo 1000-milisegundo
@@ -155,7 +150,6 @@ export class ItemOrderComponent implements OnInit {
 
   ngOnInit(): void {
  
-
   }
 
 
