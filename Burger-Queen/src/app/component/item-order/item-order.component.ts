@@ -75,7 +75,7 @@ export class ItemOrderComponent implements OnInit {
       //< 1 ?'00':(Math.trunc(milisegundos / (1000 * 60)));// 100/60 = 1.6 = 1  
       seconds = (Math.trunc((milisegundos / 1000) - (minutes * 60)) < 0) ? 0 : (Math.trunc((milisegundos / 1000) - (minutes * 60)));
       if(element.chronometer){
-        console.log('entre intervalo');
+        ///console.log('entre intervalo');
       chronometerCall = setInterval(() => { 
         seconds++;
         if (seconds < 10) seconds = '0' + seconds;
@@ -87,7 +87,6 @@ export class ItemOrderComponent implements OnInit {
         if (minutes > 59) {
           minutes = '00';
         }
-        console.log(minutes +':'+seconds);
         element.minutes = minutes;
         element.seconds = seconds;
       }, 1000);
