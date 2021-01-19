@@ -21,9 +21,6 @@ export class FirestoreService {
     public updateStatus(orderId: any, status: string) {
       return this.firestore.collection('BG-Orders').doc(orderId).update({status});
     }
-    // public updateTime(orderId: any, time:any){
-    //   return this.firestore.collection('BG-Orders').doc(orderId).update({time});
-    // }
   
     public updateChronometer(orderId: any, chronometer:any){
       return this.firestore.collection('BG-Orders').doc(orderId).update({chronometer});
