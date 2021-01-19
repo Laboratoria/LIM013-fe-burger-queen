@@ -1,0 +1,9 @@
+<section class="modal" *ngIf="visible">
+    <div class="container">
+        <div class="headerModal">
+            <p class="title">Detalle de Hamburgesa</p>
+            <button class="fas fa-times close"(click)="closeModal()"></button>
+            <app-item-detail-burger [closeModal]="closeM"></app-item-detail-burger>
+        </div>
+    </div>
+</section>

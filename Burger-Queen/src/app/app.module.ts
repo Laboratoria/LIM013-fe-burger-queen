@@ -22,6 +22,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ItemOrderComponent } from './component/item-order/item-order.component';
 import { ItemHistoryComponent } from './component/item-history/item-history.component';
 import { ModalDetailHistoryComponent } from './component/modal-detail-history/modal-detail-history.component';
+import { ModalComponent } from './component/modal/modal.component';
+import { ItemDetailBurgerComponent } from './component/item-detail-burger/item-detail-burger.component';
+import { ModalDetailBurgerComponent } from './component/modal-detail-burger/modal-detail-burger.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { ModalDetailHistoryComponent } from './component/modal-detail-history/mo
     GetnameuserComponent,
     ItemOrderComponent,
     ItemHistoryComponent,
-    ModalDetailHistoryComponent
+    ModalDetailHistoryComponent,
+    ModalComponent,
+    ItemDetailBurgerComponent,
+    ModalDetailBurgerComponent
   ],
   imports: [
     BrowserModule,

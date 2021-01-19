@@ -37,9 +37,10 @@ error:string;
 sendOrder(){
   this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail,this.total).then(()=>{
     alert('! Orden enviada a cocina con Exito!');
-    this.orderDetail=this.orderDetail.map((el)=>el.quantity=0);
-    this.route.navigate(["/home"])
-    
+    this.data.changeOrderDetail([]);
+    this.data.changeCustomerName('');
+    this.route.navigate(["/home"]);
+    console.log(this.orderDetail);
   }).catch(()=>{
  this.error= 'fail';
   })

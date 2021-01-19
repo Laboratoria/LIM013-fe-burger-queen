@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-menu',
@@ -9,12 +10,16 @@ import { OrderDetailService } from '../../services/data/order-detail.service';
 })
 export class ItemMenuComponent implements OnInit {
   @Input() childMessageCat: string;
-  public products = [];
+  modalVisibility:boolean=false;
+  products = [];
   producstFilter = [];
   category= [];
   total:number=0;
+  // detailBurger:any=[];
   //array sincronizado
   orderDetail:any;
+// nombre de cliente
+  customerName:string;
   //-------------------------- agregar prodcutos ----------------------------
   addProducts(item:number) { 
     this.total =0;
@@ -26,6 +31,7 @@ export class ItemMenuComponent implements OnInit {
     if(this.products[_item-1].quantity>0){
         this.products[_item-1].quantity--;
     }
+    console.log(this.products)
   }
 // --------------------- filtrar data a mostrar ------------------------------
   selectopt(category){
@@ -43,8 +49,41 @@ export class ItemMenuComponent implements OnInit {
         break;
     }
   }
+  // Abrir modal
+  showModal(_quantity){
+    if(_quantity>0){this.modalVisibility=true;}
+    else{ alert('Tiene que agregar almenos una hamburguesa')}
+  }
+  // Cerrar modale
+  closeModal(e){
+    this.modalVisibility=false;
+  }
+  // Agregar opciones a detalle de hamburguesa
+  sendDetailBurger(){
+    // Agregar adicionales
+    this.products.forEach((element,index) => {
+      // Agregar adicionales a orderDetail
+      if(element.product === 'Hamburguesa simple'||element.product==='Hamburguesa doble'){
+        for (let i = 0; i <= element.quantity - 1; i++) {
+          if(element.detailBurger[i]===undefined)
+          {
+            element.detailBurger.push({
+              nameProduct:element.product,
+              kind:element.kind[0],
+              additional:[],
+              priceAdditional:0,
+            });
+          }
+        }
+      } 
+    });
+    console.log(this.products)
+  }
 
-
+  //update product
+  updateProduct(_productBurger:any){
+    this.data.changeDetailBurger(_productBurger);
+  }
   // función que escuchará cambios 
   ngOnChanges(changes: SimpleChange) {
     if(changes['childMessageCat'].currentValue==='cat1'){
@@ -53,17 +92,19 @@ export class ItemMenuComponent implements OnInit {
       this.category= ['Hamburguesas','Acompañamientos','Bebidas'];
     }
 }
-  constructor(private firestoreService: FirestoreService, private data: OrderDetailService) { 
+  constructor(private firestoreService: FirestoreService, private data: OrderDetailService, private route: Router) { 
   }
   ngOnInit(): void {
     //service data orderDetail
     this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
+    this.data.currentCustomerName.subscribe(name => this.customerName=name);
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
-        this.products.push({quantity:0, ...productData.payload.doc.data()
-        });
-      })
+        if(productData.payload.doc.data().category==='hamburguesa')
+        { this.products.push({quantity:0,detailBurger:[], ...productData.payload.doc.data() });}
+        else{ this.products.push({quantity:0, ...productData.payload.doc.data() });}
+      });
       // verificar si order Detail contiene elementos y si es asi guardar el quntity en productos
       if(this.orderDetail.length>0){
         this.orderDetail.forEach(element => {
@@ -75,8 +116,24 @@ export class ItemMenuComponent implements OnInit {
         });
       }
     });
+    // traer info de detalle de hamburguesa
+    this.data.currentDetailBurger.subscribe(dataBurger => {
+      switch (dataBurger.product) {
+        case 'Hamburguesa simple':
+          this.products[4].detailBurger=dataBurger.detailBurger;
+          this.products[4].quantity=dataBurger.detailBurger.length;
+          break;
+        case 'Hamburguesa doble':
+          this.products[5].detailBurger=dataBurger.detailBurger;
+          this.products[5].quantity=dataBurger.detailBurger.length;
+          break;
+      
+        default:
+          break;
+      }
+      console.log(this.products);
+    });
   }
-
     //-------------------Filtrar información para enviar a order detail ----------------
 
     sendOrderDetail(){
@@ -87,12 +144,11 @@ export class ItemMenuComponent implements OnInit {
         el.item = index+1;
         el.subtotal = el.quantity*el.price;
       })
-      if(orderResult.length<=0)
-        {
-          console.log('no hay elementos en el pedido')
-        }
+      if(orderResult.length<=0||this.customerName.length<=0)
+        { alert('Por favor llene los campos');}
       else{
-        this.data.changeOrderDetail(orderResult)
+        this.data.changeOrderDetail(orderResult);
+        this.route.navigate(["/orderDetail"]);
         }
     }
 

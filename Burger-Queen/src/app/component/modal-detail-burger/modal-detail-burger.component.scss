@@ -43,6 +43,19 @@
     font-weight: 600;
 }
 // Estilo tabla
+
+@media (max-width:1024px) {
+    .container{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 575px) {
+    .container{
+        width: 80%;
+    }
+}
+
+// Estilo tabla
 table{
     margin-left: auto;
     margin-right: auto;
@@ -70,16 +83,27 @@ table{
 }
 .rowDetail:hover {background-color: #21388b62;}
 .rowDetail:nth-child(even) {background-color: #f2f2f2;}
-
-@media (max-width:1024px) {
-.container{
-    width: 60%;
+.additional{
+    display: flex;
+    flex-flow: row nowrap;
 }
-  
-  }
-  
-  @media screen and (max-width: 575px) {
-    .container{
-        width: 80%;
-    }
-  }
+
+// CSS Adicionales
+.select {
+    border-radius: 5px ;
+    border: 2px solid #FDB827;
+    background-color:#fff;
+    width: 90%;
+}
+.btnDelete{
+    border-radius: 50% ;
+    color:#21388B;
+    height: 40px;
+    width: 40px;
+    border: 3px solid #21388B;
+    background: #fff;
+}
+.btnDelete:hover{
+    background-color: #21388B;
+    color: #fff;
+}

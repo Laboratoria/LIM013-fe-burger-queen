@@ -9,9 +9,14 @@
             <div class="itemQuantity">
                 <table>
                     <tr>
-                        <td><button class="fas fa-minus"(click)= "reduceProducts(product.item)"></button></td>
+                        <td colspan="3" *ngIf="product.product==='Hamburguesa simple'||product.product==='Hamburguesa doble'">
+                            <button class="btnDetailBurger" (click)="showModal(product.quantity)" (click)="updateProduct(product)"> Detalle </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button  class="btnReduce fas fa-minus"(click)= "reduceProducts(product.item)"></button></td>
                         <td>{{product.quantity}}</td>
-                        <td><button class="fas fa-plus" (click)= "addProducts(product.item)"></button></td> 
+                        <td><button class="btnAdd fas fa-plus" (click)= "addProducts(product.item)" (click)="sendDetailBurger()"></button></td> 
                     </tr>
                 </table>
             </div>
@@ -19,5 +24,9 @@
     </section>
 </section>
 <section class="btnSend">
-    <button routerLink="/orderDetail" class="alert" (click)="sendOrderDetail()">Enviar <i class="fas fa-arrow-right"></i></button>
+    <button class="alert" (click)="sendOrderDetail()">Enviar <i class="fas fa-arrow-right"></i></button>
 </section>
+<app-modal-detail-burger 
+[visible]="modalVisibility"
+(close)="closeModal($event)">
+</app-modal-detail-burger>
