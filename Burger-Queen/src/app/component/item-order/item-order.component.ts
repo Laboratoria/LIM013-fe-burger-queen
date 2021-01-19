@@ -72,10 +72,8 @@ export class ItemOrderComponent implements OnInit {
       // Math.round = entero //  getTime()= milsegundos //  Math.trunc = devuelve en entero eliminando  los digitos fracionados
       let milisegundos = Math.round(endDate.getTime() - startDate.getTime()); //
       minutes = Math.trunc(milisegundos / (1000 * 60));
-      //< 1 ?'00':(Math.trunc(milisegundos / (1000 * 60)));// 100/60 = 1.6 = 1  
       seconds = (Math.trunc((milisegundos / 1000) - (minutes * 60)) < 0) ? 0 : (Math.trunc((milisegundos / 1000) - (minutes * 60)));
       if(element.chronometer){
-        ///console.log('entre intervalo');
       chronometerCall = setInterval(() => { 
         seconds++;
         if (seconds < 10) seconds = '0' + seconds;
