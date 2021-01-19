@@ -30,9 +30,8 @@ export class ModalDetailBurgerComponent implements OnInit {
   // checkBoxSelected(){
   //   console.log(this.isChecked);
   // }
-  confirmar(){
+  updateDetailBurger(){
     this.data.changeDetailBurger(this.detailBurger);
-    console.log(this.detailBurger);
   }
 
   constructor(private data: OrderDetailService) { }
