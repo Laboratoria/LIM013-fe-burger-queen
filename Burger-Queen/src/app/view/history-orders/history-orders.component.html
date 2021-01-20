@@ -1,1 +1,6 @@
-<p>history-orders works!</p>
+<section class="history">
+    <h1 class="title">Historial de Pedidos</h1>
+    <div><p>Monto Total de Importes :</p><p class="total">S/{{total}}.00</p></div>
+    <app-item-history [childDataOrder]="dataOrderDelivered" ></app-item-history>
+</section>
+

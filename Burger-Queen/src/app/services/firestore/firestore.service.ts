@@ -30,7 +30,7 @@ export class FirestoreService {
       return this.firestore.collection('BG-Orders').doc(orderId).update({minutes,seconds});
     }
 
-  public createCollection(customerName,numOrder,status, minutes, seconds,detailOrder){
+  public createCollection(customerName,numOrder,status, minutes, seconds,detailOrder,total){
     return this.firestore.collection('BG-Orders').add({
       customerName,
       date:new Date(),
@@ -40,7 +40,7 @@ export class FirestoreService {
       seconds,
       chronometer:true,
       detailOrder,
-      
+      total
     });
   }
 

@@ -1,0 +1,28 @@
+.history{
+    min-height:100vh;
+}
+.title{
+    margin: 70px 0px 10px 0px;
+    font-size: calc(1.5em + 1.5vw);
+    text-align: center;
+}
+div{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    font-size: calc(0.7em + 0.7vw);
+}
+.total{
+    background-color: #21388B;
+    color: #ffffff;
+    border-radius: 10px 10px 10px 10px;
+    margin: 0px 10px 0px 10px;
+    padding: 5px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    font-weight: 600
+}
+.total:hover{
+    background-color: #F1F1F1;
+    color: #21388B;
+}

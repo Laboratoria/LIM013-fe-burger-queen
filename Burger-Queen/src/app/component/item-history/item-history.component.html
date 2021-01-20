@@ -1,0 +1,21 @@
+<table>
+    <tr class="rowHistoryHeader">
+        <th>N° Pedido</th>
+        <th>Nombre de Cliente</th>
+        <th>Detalle</th>
+        <th>Fecha</th>
+        <th>Importe Total</th>
+    </tr>
+    <tr class="rowHistory" *ngFor="let data of childDataOrder;index as i">
+        <td>N° {{data.numOrder}}</td>
+        <td>{{data.customerName}}</td>
+        <td><p class="openDetail" (click)="showModal()" (click)="sendoDetailOrder(data.detailOrder)">Detalle pedido</p></td>
+        <td>{{formatDate(data.date)}}</td>
+        <td>S/{{data.total}}.00</td>
+    </tr>
+</table>
+<app-modal-detail-history 
+[visible]="modalVisibility" 
+(close)="closeModal($event)"
+[dataDetail]="orderDetailSelect">
+</app-modal-detail-history>

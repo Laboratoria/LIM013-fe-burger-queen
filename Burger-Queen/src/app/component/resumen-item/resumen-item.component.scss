@@ -1,15 +1,9 @@
 
-.titulo{
-    margin-top: 50px;
-    text-align: center;    
-}
+
 .table{
     font-size: calc(0.5em + 0.5vw);
-
     text-align: center;
 }
-
-
 .td-product{
     border-bottom: 1px solid #FDB827;
 }
@@ -23,53 +17,37 @@ width: 60px;
 .detail{
     width: 40%;
     margin: auto;
-
 }
-
 .N-order{
     color: #21388B;
-
 }
-
 .items{
     text-align: left;
 }
-
 .products {
     margin: auto;
 
 }
-
-    button{
-        border-radius: 50% ;
-        color:#21388B;
-        width: 40px;       
-        height: 40px;
-        border: 3px solid #21388B;
-    }
-
-    .total{
-        background-color:  #FDB827;
-        border-radius: 8px ;
-
-    }
+button{
+    border-radius: 50% ;
+    color:#21388B;
+    width: 40px;       
+    height: 40px;
+    border: 3px solid #21388B;
+}
+.total{
+    background-color:  #FDB827;
+    border-radius: 8px ;
+}
 //---------------------------------bton---------------//
 .btnSend{
+    margin: 10px;
     height: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    
   }
-
-  .Send{
-    margin: auto;
-  }
-  .return{
-    margin: auto;
-  }
-
-  .btnSend button{
+.btnSend button{
     border-radius: 10px ;
     color: #ffffff;
     width: 13%;       
@@ -79,9 +57,7 @@ width: 60px;
     background-color:  #21388B;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
     font-size: calc(0.5em + 0.5vw);
-    bottom: 50px;
-    z-index: 100;
-    }
+}
     .btnSend button:hover{
     width: 22%;       
     height: 44px;
@@ -96,19 +72,16 @@ width: 60px;
     width: 90%;
 }
 
-    @media screen and (max-width: 1024px) {
-        .home{
-          width: 100%;
-        }
-        .btnSend button{
-          width: 30%;       
-        }
+@media screen and (max-width: 1024px) {
+    .btnSend button{
+        width: 30%;       
     }
-    @media screen and (max-width: 575px) {
-      .btnSend button{
-        width: 40%;       
-      }
+}
+@media screen and (max-width: 575px) {
+    .btnSend button{
+    width: 40%;       
     }
+}
     
     
 
