@@ -1,0 +1,39 @@
+<section class="modal" *ngIf="visible">
+    <div class="container">
+        <div class="headerModal">
+            <p class="title">Detalle de Hamburgesa</p>
+            <button class="fas fa-times close" (click)="updateDetailBurger()" (click)="closeModal()"></button>
+            <table>
+                <tr class="rowHeader">
+                    <th>Item</th>
+                    <th>Producto</th>
+                    <th>Tipo de Hamburguesa</th>
+                    <th>Adicionales</th>
+                    <th></th>
+                </tr>
+                <ng-container>
+                    <tr class="rowDetail" *ngFor="let data of detailBurger.detailBurger index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{data.nameProduct}} - {{data.kind}}</td>
+                        <td>
+                            <select class="select" name="select" [(ngModel)]="detailBurger.detailBurger[i].kind">
+                                <option selected value="{{detailBurger.kind[0]}}" >{{detailBurger.kind[0]}}</option>
+                                <option value="{{detailBurger.kind[1]}}" >{{detailBurger.kind[1]}}</option>
+                                <option value="{{detailBurger.kind[2]}}">{{detailBurger.kind[2]}}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <div class="additional">
+                                <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.cheese" >{{detailBurger.additional[0]}}</label>
+                                <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.egg">{{detailBurger.additional[1]}}</label>
+                            </div>
+                        </td>
+                        <td>
+                            <button class="btnDelete fas fa-trash-alt" (click)="deleteRow(i)"></button>
+                        </td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+    </div>
+</section>

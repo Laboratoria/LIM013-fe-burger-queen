@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-item-menu',
@@ -9,12 +10,15 @@ import { OrderDetailService } from '../../services/data/order-detail.service';
 })
 export class ItemMenuComponent implements OnInit {
   @Input() childMessageCat: string;
-  public products = [];
+  modalVisibility:boolean=false;
+  products = [];
   producstFilter = [];
   category= [];
   total:number=0;
   //array sincronizado
   orderDetail:any;
+// nombre de cliente
+  customerName:string;
   //-------------------------- agregar prodcutos ----------------------------
   addProducts(item:number) { 
     this.total =0;
@@ -43,58 +47,95 @@ export class ItemMenuComponent implements OnInit {
         break;
     }
   }
-
-
-  // función que escuchará cambios 
+  // Abrir modal
+  showModal(_quantity){
+    if(_quantity>0){this.modalVisibility=true;}
+    else{ alert('Tiene que agregar almenos una hamburguesa')}
+  }
+  // Cerrar modale
+  closeModal(e){
+    this.modalVisibility=false;
+  }
+  // Agregar opciones a detalle de hamburguesa
+  addDetailBurger(objProduct){
+    // Agregar adicionales a orderDetail solo si no existe elementos
+    if(objProduct.category === 'hamburguesa'){
+      
+      for (let i = 0; i <= objProduct.quantity - 1; i++) {
+        if(objProduct.detailBurger[i]===undefined){
+          objProduct.detailBurger.push({
+            nameProduct:objProduct.product,
+            kind:objProduct.kind[0],
+            additional:{cheese:false, egg:false },
+            priceAdditional:0,
+          });
+        }
+      }
+      objProduct.quantity=objProduct.detailBurger.length;
+    } 
+  }
+//eliminar ultimos elementos de detailBurger
+  ReduceDetailBurger(objProduct){
+    if(objProduct.category === 'hamburguesa'){
+      objProduct.detailBurger.splice(-1, 1);
+    } 
+  }
+//update product
+  updateProduct(_productBurger:any){
+    this.data.changeDetailBurger(_productBurger);
+  }
+// función que escuchará cambios 
   ngOnChanges(changes: SimpleChange) {
     if(changes['childMessageCat'].currentValue==='cat1'){
       this.category=['Desayuno'];
     } else{
       this.category= ['Hamburguesas','Acompañamientos','Bebidas'];
     }
-}
-  constructor(private firestoreService: FirestoreService, private data: OrderDetailService) { 
+  }
+
+  constructor(private firestoreService: FirestoreService, private data: OrderDetailService, private route: Router) { 
   }
   ngOnInit(): void {
     //service data orderDetail
     this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
+    this.data.currentCustomerName.subscribe(name => this.customerName=name);
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
-        this.products.push({quantity:0, ...productData.payload.doc.data()
-        });
-      })
-      // verificar si order Detail contiene elementos y si es asi guardar el quntity en productos
+        if(productData.payload.doc.data().category==='hamburguesa')
+        { this.products.push({quantity:0,detailBurger:[], ...productData.payload.doc.data() });}
+        else{ this.products.push({quantity:0, ...productData.payload.doc.data() });}
+      });
+    // verificar si order Detail contiene elementos y si es asi guardar el quntity en productos
       if(this.orderDetail.length>0){
         this.orderDetail.forEach(element => {
           this.products.forEach(e => {
             if(e.product===element.product){
               e.quantity=element.quantity;
+              if(e.product==='Hamburguesa simple'){
+                e.detailBurger = element.detailBurger
+              }
             } 
           });
         });
       }
     });
   }
-
     //-------------------Filtrar información para enviar a order detail ----------------
-
-    sendOrderDetail(){
-      const orderResult = this.products.filter((el)=>el.quantity>0);
+  sendOrderDetail(){
+    const orderResult = this.products.filter((el)=>el.quantity>0);
+    if(orderResult.length<=0||this.customerName.length<=0){ 
+        alert('Por favor llene los campos');
+      }
+    else{
       orderResult.forEach((el,index)=>{
         delete el.category;
         delete el.img;
         el.item = index+1;
-        el.subtotal = el.quantity*el.price;
-      })
-      if(orderResult.length<=0)
-        {
-          console.log('no hay elementos en el pedido')
-        }
-      else{
-        this.data.changeOrderDetail(orderResult)
-        }
-    }
-
+        el.subtotal = el.quantity*el.price;});
+      this.data.changeOrderDetail(orderResult);
+      this.route.navigate(["/orderDetail"]);
+      }
+  }
 }
 

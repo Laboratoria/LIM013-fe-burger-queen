@@ -40,31 +40,31 @@
         </td>
       </tr>
       <ng-container *ngIf="data.product==='Hamburguesa simple'||data.product==='Hamburguesa doble'">
-        <tr class= "additionalProduct" *ngFor="let detail of data.detailProduct ; index as idx" >
+        <tr class= "additionalProduct" *ngFor="let detail of data.detailBurger ; index as idx" >
           <td></td>
           <td class="td-additional">
             <tr>
               <td >{{idx+1}}</td>
-              <td >{{detail.nameProduct}}</td>
+              <td >{{detail.nameProduct}} - {{detail.kind}}</td>
             </tr>
           </td>
           <td class="td-additional">
-            <select name="select">
-              <option value="value1" selected >{{data.kind[0]}}</option>
-              <option value="value2" >{{data.kind[1]}}</option>
-              <option value="value3">{{data.kind[2]}}</option>
+            <select name="select" [(ngModel)]="orderDetail[i].detailBurger[idx].kind">
+              <option value="{{data.kind[0]}}" selected >{{data.kind[0]}}</option>
+              <option value="{{data.kind[1]}}" >{{data.kind[1]}}</option>
+              <option value="{{data.kind[2]}}">{{data.kind[2]}}</option>
             </select> 
           </td>
           <td class="td-additional">
             <div class="additional">
-              <label><input type="checkbox" id="cbox1" value="first_checkbox">{{data.additional[0]}}</label>
-              <label><input type="checkbox" id="cbox2" value="second_checkbox">{{data.additional[1]}}</label>
+              <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="orderDetail[i].detailBurger[idx].additional.cheese">{{data.additional[0]}}</label>
+              <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="orderDetail[i].detailBurger[idx].additional.egg">{{data.additional[1]}}</label>
             </div>
           </td>
           <td class="td-additional">
             <tr>
               <td >{{detail.priceAdditional}}.00</td>
-              <td ><button (click)="deleteRow(idx)" id="delete" class="fas fa-trash-alt"></button></td>
+              <td ><button (click)="deleteRowDB(data,idx)" id="delete" class="fas fa-trash-alt"></button></td>
             </tr>
           </td>
         </tr>
@@ -81,7 +81,7 @@
 </section>
 
 <div class="btnSend">
-  <button class="Send" routerLink="/home" ><i class="fas fa-arrow-left"></i>Volver </button>
+  <button class="Send" (click)="backHome()" ><i class="fas fa-arrow-left"></i>Volver </button>
   <button class="return"  (click)= "sendOrder()">Confirmar <i class="fas fa-arrow-right"></i></button>
 </div>
 

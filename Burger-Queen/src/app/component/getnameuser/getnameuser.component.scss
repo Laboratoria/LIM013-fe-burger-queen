@@ -24,20 +24,28 @@
 }
 .alert{
     float: right;
-    color: #088f04;
     font-size: calc(1.2em + 1.2vw);
     position: absolute;
     margin-left: 20%;
     margin-top: 10px;
-    background-color: #ffffff;
+    background-color: transparent;
     font-weight: 600;
     border-style: none;
+}
+
+//css condicinal
+.active{
+    color: #088f04;
     cursor: pointer;
 }
-.alert:focus {
-    outline: none;
-}
-.alert:hover{
+.active:hover{
     font-size: calc(1.3em + 1.3vw);
     color: #0c7c08;
+}
+.active:focus{
+    outline: none;
+}
+.disabled{
+    color: transparent;
+
 }

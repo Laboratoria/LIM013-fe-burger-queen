@@ -1,5 +1,5 @@
 <section class="container">
-    <button routerLink="/readyOrders" class="alert">1 <i class="fas fa-bell"></i></button>
+    <button routerLink="/readyOrders" class="alert" [ngClass]="(quantityOrderReady>0)?'active':'disabled'">{{quantityOrderReady}} <i class="fas fa-bell"></i></button>
     <h1 class="title">Menú</h1>
     <p class="name">Nombre de cliente : </p>
     <input type="text" class="nameUser" (keyup)="sendCustomerName()" [(ngModel)]="customerName" placeholder="Ingresar nombre de cliente">

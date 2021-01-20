@@ -7,7 +7,7 @@
     flex-wrap: wrap;
 }
 .itemMenu{
-    height: 240px;
+    min-height: 240px;
     width: 170px;
     display: flex;
     flex-direction: column;
@@ -27,12 +27,13 @@
     height: 35%;
     overflow:hidden;
 }
+
 .itemPrice{
     height: 15%;
 }
 .itemQuantity{
     background-color: #ffffff;
-    height: 25%;
+    min-height: 25%;
     border-radius: 0px 0px 15px 15px;
 }
 .itemTitle,.itemPrice{
@@ -60,7 +61,7 @@ img{
     align-items:center;
     text-align: center;
 }
-.itemMenu button{
+.btnReduce, .btnAdd{
     border-radius: 50% ;
     color:#21388B;
     width: 40px;       
@@ -69,14 +70,27 @@ img{
     cursor:pointer;
     background-color: #ffffff;
     }
-
-.itemMenu button:hover{
+.btnDetailBurger{
+    border: 2px solid #21388B;
+    color: #ffffff;
+    cursor:pointer;
+    background-color:#21388B;
+    border-radius: 5px ;
+    font-size: calc(0.5em + 0.5vw);
+    width: 130px;
+}
+.btnDetailHamburger:hover{
+    background-color:#ffffff;
+    color: #21388B;
+}
+.btnReduce:hover, .btnAdd:hover{
     background-color:#21388B;
     color: #F1F1F1;
 }
-.itemMenu button:focus {
+.itemMenu table button:focus {
     outline: none;
 }
+
 
 //------btn enviar data 
 
@@ -107,8 +121,11 @@ img{
     }
 @media screen and (max-width: 1024px) {
     .itemMenu{
-        height: 200px;
+        min-height: 200px;
         width: 140px;
+    }
+    .btnDetailHamburger{
+        width: 110px;
     }
     .btnSend button{
         width: 30%;       
@@ -116,10 +133,13 @@ img{
 }
 @media screen and (max-width: 575px) {
     .itemMenu{
-        height: 160px;
+        min-height: 160px;
         width: 100px;
     }
-    .itemMenu button{
+    .btnDetailBurger{
+        width: 80px;
+    }
+    .btnReduce, .btnAdd{
         width: 30px;       
         height: 30px;
         }

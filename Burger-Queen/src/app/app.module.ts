@@ -8,7 +8,6 @@ import { FooterComponent } from './component/footer/footer.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ItemMenuComponent } from './component/item-menu/item-menu.component';
 import { ResumenItemComponent } from './component/resumen-item/resumen-item.component';
-
 import { HistoryOrdersComponent } from './view/history-orders/history-orders.component';
 import { HomeComponent } from './view/home/home.component';
 import { ReadyOrdersComponent } from './view/ready-orders/ready-orders.component';
@@ -22,6 +21,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { ItemOrderComponent } from './component/item-order/item-order.component';
 import { ItemHistoryComponent } from './component/item-history/item-history.component';
 import { ModalDetailHistoryComponent } from './component/modal-detail-history/modal-detail-history.component';
+import { ModalDetailBurgerComponent } from './component/modal-detail-burger/modal-detail-burger.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { ModalDetailHistoryComponent } from './component/modal-detail-history/mo
     GetnameuserComponent,
     ItemOrderComponent,
     ItemHistoryComponent,
-    ModalDetailHistoryComponent
+    ModalDetailHistoryComponent,
+    ModalDetailBurgerComponent
   ],
   imports: [
     BrowserModule,
