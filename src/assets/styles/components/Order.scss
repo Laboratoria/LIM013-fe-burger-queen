@@ -1,0 +1,30 @@
+.order{
+    width: 38%;
+}
+
+.detail-order{
+    background-color: #F5F4F4;
+}
+
+.body-detail-order{
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size:15px;
+}
+
+.title-order , .title-detail{
+    background-color: #050505;
+    color:#f9f9f9;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+
+.info-header-order{
+    padding: 4px;
+    background-color: #F5F4F4;
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
