@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import Header from "../components/Header";
 // import OrderAndAllMenu from '../components/OrderAndAllMenu';
 // import Order from "../components/Order";
@@ -9,84 +9,138 @@ import React, { useState } from "react";
 // import ButtonSend from "../components/ButtonSend";
 // import ButtonCancel from "../components/ButtonCancel";
 import AllMenu from "../components/AllMenu";
+import { db } from "../firebase";
+import {getAllOrders} from "../firebase/controllerOrder.js";
 
 import "../assets/styles/App.scss";
 const TakeOrder = () => {
   // Traer array de producto seleccionados y los actualizar
   const [selectItem, setSelectItem] = useState([]);
   console.log(selectItem);
-      
-  //Numero de mesa
+
+  //Numero de mesa "table"
   const [table, setTable] = useState("");
-  
+
   // Nombre
   const [costumer, setCostumer] = useState("");
 
   // Incrementar y disminuir cantidad de productos
   let [result, setResult] = useState(1);
-  
-  let [total, setTotal]= useState(0);
+
+  // Total de orden
+  // const selectArray = [...selectItem];
+  const [total, setTotal] = useState(0);
+
+  // Enviar a firebase
+  const [sendOrder, setSendOrder] = useState({});
+  // Funcion para obtener total
+  const getTotal = (callback, myArray) => {
+    const totalNumber = myArray.reduce(
+      (preventDefault, currentValue) =>
+        preventDefault + parseInt(currentValue.subTotal),
+      0
+    );
+    callback(totalNumber);
+  };
+
+  useEffect(() => {
+    getTotal(setTotal, selectItem);
+    console.log('useeffect aquí')
+  }, [selectItem]);
+
+  // console.log(total);
+
+  // Numero de order
+  const [numberOrder, setNumberOrder] = useState([]);
+  useEffect(() => {
+    getAllOrders(setNumberOrder);
+  }, []);
+console.log(numberOrder)
+ console.log(numberOrder.length)
 
 
   // Funcion capturar valor mesa
   function handleChange(e) {
-    setTable({ [e.target.name]: e.target.value });
-    console.log(table);
-    
+    setTable(e.target.value);
   }
-// Funcion capturar valor nombre
+
+  // Funcion capturar valor nombre
   function handleImput(e) {
-    setCostumer({ [e.target.name]: e.target.value });
-    console.log(costumer);
+    setCostumer(e.target.value);
   }
-  
+
   // Funcion para aumentar  cantidad y subtotal
   function handlePlus(item) {
-    setResult(result+=1); //Preguntar
-    const newArray = selectItem.filter(product => (product.id === item.id));
+    const indexArray = selectItem.findIndex((product) => product.id === item.id);
+    const newArray = selectItem.splice(indexArray, 1);
     newArray[0].quantity += 1;
-    newArray[0].subTotal = newArray[0].quantity * newArray[0].price;     
-    
-    const getTotal = selectItem.reduce((preventDefault,currentValue)=> preventDefault + currentValue.subTotal,total)
-  
-    setTotal(getTotal) 
-    console.log(total);
-  };
-  
-  // const reducer = (acum, product) =>{
-  //   return acum + product.subTotal;
-  // }   
-   
+    newArray[0].subTotal = newArray[0].quantity * newArray[0].price;
+    setSelectItem([...newArray,...selectItem])
+  }
 
- // Funcion para disminuir  cantidad y subtotal
-  function handleMinus(item){
-    setResult(result-=1);
-    const verifyMInNumber = result > 1 ? result-=1: 1;
-    setResult(verifyMInNumber);
-
-    const newArray1 = selectItem.filter(product => (product.id === item.id));
-    let verifyMinQuantity = newArray1[0].quantity > 1? newArray1[0].quantity -=1: 1
+  // Funcion para disminuir  cantidad y subtotal
+  function handleMinus(item) {
+    const indexArray = selectItem.findIndex((product) => product.id === item.id);
+    const newArray1 = selectItem.splice(indexArray,1);
+    let verifyMinQuantity =
+     newArray1[0].quantity > 1 ? (newArray1[0].quantity -= 1) : 1;
     newArray1[0].subTotal = verifyMinQuantity * newArray1[0].price;
+    setSelectItem([...newArray1,...selectItem]);
+  }
 
-    console.log(selectItem);
-  } 
-
-  
-// Funcion para borrar
-  function handleDelete(item){
+  // Funcion para borrar
+  function handleDelete(item) {
     const listUpdated = selectItem.filter(({ id }) => id !== item.id);
-  
+
     setSelectItem(listUpdated);
     console.log(selectItem);
   }
+
+  // Funcion Limpiar order
+  function handleCancel() {
+    console.log("clic en cancel");
+    setTable("");
+    setCostumer("");
+    setSelectItem([]);
+    // let form = document.querySelector("form");// preguntar
+    // form.reset();
+    console.log(table);
+    console.log(costumer);
+  }
   
+    
+  // Enviar orden
+  function handleSend() {
+    const orderObject = {
+      id: numberOrder.length +1,
+      name: costumer,
+      numberTable: table,
+      date: new Date(),
+      totalOrder: total,
+      detail: [...selectItem],
+      prepared:false,
+    };
+    console.log("clic en cancel");
+    setSendOrder(orderObject);
+    db.collection("orders")
+      .doc()
+      .set(orderObject)
+      .then(function () {
+        console.log("Document successfully written!");
+        handleCancel()
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
+  }
+  // console.log(sendOrder);
   
-  
-    return (
+
+  return (
     <section className="App">
       <section className="orderAndAllMenu">
-      <section className="order">      
-        {/* <Order>  */}
+        <section className="order">
+          {/* <Order>  */}
           {/* <HeaderOrder /> */}
           <section className="header-order">
             <section className="title-order">
@@ -99,7 +153,7 @@ const TakeOrder = () => {
                   onChange={handleChange}
                   name="numberTable"
                   className="order-table"
-                  defaultValue={'DEFAULT'} 
+                  defaultValue={"DEFAULT"}
                 >
                   <option value="DEFAULT" disabled></option>
                   <option name="numberTable" value="1">
@@ -121,7 +175,12 @@ const TakeOrder = () => {
               </label>
               <label>
                 <strong className="order-name">Cliente </strong>
-                <input onChange={handleImput} type="text" name="costumer" />
+                <input
+                  onChange={handleImput}
+                  type="text"
+                  name="costumer"
+                  value={costumer}
+                />
               </label>
             </form>
           </section>
@@ -130,27 +189,46 @@ const TakeOrder = () => {
               <p>Detalle</p>
             </section>
             <section className="body-detail-order">
-            {/* {selectItem.map((item) => 
+              {/* {selectItem.map((item) => 
                 <ProductOrder item = {item} key={item.id} />
               )} */}
-              {selectItem.map((item) => 
+              {selectItem.map((item) => (
                 <section className="product-order" key={item.id}>
-                <div>
-                  <button type="button" className="button-add" onClick= {(e) => {e.preventDefault(); handlePlus(item)}}>
-                    <i className="fas fa-plus-circle"></i>
+                  <div>
+                    <button
+                      type="button"
+                      className="button-add"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handlePlus(item);
+                      }}
+                    >
+                      <i className="fas fa-plus-circle"></i>
+                    </button>
+                    <p>{item.quantity}</p>
+                    <button className="button-less">
+                      <i
+                        className="fas fa-minus-circle"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleMinus(item);
+                        }}
+                      ></i>
+                    </button>
+                  </div>
+                  <p className="name-detail">{item.name}</p>
+                  <p className="price-detail">{item.subTotal}</p>
+                  <button
+                    className="button-trash"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleDelete(item);
+                    }}
+                  >
+                    <i className="fas fa-trash-alt"></i>
                   </button>
-                  <p>{item.quantity}</p>
-                  <button className="button-less">
-                    <i className="fas fa-minus-circle" onClick= {(e) => {e.preventDefault(); handleMinus(item)}}></i>
-                  </button>
-                </div>
-                <p className="name-detail">{item.name}</p>
-                <p className="price-detail">{item.subTotal}</p>
-                <button className="button-trash" onClick={(e) => {e.preventDefault(); handleDelete(item)}}>
-                  <i className="fas fa-trash-alt"></i>
-                </button>
-              </section>
-              )}
+                </section>
+              ))}
             </section>
           </section>
           {/* <DetailOrder>
@@ -159,15 +237,21 @@ const TakeOrder = () => {
           </DetailOrder> */}
           {/* <ContainerTotal /> */}
           <section className="container-total">
-              <p className="order-total">Total <strong className="price-total"> S/{total}</strong></p>
+            <p className="order-total">
+              Total <strong className="price-total"> S/{total}</strong>
+            </p>
           </section>
           {/* <ButtonSend />
           <ButtonCancel /> */}
-           <button className="button-send">Enviar pedido</button>
-           <button className="button-cancel">Cancelar</button> 
-        {/* </Order> */}
+          <button className="button-send" onClick={handleSend}>
+            Enviar pedido
+          </button>
+          <button className="button-cancel" onClick={handleCancel}>
+            Cancelar
+          </button>
+          {/* </Order> */}
         </section>
-        <AllMenu sendGetItem ={setSelectItem} sendItem = {selectItem} />
+        <AllMenu sendGetItem={setSelectItem} sendItem={selectItem} />
       </section>
     </section>
   );

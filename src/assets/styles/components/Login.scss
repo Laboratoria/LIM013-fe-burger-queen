@@ -1,6 +1,7 @@
 .container-login{
   background-color: #050505;
   height: 100vh;
+  overflow: hidden;
 }
 .viewOne-title{
 display: flex;
@@ -19,19 +20,26 @@ color:#FFFFFF ;
 .content-hamburguer{
   display: flex;
   justify-content: space-between;
-  height: 100vh;  
+  // align-content: flex-end;
+  // position: relative;
+  // height: 100vh;  
 }
 .figure-img{
   margin-left: -110px;
   height: 84%;
   width: 190%;
-  margin-top: 86px;
+  margin-top:39%;
+  // position: absolute;
+  // margin-top: 86px;
 }
 .content-botton{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin-bottom: 90px; 
+  // justify-content: center;
+  // position: absolute;
+   padding-top:220px;
+
+  // margin-bottom: 90px; 
   /* margin-right: 70px;  */
 }
 .botton-mesero{
@@ -49,8 +57,13 @@ color:#FFFFFF ;
   height: 80px;
   background: #FC9A09;
   font-size: 35px;
-  color: #FFF;
+  color: #ffffff;
   border-radius: 21px;
   border: none;
   margin: 15px 100px;
+}
+
+.button-link{
+  color: inherit;
+  text-decoration: inherit;
 }

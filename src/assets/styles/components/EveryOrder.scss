@@ -2,6 +2,18 @@
   width: 38%;
 }
 
+.showOrder{
+  display:flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.eachOrder{
+  max-width: 300px;
+  width: 38%;
+  margin: 20px;
+}
+
 .detail-order{
   background-color: #F5F4F4;
 }
