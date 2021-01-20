@@ -14,9 +14,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><button  class="btnReduce fas fa-minus"(click)= "reduceProducts(product.item)"></button></td>
+                        <td><button  class="btnReduce fas fa-minus"(click)= "reduceProducts(product.item)" (click)="ReduceDetailBurger(product)"></button></td>
                         <td>{{product.quantity}}</td>
-                        <td><button class="btnAdd fas fa-plus" (click)= "addProducts(product.item)" (click)="sendDetailBurger()"></button></td> 
+                        <td><button class="btnAdd fas fa-plus" (click)= "addProducts(product.item)" (click)="addDetailBurger(product)"></button></td> 
                     </tr>
                 </table>
             </div>

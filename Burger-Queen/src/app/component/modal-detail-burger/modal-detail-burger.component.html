@@ -14,9 +14,9 @@
                 <ng-container>
                     <tr class="rowDetail" *ngFor="let data of detailBurger.detailBurger index as i">
                         <td>{{i+1}}</td>
-                        <td>{{data.nameProduct}}</td>
+                        <td>{{data.nameProduct}} - {{data.kind}}</td>
                         <td>
-                            <select class="select" name="select" [(ngModel)]="optionSelected[i]" (change)="updateOpt(i)">
+                            <select class="select" name="select" [(ngModel)]="detailBurger.detailBurger[i].kind">
                                 <option selected value="{{detailBurger.kind[0]}}" >{{detailBurger.kind[0]}}</option>
                                 <option value="{{detailBurger.kind[1]}}" >{{detailBurger.kind[1]}}</option>
                                 <option value="{{detailBurger.kind[2]}}">{{detailBurger.kind[2]}}</option>
@@ -24,8 +24,8 @@
                         </td>
                         <td>
                             <div class="additional">
-                                <label><input type="checkbox" id="cbox1" value="first_checkbox">{{detailBurger.additional[0]}}</label>
-                                <label><input type="checkbox" id="cbox2" value="second_checkbox">{{detailBurger.additional[1]}}</label>
+                                <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.cheese" >{{detailBurger.additional[0]}}</label>
+                                <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.egg">{{detailBurger.additional[1]}}</label>
                             </div>
                         </td>
                         <td>

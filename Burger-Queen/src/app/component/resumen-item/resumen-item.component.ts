@@ -138,31 +138,23 @@ getNumOrders(){
     this.orderDetail.splice(_index, 1);
     this.calculateTotal();
   }
+  //Eliminar fila de producto
+  deleteRowDB(_data:any,_index: number) {
+    _data.detailBurger.splice(_index, 1);
+    // contabilizar elementos de detalle de hamburguesa
+    _data.quantity=_data.detailBurger.length;
+  }
+
+  // volver a home
+  backHome(){
+    this.route.navigate(["/home"]);
+
+  }
 
   ngOnInit(): void {
     this.data.currentOrderDetail.subscribe(order => this.orderDetail=order);
     this.data.currentCustomerName.subscribe(name => this.customerName=name);
-    this.orderDetail.forEach((element,index) => {
-      // Agregar adicionales a orderDetail
-      if(element.product === 'Hamburguesa simple'||element.product==='Hamburguesa doble'){
-        this.orderDetail[index].detailProduct=[];
-        for (let i = 0; i <= element.quantity - 1; i++) {
-          element.detailProduct.push({
-            nameProduct:element.product+' '+element.kind[0],
-            kind:element.kind[0],
-            additional:[],
-            priceAdditional:0,
-          });
-        }
-      } 
-    });
     this.calculateTotal();
   }
-
-  // public sumar(a:number,b:number):number{
-  //   return Number(a) + Number(b);
-  // }
-
 }
 
-// instancia cuando queremos usar funciones atributos etc que esten dentro de una clase.

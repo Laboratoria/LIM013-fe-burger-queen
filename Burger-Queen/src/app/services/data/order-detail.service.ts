@@ -18,7 +18,6 @@ export class OrderDetailService {
 private detailBurgerSource = new BehaviorSubject<any>([]);
 currentDetailBurger = this.detailBurgerSource.asObservable();
 
-
   constructor() { }
 // metodo que actualiza la data nombre de cliente sincronizado
 changeCustomerName(customerName: string) {
@@ -27,7 +26,6 @@ changeCustomerName(customerName: string) {
 
 // metodo que actualiza la data sincronizada
   changeOrderDetail(orderDetail: any) {
-
     // if(this.orderDetailSource['_value'].length>0)
     //   {
     //     this.orderDetailSource['_value'].forEach((element,i) => {
@@ -42,7 +40,6 @@ changeCustomerName(customerName: string) {
     //   else{
         this.orderDetailSource.next(orderDetail);
   //     }
-    
   //   console.log(this.orderDetailSource)
   }
 

@@ -10,33 +10,23 @@ export class ModalDetailBurgerComponent implements OnInit {
   @Input() visible:boolean;
   @Output() close:EventEmitter<boolean>=new EventEmitter;
   detailBurger:any;
-  optionSelected:any=[];
-   // isChecked:any;
-
-  // isChecked:any;
   //Cerrar modal
   closeModal(){
     this.close.emit(false);
   }
-  // actualizar campo de nombre de producto y opción seleccionada
-  updateOpt(_index){
-    this.detailBurger.detailBurger[_index].kind=this.optionSelected[_index];
-    this.detailBurger.detailBurger[_index].nameProduct=this.detailBurger.product+' '+this.optionSelected[_index];
-  }
   //Eliminar fila de producto
   deleteRow(_index: number) {
     this.detailBurger.detailBurger.splice(_index, 1);
+    // contabilizar elementos de detalle de hamburguesa
+    this.detailBurger.quantity=this.detailBurger.detailBurger.length;
   }
-  // checkBoxSelected(){
-  //   console.log(this.isChecked);
-  // }
+// Actualizar Detail Burger
   updateDetailBurger(){
     this.data.changeDetailBurger(this.detailBurger);
   }
-
   constructor(private data: OrderDetailService) { }
-
   ngOnInit(): void {
+    // subscribirse al servicio de obtención de data y asignación a Detail Burger
     this.data.currentDetailBurger.subscribe(dataBurger => this.detailBurger=dataBurger);
   }
 
