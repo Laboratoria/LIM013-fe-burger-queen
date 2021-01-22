@@ -2,6 +2,7 @@ import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { FirestoreService } from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-item-menu',
@@ -127,8 +128,19 @@ export class ItemMenuComponent implements OnInit {
     //-------------------Filtrar información para enviar a order detail ----------------
   sendOrderDetail(){
     const orderResult = this.products.filter((el)=>el.quantity>0);
-    if(orderResult.length<=0||this.customerName.length<=0){ 
-        alert('Por favor llene los campos');
+    if(orderResult.length<=0){
+    Swal.fire(
+        '! No hay productos en la order! 😞',
+        'Por seleccione los productos del pedido',
+        'error'
+      )
+    }
+    if(this.customerName.length<=0){ 
+      Swal.fire(
+        '! No se ha ingresado un cliente! 😞',
+        'Por favor ingrese el nombre del cliente ',
+        'error'
+      )
       }
     else{
       orderResult.forEach((el,index)=>{

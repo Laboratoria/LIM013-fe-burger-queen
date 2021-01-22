@@ -22,6 +22,7 @@ import { ItemOrderComponent } from './component/item-order/item-order.component'
 import { ItemHistoryComponent } from './component/item-history/item-history.component';
 import { ModalDetailHistoryComponent } from './component/modal-detail-history/modal-detail-history.component';
 import { ModalDetailBurgerComponent } from './component/modal-detail-burger/modal-detail-burger.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -43,10 +44,11 @@ import { ModalDetailBurgerComponent } from './component/modal-detail-burger/moda
     ModalDetailBurgerComponent
   ],
   imports: [
+    SweetAlert2Module.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]

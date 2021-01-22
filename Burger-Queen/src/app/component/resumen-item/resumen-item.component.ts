@@ -3,6 +3,7 @@ import { ItemMenuComponent } from '../item-menu/item-menu.component';
 import {FirestoreService} from '../../services/firestore/firestore.service';
 import { OrderDetailService } from '../../services/data/order-detail.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -41,13 +42,23 @@ sendOrder(){
     }
   });
   this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,this.minutes,this.seconds,this.orderDetail,this.total).then(()=>{
-    alert('! Orden enviada a cocina con Exito!');
+    // alert('! Orden enviada a cocina con Exito!');
+    Swal.fire(
+      '! Orden enviada a cocina con éxito!',
+      '¡ 😀 🍔 😀 🍔😀 🍔 !',
+      'success'
+    )
     this.data.changeOrderDetail([]);
     this.data.changeCustomerName('');
     this.orderDetail=this.orderDetail.map((el)=>el.quantity=0);
     this.route.navigate(["/home"])
   }).catch(()=>{
  this.error= 'fail';
+    Swal.fire(
+      '! No se pudo enviar el pedido!',
+      'Por favor intentelo nuevamente',
+      'error'
+    )
   })
 }
 
