@@ -44,16 +44,6 @@
 }
 // Estilo tabla
 
-@media (max-width:1024px) {
-    .container{
-        width: 60%;
-    }
-}
-@media screen and (max-width: 575px) {
-    .container{
-        width: 80%;
-    }
-}
 
 // Estilo tabla
 table{
@@ -97,6 +87,7 @@ table{
     border: 2px solid #FDB827;
     background-color:#fff;
     width: 90%;
+    font-size: calc(0.5em + 0.5vw);
 }
 .btnDelete{
     border-radius: 50% ;
@@ -109,4 +100,19 @@ table{
 .btnDelete:hover{
     background-color: #21388B;
     color: #fff;
+}
+
+@media (max-width:1024px) {
+    .container{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 575px) {
+    .container{
+        width: 80%;
+    }
+    .btnDelete{
+        height: 30px;
+        width: 30px;
+    }
 }
