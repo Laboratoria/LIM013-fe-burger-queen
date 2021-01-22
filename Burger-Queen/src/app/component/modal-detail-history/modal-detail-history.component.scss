@@ -54,6 +54,9 @@ table{
     background-color: #21388B;
     color: #f2f2f2;
 }
+.rowHeader th{
+    font-size: calc(0.5em + 0.5vw);
+}
 .rowDetail{
     font-size: calc(0.5em + 0.5vw);
     text-align: center;
@@ -65,7 +68,7 @@ table{
     width: 20%;
 }
 .rowHistory td {
-    width: 20%;
+    width: 25%;
     padding: 1%;
 }
 .rowDetail:hover {background-color: #21388b62;}

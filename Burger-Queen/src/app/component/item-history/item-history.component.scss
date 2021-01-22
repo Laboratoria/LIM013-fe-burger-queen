@@ -10,6 +10,9 @@ table{
     background-color: #FDB827;
     color: #f2f2f2;
 }
+.rowHistoryHeader th{
+    font-size: calc(0.5em + 0.5vw);
+}
 .rowHistory{
     font-size: calc(0.5em + 0.5vw);
     text-align: center;
