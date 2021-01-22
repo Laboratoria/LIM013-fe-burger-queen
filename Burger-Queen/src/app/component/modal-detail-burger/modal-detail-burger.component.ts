@@ -24,6 +24,23 @@ export class ModalDetailBurgerComponent implements OnInit {
   updateDetailBurger(){
     this.data.changeDetailBurger(this.detailBurger);
   }
+// Actualizar precio de adicionales
+changePriceAdd($event,_data:any){
+    switch ($event.target.checked) {
+      case true:
+        _data.priceAdditional++;
+        this.detailBurger.subtotal++;
+        this.detailBurger.totalAdditional++;
+        break;
+      default:
+        if(_data.priceAdditional>0){
+        _data.priceAdditional--;
+        this.detailBurger.subtotal--;
+        this.detailBurger.totalAdditional--;
+      }
+        break;
+    }
+}
   constructor(private data: OrderDetailService) { }
   ngOnInit(): void {
     // subscribirse al servicio de obtención de data y asignación a Detail Burger

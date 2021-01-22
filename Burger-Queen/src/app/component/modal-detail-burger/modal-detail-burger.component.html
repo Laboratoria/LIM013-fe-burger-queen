@@ -9,6 +9,7 @@
                     <th>Producto</th>
                     <th>Tipo de Hamburguesa</th>
                     <th>Adicionales</th>
+                    <th>Subtotal</th>
                     <th></th>
                 </tr>
                 <ng-container>
@@ -24,10 +25,11 @@
                         </td>
                         <td>
                             <div class="additional">
-                                <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.cheese" >{{detailBurger.additional[0]}}</label>
-                                <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.egg">{{detailBurger.additional[1]}}</label>
+                                <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.cheese" (change)="changePriceAdd($event,data)">{{detailBurger.additional[0]}}</label>
+                                <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="detailBurger.detailBurger[i].additional.egg" (change)="changePriceAdd($event,data)" >{{detailBurger.additional[1]}}</label>
                             </div>
                         </td>
+                        <td>S/{{data.priceAdditional}}.00</td>
                         <td>
                             <button class="btnDelete fas fa-trash-alt" (click)="deleteRow(i)"></button>
                         </td>

@@ -103,8 +103,8 @@ export class ItemMenuComponent implements OnInit {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
         if(productData.payload.doc.data().category==='hamburguesa')
-        { this.products.push({quantity:0,detailBurger:[], ...productData.payload.doc.data() });}
-        else{ this.products.push({quantity:0, ...productData.payload.doc.data() });}
+        { this.products.push({quantity:0,detailBurger:[],subtotal:0,totalAdditional:0, ...productData.payload.doc.data() });}
+        else{ this.products.push({quantity:0,subtotal:0, ...productData.payload.doc.data() });}
       });
     // verificar si order Detail contiene elementos y si es asi guardar el quntity en productos
       if(this.orderDetail.length>0){
@@ -112,7 +112,10 @@ export class ItemMenuComponent implements OnInit {
           this.products.forEach(e => {
             if(e.product===element.product){
               e.quantity=element.quantity;
-              if(e.product==='Hamburguesa simple'){
+              if(e.product==='Hamburguesa simple'&& element.product==='Hamburguesa simple' ){
+                e.detailBurger = element.detailBurger
+              }
+              if(e.product==='Hamburguesa doble'&&element.product==='Hamburguesa doble'){
                 e.detailBurger = element.detailBurger
               }
             } 
@@ -129,10 +132,8 @@ export class ItemMenuComponent implements OnInit {
       }
     else{
       orderResult.forEach((el,index)=>{
-        delete el.category;
         delete el.img;
-        el.item = index+1;
-        el.subtotal = el.quantity*el.price;});
+        el.subtotal = el.subtotal+el.quantity*el.price;});
       this.data.changeOrderDetail(orderResult);
       this.route.navigate(["/orderDetail"]);
       }

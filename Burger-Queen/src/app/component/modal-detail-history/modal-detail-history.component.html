@@ -8,11 +8,11 @@
                     <th>Item</th>
                     <th>Producto</th>
                     <th>Cantidad</th>
-                    <th>Total</th>
+                    <th>Subtotal</th>
                 </tr>
                 <tr class="rowDetail" *ngFor="let data of dataDetail; index as i">
-                    <td>{{i}}</td>
-                    <td>{{data.product}}</td>
+                    <td>{{i+1}}</td>
+                    <td>{{data.product}}<ng-container *ngIf="data.category==='hamburguesa'"> + {{data.totalAdditional}} Adicionales</ng-container></td>
                     <td>{{data.quantity}}</td>
                     <td>{{data.subtotal}}</td>
                 </tr>

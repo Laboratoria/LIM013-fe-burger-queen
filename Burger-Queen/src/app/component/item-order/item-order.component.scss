@@ -26,13 +26,16 @@
     border-radius: 10px 10px 0px 0px;
 
 }
-.headerOrder, .clientOrder,.titleDetail,.detail{
+.headerOrder, .clientOrder,.titleDetail,.detail, .detailBurger{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
     padding-left: 10px;
     padding-right: 10px;
+}
+.detailBurger{
+    padding-left: 25px;
 }
 .clientOrder{
     height: 40px;

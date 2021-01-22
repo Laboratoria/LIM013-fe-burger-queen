@@ -26,9 +26,9 @@
         <td class="td-product">{{data.product}}</td>
         <td class="td-product">
           <tr>
-            <td > <button (click)="reduceProducts(i)" id="reduce" class="fas fa-minus"></button></td>
+            <td > <button (click)="reduceProducts(i)"  id="reduce" class="fas fa-minus"></button></td>
             <td >{{data.quantity}}</td>
-            <td > <button (click)="addProducts(i)" id="add" class="fas fa-plus"></button></td>
+            <td > <button (click)="addProducts(i)" (click)="addDetailBurger(data)" id="add" class="fas fa-plus"></button></td>
           </tr>
         </td>
         <td  class="td-product">{{data.price}}.00</td>
@@ -57,8 +57,8 @@
           </td>
           <td class="td-additional">
             <div class="additional">
-              <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="orderDetail[i].detailBurger[idx].additional.cheese">{{data.additional[0]}}</label>
-              <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="orderDetail[i].detailBurger[idx].additional.egg">{{data.additional[1]}}</label>
+              <label><input type="checkbox" id="cbox1" value="first_checkbox" [(ngModel)]="orderDetail[i].detailBurger[idx].additional.cheese" (change)="changePriceAdd($event,detail,data)">{{data.additional[0]}}</label>
+              <label><input type="checkbox" id="cbox2" value="second_checkbox" [(ngModel)]="orderDetail[i].detailBurger[idx].additional.egg"(change)="changePriceAdd($event,detail,data)">{{data.additional[1]}}</label>
             </div>
           </td>
           <td class="td-additional">

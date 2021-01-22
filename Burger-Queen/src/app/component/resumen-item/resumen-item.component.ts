@@ -22,11 +22,10 @@ export class ResumenItemComponent {
 // nombre de cliente 
   customerName:string;
 // fecha
-  date= new Date();
+  //date= new Date();
   total: number = 0;
 // cronometro
   time:string;
-  hours:any= '00';
   minutes:any = '00';
   seconds:any = '00';
   chronometerDisplay = document.querySelector(`[data-chronometer]`)
@@ -35,51 +34,22 @@ export class ResumenItemComponent {
 //------------------Funcion  que envia orden--------------------------//
 error:string;
 sendOrder(){
-  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,0,this.orderDetail,this.total).then(()=>{
+  this.orderDetail.forEach(el => {
+    if(el.category==='hamburguesa'){
+      delete el.kind;
+      delete el.additional;
+    }
+  });
+  this.firestoreservice.createCollection(this.customerName, this.numOrder,this.status,this.minutes,this.seconds,this.orderDetail,this.total).then(()=>{
     alert('! Orden enviada a cocina con Exito!');
     this.data.changeOrderDetail([]);
     this.data.changeCustomerName('');
-    this.route.navigate(["/home"]);
-    console.log(this.orderDetail);
+    this.orderDetail=this.orderDetail.map((el)=>el.quantity=0);
+    this.route.navigate(["/home"])
   }).catch(()=>{
  this.error= 'fail';
   })
 }
-
-// //----------funcion de fecha------------------//
-// options = {
-//   month:"short",
-//   day: "numeric"
-// };
-//   getDate= this.date.toLocaleDateString("es", this.options);
-
-// //------------------Función de cronometro--------------------------//
-
-// chronometer (event)  {
-//   this.chronometerCall = setInterval(() =>{
-//     this.seconds++;
-//     if (this.seconds < 10) this.seconds ='0'  + this.seconds;
-//     if (this.seconds > 59) {
-//       this.seconds = '00'// reinicio
-//       this.minutes ++
-//       if (this.minutes < 10)  this.minutes ='0'+this.minutes
-//     }
-//     if (this.minutes > 59) {
-//       this.minutes = '00';
-//       this.hours ++
-//       if (this.hours < 10) this.hours ='0'+ this.hours;
-//     }
-//   }, 1000);
-//   event.target.setAttribute('disabled','');
-// }
-
-
-// pause (){
-//   this.time=this.hours+ ':' + this.minutes+ ':'+this.seconds;
-//   console.log('tiempo'+this.time);
-//   //clearInterval(this.chronometerCall)
-//   // this.play.removeAttribute(`disabled`)
-// }
 
 
   // -------------Funciones que se ejecuta por defecto------------------//
@@ -108,21 +78,20 @@ getNumOrders(){
     this.numOrder= '0'+this.numOrder;
   }
 }
-
   addProducts(_index: number) {
     this.orderDetail[_index].quantity++;
     this.calculateSubtotal(_index);
   }
-
   reduceProducts(_index: number) {
     if (this.orderDetail[_index].quantity > 1) {
+      this.orderDetail[_index].detailBurger.splice(-1,1);
       this.orderDetail[_index].quantity--;
       this.calculateSubtotal(_index);
     }
   }
 
   calculateSubtotal(_index: number) {
-    this.orderDetail[_index].subtotal = this.orderDetail[_index].quantity * this.orderDetail[_index].price;
+    this.orderDetail[_index].subtotal = this.orderDetail[_index].subtotal + this.orderDetail[_index].quantity * this.orderDetail[_index].price;
     this.calculateTotal();
   }
 
@@ -131,8 +100,25 @@ getNumOrders(){
     this.orderDetail.forEach(element => {
       this.total = (element.quantity * element.price) + this.total;
     });
-    console.log(this.total);
   }
+//Agregar precio a Adicionales
+changePriceAdd($event,_detailBurger:any,_data:any){
+    switch ($event.target.checked) {
+      case true:
+        _detailBurger.priceAdditional++;
+        _data.subtotal++;
+        _data.totalAdditional++;
+        break;
+      default:
+        if(_detailBurger.priceAdditional>0){
+        _detailBurger.priceAdditional--;
+        _data.subtotal--;
+        _data.totalAdditional--;
+      }
+        break;
+    }
+    this.calculateTotal();
+}
 
   deleteRow(_index: number) {
     this.orderDetail.splice(_index, 1);
@@ -143,6 +129,25 @@ getNumOrders(){
     _data.detailBurger.splice(_index, 1);
     // contabilizar elementos de detalle de hamburguesa
     _data.quantity=_data.detailBurger.length;
+  }
+
+  //agregar Hamburguesa
+  addDetailBurger(objProduct){
+    // Agregar adicionales a orderDetail solo si no existe elementos
+    if(objProduct.category === 'hamburguesa'){
+      
+      for (let i = 0; i <= objProduct.quantity - 1; i++) {
+        if(objProduct.detailBurger[i]===undefined){
+          objProduct.detailBurger.push({
+            nameProduct:objProduct.product,
+            kind:objProduct.kind[0],
+            additional:{cheese:false, egg:false },
+            priceAdditional:0,
+          });
+        }
+      }
+      objProduct.quantity=objProduct.detailBurger.length;
+    } 
   }
 
   // volver a home
