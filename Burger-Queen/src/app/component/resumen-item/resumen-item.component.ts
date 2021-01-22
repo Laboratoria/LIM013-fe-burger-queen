@@ -162,4 +162,3 @@ changePriceAdd($event,_detailBurger:any,_data:any){
     this.calculateTotal();
   }
 }
-
