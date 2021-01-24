@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "site": "bugerqueen013",
+      "site": "burgerqueen013",
       "public": "dist/Burger-Queen",
       "ignore": [
         "**/.*"
