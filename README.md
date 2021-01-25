@@ -17,7 +17,11 @@
 * [6. Objetivos de aprendizaje](#6-Objetivos-de-aprendizaje)
  
 ## 1. 🧐Resumen del proyecto 
+El presente proyecto, **_TRAVEL IN_**, es una Red social destinada a personas interesadas en compartir sus experiencias de viajes, tips, recomendaciones y demás que puedan ser de utilidad para otros amantes de los viajes o que quieran iniciar en esta actividad. Esta red social te permitirá crear una cuenta de acceso y loguearse con ella; crear, editar, borrar, comentar y "likear" publicacciones, todo de forma dinámica.
 
+<p align="center">
+  <img  src="https://github.com/consuelogoche-1994/LIM013-fe-burger-queen/blob/main/Burger-Queen/src/assets/img/burgergif.gif?raw=true" alt="Travel-In">
+</p>
 
 ## 2. 👩‍💻Definición del producto
 
