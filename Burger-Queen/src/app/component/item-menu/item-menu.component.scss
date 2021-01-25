@@ -1,0 +1,149 @@
+.container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    // background-color: rgb(205, 224, 240);
+    flex-wrap: wrap;
+}
+.itemMenu{
+    min-height: 240px;
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 15px 15px 15px 15px;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    font-size: calc(0.5em + 0.5vw);
+}
+.itemTitle{
+    height: 25%;
+}
+.line {
+    background-color:  #21388B;
+  }
+.itemImg{
+    height: 35%;
+    overflow:hidden;
+}
+
+.itemPrice{
+    height: 15%;
+}
+.itemQuantity{
+    background-color: #ffffff;
+    min-height: 25%;
+    border-radius: 0px 0px 15px 15px;
+}
+.itemTitle,.itemPrice{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.itemActive{
+    background-color: #FDB827;
+    border: #FDB827 2px solid;
+}
+.itemDisabled{
+    background-color: #F1F1F1;
+    border: #F1F1F1 2px solid;
+}
+img{
+    width: 100%;
+}
+.itemMenu table{
+    height: 100%;
+    width: 100%;
+}
+.itemMenu td{
+    align-items:center;
+    text-align: center;
+}
+.btnReduce, .btnAdd{
+    border-radius: 50% ;
+    color:#21388B;
+    width: 40px;       
+    height: 40px;
+    border: 2px solid #21388B;
+    cursor:pointer;
+    background-color: #ffffff;
+    }
+.btnDetailBurger{
+    border: 2px solid #21388B;
+    color: #ffffff;
+    cursor:pointer;
+    background-color:#21388B;
+    border-radius: 5px ;
+    font-size: calc(0.5em + 0.5vw);
+    width: 130px;
+}
+.btnDetailHamburger:hover{
+    background-color:#ffffff;
+    color: #21388B;
+}
+.btnReduce:hover, .btnAdd:hover{
+    background-color:#21388B;
+    color: #F1F1F1;
+}
+.itemMenu table button:focus {
+    outline: none;
+}
+
+
+//------btn enviar data 
+
+.btnSend{
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btnSend button{
+    border-radius: 10px ;
+    color: #ffffff;
+    width: 20%;       
+    height: 40px;
+    border: 2px solid #21388B;
+    cursor:pointer;
+    background-color:  #21388B;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    font-size: calc(0.5em + 0.5vw);
+    position: fixed;
+    bottom: 50px;
+    z-index: 100;
+    }
+    .btnSend button:hover{
+      width: 22%;       
+      height: 44px;
+  
+    }
+@media screen and (max-width: 1024px) {
+    .itemMenu{
+        min-height: 200px;
+        width: 140px;
+    }
+    .btnDetailHamburger{
+        width: 110px;
+    }
+    .btnSend button{
+        width: 30%;       
+      }
+}
+@media screen and (max-width: 575px) {
+    .itemMenu{
+        min-height: 160px;
+        width: 100px;
+    }
+    .btnDetailBurger{
+        width: 80px;
+    }
+    .btnReduce, .btnAdd{
+        width: 30px;       
+        height: 30px;
+        }
+    .btnSend button{
+        width: 40%;       
+        }    
+}

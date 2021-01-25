@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "bugerqueen013",
+    "public": "dist/Burger-Queen",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

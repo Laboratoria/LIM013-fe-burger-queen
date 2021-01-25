@@ -1,0 +1,15 @@
+.home{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100vh;
+}
+@media screen and (max-width: 1024px) {
+    .home{
+      width: 100%;
+    }
+}
+@media screen and (max-width: 575px) {
+
+}
+

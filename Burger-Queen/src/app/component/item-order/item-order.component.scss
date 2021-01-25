@@ -1,0 +1,115 @@
+.containerOrderPending{
+    display: flex;
+    // justify-content: space-around;
+    flex-flow: column wrap;
+    align-items: center;
+    // background-color: #333;
+    overflow-x: scroll;
+    height: 90vh;
+}
+.itemorder{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    border-radius: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    font-size: calc(0.5em + 0.5vw);
+    // box-shadow: 1px 1px 10px #999;
+}
+.headerOrder{
+    font-size: calc(0.6em + 0.6vw);
+    color: #21388B;
+    background-color: #ffffff;
+    height: 40px;
+    border-radius: 10px 10px 0px 0px;
+
+}
+.headerOrder, .clientOrder,.titleDetail,.detail, .detailBurger{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.detailBurger{
+    padding-left: 25px;
+}
+.clientOrder{
+    height: 40px;
+}
+.titleDetail{
+    height: 40px;
+}
+.titleDetail p{
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+}
+.detailOrder{
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 5px 20px 5px 20px;
+}
+.detailOrder p{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.btnOrder{
+    height: 40px;
+    border-radius: 0px 0px 10px 10px;
+    text-align: center;
+}
+.btnOrder button{
+    border-radius: 10px ;
+    color: #ffffff;
+    border: 2px solid #21388B;
+    cursor:pointer;
+    background-color:  #21388B;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    height: 90%;
+    width: 80%;
+    font-size: calc(0.6em + 0.6vw);
+}
+.btnOrder button:hover{
+    background-color: #ffffff;
+    color: #21388B;
+}
+
+.orderActive{
+    background-color: #FDB827;
+    border: #FDB827 2px solid;
+    .titleDetail p{
+        color: #ffffff;
+        border: #F1F1F1 2px solid;
+    }
+}
+.orderDisabled{
+    background-color: #F1F1F1;
+    border: #F1F1F1 2px solid;
+    .titleDetail p{
+        color: #000000;
+        border: #000000 2px solid;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .itemorder {
+        width: 240px;
+    }
+    .btnOrder, .titleDetail, .clientOrder{
+        height: 30px;
+        }
+}
+@media screen and (max-width: 575px) {
+    .itemorder{
+        width: 180px;
+    } 
+    .detailOrder{
+        padding: 5px 10px 5px 10px;
+    }
+    .btnOrder, .titleDetail, .clientOrder{
+    height: 20px;
+    }
+}

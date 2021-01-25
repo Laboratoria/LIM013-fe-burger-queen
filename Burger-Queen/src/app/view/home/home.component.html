@@ -1,0 +1,5 @@
+<section class="home">  
+    <app-getnameuser></app-getnameuser>
+    <app-container-product (selectCatEvent)="receiveCategory($event)"></app-container-product>
+    <app-item-menu [childMessageCat]="selectedCategory"></app-item-menu>
+</section>

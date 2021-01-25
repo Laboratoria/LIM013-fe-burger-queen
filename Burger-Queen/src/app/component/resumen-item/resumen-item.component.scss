@@ -1,0 +1,135 @@
+.table{
+    font-size: calc(0.5em + 0.5vw);
+    text-align: center;
+}
+.td-product{
+    border-bottom: 1px solid #FDB827;
+}
+.td-additional{
+    border-bottom: 1px solid  #21388B;
+}
+
+.td-product td, .td-additional td{
+width: 60px;
+}
+.detail{
+    width: 40%;
+    margin: auto;
+}
+.N-order{
+    color: #21388B;
+}
+.items{
+    text-align: left;
+}
+.products {
+    margin: auto;
+
+}
+button{
+    border-radius: 50% ;
+    color:#21388B;
+    width: 40px;       
+    height: 40px;
+    border: 3px solid #21388B;
+}
+.total{
+    background-color:  #FDB827;
+    border-radius: 8px ;
+    height: 35px;
+
+ 
+}
+//---------------------------------bton---------------//
+.btnSend{
+    margin: 10px;
+    height: 40px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+.btnSend button{
+    border-radius: 10px ;
+    color: #ffffff;
+    width: 13%;       
+    height: 40px;
+    border: 2px solid #21388B;
+    cursor:pointer;
+    background-color:  #21388B;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.356);
+    font-size: calc(0.5em + 0.5vw);
+}
+    .btnSend button:hover{
+    width: 22%;       
+    height: 44px;
+  
+    }
+
+// css para adicionales
+.td-additional select {
+    border-radius: 5px ;
+    border: 2px solid #FDB827;
+    background-color:transparent;
+    width: 90%;
+}
+
+@media screen and (max-width: 1024px) {
+    .btnSend button{
+        width: 30%;       
+    }
+}
+@media screen and (max-width: 575px) {
+    .btnSend button{
+    width: 40%;       
+    }
+}
+    
+    
+
+
+
+
+// ----------------------------Desktop------------------------------//
+    @media screen and (max-width: 1024px) {
+$witdh:1000px;
+
+table{
+    min-width: $witdh;
+}
+tr{
+    border: green 5px solid!important;
+}
+
+}
+    
+ @media screen and (max-width: 575px) {
+        $witdh:100px;
+.table{
+
+    margin: auto!important;
+}
+
+.detail{
+    width: 80%;
+    min-width: $witdh;
+    margin:auto;
+   float: center;
+}
+
+.products{
+    width: 80%;
+    min-width: $witdh;
+    margin:auto;
+    overflow-x: auto!important;
+   
+}
+
+}
+   
+
+
+
+ 
+
+
+   

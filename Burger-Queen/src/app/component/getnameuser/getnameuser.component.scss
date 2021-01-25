@@ -1,0 +1,51 @@
+.container{
+    margin: 50px 0px 40px 0px;
+    // background-color: deeppink;
+    align-items: center;
+    text-align: center;
+}
+.nameUser{
+    border: 2px solid #21388B;
+    text-align: center;
+    outline: none;
+    border-radius: 15px;
+    height: 40px;
+    width: 50%;
+}
+.nameUser:hover{
+    border: 1.6px solid #162763;
+}
+.title{
+    font-size: calc(1.5em + 1.5vw);
+    margin: 0%;
+}
+.name ,.nameUser{
+    font-size: calc(0.6em + 0.6vw);
+}
+.alert{
+    float: right;
+    font-size: calc(1.2em + 1.2vw);
+    position: absolute;
+    margin-left: 20%;
+    margin-top: 10px;
+    background-color: transparent;
+    font-weight: 600;
+    border-style: none;
+}
+
+//css condicinal
+.active{
+    color: #088f04;
+    cursor: pointer;
+}
+.active:hover{
+    font-size: calc(1.3em + 1.3vw);
+    color: #0c7c08;
+}
+.active:focus{
+    outline: none;
+}
+.disabled{
+    color: transparent;
+
+}

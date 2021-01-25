@@ -1,0 +1,32 @@
+<section class="containerMenuSelectd" *ngFor="let cat of category">
+    <H1>{{cat}}</H1>
+    <hr class="line">
+    <section class="container" *ngIf="selectopt(cat)">
+        <section class="itemMenu" [ngClass]="product.quantity===0?'itemDisabled':'itemActive'" *ngFor="let product of producstFilter">
+            <div class="itemTitle"><p>{{product.product}}</p></div>
+            <div class="itemImg"><img src="{{product.img}}" alt=""></div>
+            <div class="itemPrice"><p>S/{{product.price}}.00</p></div>
+            <div class="itemQuantity">
+                <table>
+                    <tr>
+                        <td colspan="3" *ngIf="product.product==='Hamburguesa simple'||product.product==='Hamburguesa doble'">
+                            <button class="btnDetailBurger" (click)="showModal(product.quantity)" (click)="updateProduct(product)"> Detalle </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button  class="btnReduce fas fa-minus"(click)= "reduceProducts(product.item)" (click)="ReduceDetailBurger(product)"></button></td>
+                        <td>{{product.quantity}}</td>
+                        <td><button class="btnAdd fas fa-plus" (click)= "addProducts(product.item)" (click)="addDetailBurger(product)"></button></td> 
+                    </tr>
+                </table>
+            </div>
+        </section>
+    </section>
+</section>
+<section class="btnSend">
+    <button class="alert" (click)="sendOrderDetail()">Enviar <i class="fas fa-arrow-right"></i></button>
+</section>
+<app-modal-detail-burger 
+[visible]="modalVisibility"
+(close)="closeModal($event)">
+</app-modal-detail-burger>
