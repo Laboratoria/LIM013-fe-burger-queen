@@ -114,16 +114,9 @@ rápidamente a los clientes que las hicieron.
 ***
 
 ## 4. 🚀Diseño de Interfaz de Usuario
-A continuación presentamos un layout (diseño) de la vista mobile y desktop de baja
-fidelidad.
+A continuación presentamos un layout (diseño) de la vista en formato tablet.
 
-* Vista mobile
 
-    ![mobile](https://user-images.githubusercontent.com/32286663/56174616-ec9f6100-5fb8-11e9-9edb-d5ef7c251d9c.png)
-
-* Vista Desktop
-
-    ![desktop](https://user-images.githubusercontent.com/32286663/56174626-fcb74080-5fb8-11e9-8854-26e8d9c4e25f.png)
     
 ## 5. 📈Test de usabilidad
 Gracias al Feedback recibido por parte de nuestros usuarios, compañeras y coaches, pudimos iterar varias veces antes de llegar a nuestra versión final. Tomándose en cuenta principalmente:
