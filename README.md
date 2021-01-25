@@ -20,7 +20,7 @@
 * [6. Objetivos de aprendizaje](#6-Objetivos-de-aprendizaje)
  
 ## 1. 🧐Resumen del proyecto 
-El presente proyecto, **_BURGER QUEEN_**, es una plicación responsive diseñada con Angular, Sass, consumo de Apis entre otras tecnologías de desarrollo web, para la toma de pedidos y el envió de los mismos a cocina, así como también el historial de las ventas realizadas.
+El presente proyecto, **_BURGER QUEEN_** es una plicación responsive diseñada con Angular, Sass, consumo de Apis entre otras tecnologías de desarrollo web, para la toma de pedidos y el envió de los mismos a cocina, así como también el historial de las ventas realizadas.
 
 <p align="center">
   <img  src="https://github.com/consuelogoche-1994/LIM013-fe-burger-queen/blob/main/Burger-Queen/src/assets/img/burgergif.gif?raw=true" alt="Travel-In">
