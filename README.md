@@ -7,7 +7,8 @@
 
 
 # Burger Queen 🍔🍟🥪
-### Made by [Katy H.](https://github.com/KatyLuHT) & [Goche C.](https://github.com/consuelogoche-1994)
+### Made by [Katy H.](https://github.com/KatyLuHT) & [Goche C.](https://github.com/consuelogoche-1994)>Burger Queen project
+### Link a aplicación  [Burger Queen](https://burgerqueen013.web.app/)
 
 ## Índice
 
